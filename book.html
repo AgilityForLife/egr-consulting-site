@@ -95,7 +95,7 @@
             <h3 style="margin-top:8px;">Tell Us About Your Situation</h3>
             <p style="font-size:.9rem;color:var(--text-muted);">We review your answers before the call so we can skip the small talk and go deep.</p>
           </div>
-          <form id="intake-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="multistep-form">
+          <form id="intake-form" class="multistep-form" novalidate>
             <input type="hidden" name="_next" value="thankyou.html" />
             <input type="hidden" name="_subject" value="New EGR Consulting Intake Form Submission" />
             <div class="progress-bar-wrap">
@@ -120,29 +120,29 @@
               <div class="form-group">
                 <label class="form-label">What best describes your primary need?</label>
                 <div class="form-radio-group">
-                  <label class="radio-option"><input type="radio" name="primary_need" value="PMP or SAFe Certification Prep" /><span class="radio-dot"></span><span><i class="fa fa-graduation-cap" style="color:var(--teal);margin-right:8px;"></i>PMP or SAFe Certification Prep</span></label>
-                  <label class="radio-option"><input type="radio" name="primary_need" value="Agile Transformation / Coaching" /><span class="radio-dot"></span><span><i class="fa fa-arrows-spin" style="color:var(--teal);margin-right:8px;"></i>Agile Transformation / Coaching</span></label>
-                  <label class="radio-option"><input type="radio" name="primary_need" value="Project Management Consulting" /><span class="radio-dot"></span><span><i class="fa fa-briefcase" style="color:var(--teal);margin-right:8px;"></i>Project Management Consulting</span></label>
-                  <label class="radio-option"><input type="radio" name="primary_need" value="Corporate Training for My Team" /><span class="radio-dot"></span><span><i class="fa fa-people-group" style="color:var(--teal);margin-right:8px;"></i>Corporate Training for My Team</span></label>
-                  <label class="radio-option"><input type="radio" name="primary_need" value="Not sure yet — need guidance" /><span class="radio-dot"></span><span><i class="fa fa-question-circle" style="color:var(--teal);margin-right:8px;"></i>Not sure yet — need guidance</span></label>
+                  <label class="radio-option"><input type="radio" name="primary_need" value="cert_prep" /><span class="radio-dot"></span><span><i class="fa fa-graduation-cap" style="color:var(--teal);margin-right:8px;"></i>PMP or SAFe Certification Prep</span></label>
+                  <label class="radio-option"><input type="radio" name="primary_need" value="agile_transformation" /><span class="radio-dot"></span><span><i class="fa fa-arrows-spin" style="color:var(--teal);margin-right:8px;"></i>Agile Transformation / Coaching</span></label>
+                  <label class="radio-option"><input type="radio" name="primary_need" value="pm_consulting" /><span class="radio-dot"></span><span><i class="fa fa-briefcase" style="color:var(--teal);margin-right:8px;"></i>Project Management Consulting</span></label>
+                  <label class="radio-option"><input type="radio" name="primary_need" value="corporate_training" /><span class="radio-dot"></span><span><i class="fa fa-people-group" style="color:var(--teal);margin-right:8px;"></i>Corporate Training for My Team</span></label>
+                  <label class="radio-option"><input type="radio" name="primary_need" value="not_sure" /><span class="radio-dot"></span><span><i class="fa fa-question-circle" style="color:var(--teal);margin-right:8px;"></i>Not sure yet — need guidance</span></label>
                 </div>
               </div>
               <div class="form-group">
                 <label class="form-label">How would you describe your organization's current agile maturity?</label>
                 <div class="form-radio-group">
-                  <label class="radio-option"><input type="radio" name="agile_maturity" value="Just starting (waterfall or ad hoc)" /><span class="radio-dot"></span>Just starting (waterfall or ad hoc)</label>
-                  <label class="radio-option"><input type="radio" name="agile_maturity" value="Trying agile but struggling" /><span class="radio-dot"></span>Trying agile but struggling</label>
-                  <label class="radio-option"><input type="radio" name="agile_maturity" value="Scaled agile in progress (SAFe/LeSS)" /><span class="radio-dot"></span>Scaled agile in progress (SAFe / LeSS)</label>
-                  <label class="radio-option"><input type="radio" name="agile_maturity" value="Advanced — looking to optimize" /><span class="radio-dot"></span>Advanced — looking to optimize</label>
+                  <label class="radio-option"><input type="radio" name="agile_maturity" value="just_starting" /><span class="radio-dot"></span>Just starting (waterfall or ad hoc)</label>
+                  <label class="radio-option"><input type="radio" name="agile_maturity" value="trying_struggling" /><span class="radio-dot"></span>Trying agile but struggling</label>
+                  <label class="radio-option"><input type="radio" name="agile_maturity" value="scaled_agile" /><span class="radio-dot"></span>Scaled agile in progress (SAFe / LeSS)</label>
+                  <label class="radio-option"><input type="radio" name="agile_maturity" value="advanced" /><span class="radio-dot"></span>Advanced — looking to optimize</label>
                 </div>
               </div>
               <div class="form-group">
                 <label class="form-label">What is your team / org size?</label>
                 <div class="form-radio-group">
-                  <label class="radio-option"><input type="radio" name="org_size" value="Just me (individual)" /><span class="radio-dot"></span>Just me (individual)</label>
-                  <label class="radio-option"><input type="radio" name="org_size" value="Small team (2–15)" /><span class="radio-dot"></span>Small team (2–15)</label>
-                  <label class="radio-option"><input type="radio" name="org_size" value="Mid-size (16–100)" /><span class="radio-dot"></span>Mid-size (16–100)</label>
-                  <label class="radio-option"><input type="radio" name="org_size" value="Enterprise (100+)" /><span class="radio-dot"></span>Enterprise (100+)</label>
+                  <label class="radio-option"><input type="radio" name="org_size" value="individual" /><span class="radio-dot"></span>Just me (individual)</label>
+                  <label class="radio-option"><input type="radio" name="org_size" value="small_team" /><span class="radio-dot"></span>Small team (2–15)</label>
+                  <label class="radio-option"><input type="radio" name="org_size" value="mid_size" /><span class="radio-dot"></span>Mid-size (16–100)</label>
+                  <label class="radio-option"><input type="radio" name="org_size" value="enterprise" /><span class="radio-dot"></span>Enterprise (100+)</label>
                 </div>
               </div>
               <div class="step-nav"><button type="button" class="btn btn-outline-dark" data-prev><i class="fa fa-arrow-left"></i> Back</button><button type="button" class="btn btn-primary" data-next>Next: Your Goals <i class="fa fa-arrow-right"></i></button></div>
@@ -153,14 +153,14 @@
               <div class="form-group">
                 <label class="form-label">How did you hear about us?</label>
                 <div class="form-radio-group">
-                  <label class="radio-option"><input type="radio" name="referral_source" value="LinkedIn" /><span class="radio-dot"></span><i class="fab fa-linkedin" style="color:#0A66C2;margin-right:8px;"></i>LinkedIn</label>
-                  <label class="radio-option"><input type="radio" name="referral_source" value="Google Search" /><span class="radio-dot"></span><i class="fab fa-google" style="color:#4285F4;margin-right:8px;"></i>Google Search</label>
-                  <label class="radio-option"><input type="radio" name="referral_source" value="Referral" /><span class="radio-dot"></span><i class="fa fa-user-friends" style="color:var(--teal);margin-right:8px;"></i>Referral from someone I know</label>
-                  <label class="radio-option"><input type="radio" name="referral_source" value="BTII Institute" /><span class="radio-dot"></span><i class="fa fa-school" style="color:var(--teal);margin-right:8px;"></i>BTII Institute</label>
-                  <label class="radio-option"><input type="radio" name="referral_source" value="Other" /><span class="radio-dot"></span>Other</label>
+                  <label class="radio-option"><input type="radio" name="referral_source" value="linkedin" /><span class="radio-dot"></span><i class="fab fa-linkedin" style="color:#0A66C2;margin-right:8px;"></i>LinkedIn</label>
+                  <label class="radio-option"><input type="radio" name="referral_source" value="google_search" /><span class="radio-dot"></span><i class="fab fa-google" style="color:#4285F4;margin-right:8px;"></i>Google Search</label>
+                  <label class="radio-option"><input type="radio" name="referral_source" value="referral" /><span class="radio-dot"></span><i class="fa fa-user-friends" style="color:var(--teal);margin-right:8px;"></i>Referral from someone I know</label>
+                  <label class="radio-option"><input type="radio" name="referral_source" value="btii" /><span class="radio-dot"></span><i class="fa fa-school" style="color:var(--teal);margin-right:8px;"></i>BTII Institute</label>
+                  <label class="radio-option"><input type="radio" name="referral_source" value="other" /><span class="radio-dot"></span>Other</label>
                 </div>
               </div>
-              <div class="step-nav"><button type="button" class="btn btn-outline-dark" data-prev><i class="fa fa-arrow-left"></i> Back</button><button type="submit" class="btn btn-primary btn-lg">Submit &amp; Confirm My Call <i class="fa fa-check-circle"></i></button></div>
+              <div class="step-nav"><button type="button" class="btn btn-outline-dark" data-prev><i class="fa fa-arrow-left"></i> Back</button><button type="submit" id="submit-btn" class="btn btn-primary btn-lg">Submit &amp; Confirm My Call <i class="fa fa-check-circle"></i></button></div>
             </div>
           </form>
         </div>
@@ -197,5 +197,73 @@
 </footer>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 <script src="js/main.js"></script>
+
+  <!-- ═══ HubSpot CRM Integration ═══ -->
+  <script>
+  (function () {
+    var PORTAL_ID = '245764803';
+    var FORM_GUID = '317f6811-5a01-4443-8770-42f2d739c806';
+    var ENDPOINT = 'https://api.hsforms.com/submissions/v3/integration/submit/' + PORTAL_ID + '/' + FORM_GUID;
+
+    document.getElementById('intake-form').addEventListener('submit', function (e) {
+      e.preventDefault();
+      var form = e.target;
+      var data = new FormData(form);
+      var fullName = (data.get('name') || '').trim();
+      var spaceIdx = fullName.indexOf(' ');
+      var firstName = spaceIdx >= 0 ? fullName.substring(0, spaceIdx) : fullName;
+      var lastName  = spaceIdx >= 0 ? fullName.substring(spaceIdx + 1) : '';
+      var rawFields = [
+        { name: 'email',                      value: data.get('email')           || '' },
+        { name: 'firstname',                  value: firstName                         },
+        { name: 'lastname',                   value: lastName                          },
+        { name: 'phone',                      value: data.get('phone')           || '' },
+        { name: 'company',                    value: data.get('company')         || '' },
+        { name: 'jobtitle',                   value: data.get('role')            || '' },
+        { name: 'primary_need',               value: data.get('primary_need')    || '' },
+        { name: 'agile_maturity_level',       value: data.get('agile_maturity')  || '' },
+        { name: 'team__org_size',             value: data.get('org_size')        || '' },
+        { name: 'n90day_goal',                value: data.get('goal_90')         || '' },
+        { name: 'how_did_they_hear_about_us', value: data.get('referral_source') || '' }
+      ];
+      var fields = rawFields.filter(function (f) { return f.value.trim() !== ''; });
+      var submitBtn = document.getElementById('submit-btn');
+      var originalHTML = submitBtn.innerHTML;
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<i class=\"fa fa-spinner fa-spin\" style=\"margin-right:8px;\"></i>Submitting...';
+      fetch(ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          fields: fields,
+          context: { pageUri: window.location.href, pageName: document.title }
+        })
+      })
+      .then(function (res) {
+        if (res.ok) {
+          if (window.dataLayer) { window.dataLayer.push({ event: 'intake_form_submitted', email: data.get('email') }); }
+          var formWrap = form.parentNode;
+          formWrap.innerHTML = '<div style=\"text-align:center;padding:48px 24px;background:var(--white);border-radius:var(--radius-lg);border:2px solid var(--teal);\"><div style=\"width:64px;height:64px;border-radius:50%;background:var(--teal);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;\"><i class=\"fa fa-check\" style=\"color:white;font-size:1.8rem;\"></i></div><h3 style=\"color:var(--navy);margin-bottom:12px;\">You Are All Set!</h3><p style=\"color:var(--text-muted);max-width:380px;margin:0 auto;\">Your intake is submitted. Book your time above if you have not already — Erick will review your answers before the call.</p></div>';
+        } else {
+          return res.json().then(function (err) { throw new Error((err.errors && err.errors[0] && err.errors[0].message) || 'Submission failed'); });
+        }
+      })
+      .catch(function (err) {
+        console.error('HubSpot submission error:', err);
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalHTML;
+        var existing = form.querySelector('.hs-error-banner');
+        if (!existing) {
+          var banner = document.createElement('div');
+          banner.className = 'hs-error-banner';
+          banner.style.cssText = 'background:#fee;border:1px solid #f88;border-radius:8px;padding:12px 16px;margin-bottom:16px;font-size:.88rem;color:#c00;';
+          banner.innerHTML = '<i class=\"fa fa-exclamation-circle\" style=\"margin-right:6px;\"></i>Something went wrong. Please try again or email <a href=\"mailto:ErickRosa01@gmail.com\">ErickRosa01@gmail.com</a> directly.';
+          var step3 = form.querySelector('#step-3');
+          step3.insertBefore(banner, step3.firstChild);
+        }
+      });
+    });
+  })();
+  </script>
 </body>
 </html>
