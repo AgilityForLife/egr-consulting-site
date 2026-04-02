@@ -48,7 +48,7 @@ Before going live, replace all placeholder values:
 
 ### 3. Meta (Facebook) Pixel
 - **File:** All 8 HTML files (in `<head>`)
-- **Find:** `XXXXXXXXXXXXXXXX` (in the fbq('init', ...) call)
+- **Find:** `1527706744681600` (in the fbq('init', ...) call)
 - **Replace with:** Your 16-digit Meta Pixel ID
 - **Get it at:** https://business.facebook.com → Events Manager → Add Pixel
 
@@ -96,7 +96,7 @@ Before going live, replace all placeholder values:
 
 - [ ] Swap GA4 Measurement ID (`G-XXXXXXXXXX`)
 - [ ] Swap GTM Container ID (`GTM-XXXXXXX`)
-- [ ] Swap Meta Pixel ID (`XXXXXXXXXXXXXXXX`)
+- [ ] Swap Meta Pixel ID (`1527706744681600`)
 - [ ] Set Calendly URL in `js/main.js` and uncomment in `book.html`
 - [ ] Create Formspree intake form and paste endpoint in `book.html`
 - [ ] Create Formspree contact form and paste endpoint in `contact.html`
