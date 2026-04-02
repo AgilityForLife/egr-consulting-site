@@ -33,5 +33,9 @@
       "destination": "/",
       "permanent": true
     }
-  ]
+  ],
+  "functions": {
+    "api/submit-intake.js": { "maxDuration": 10 },
+    "api/calendly-webhook.js": { "maxDuration": 10 }
+  }
 }
