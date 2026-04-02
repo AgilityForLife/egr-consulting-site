@@ -229,9 +229,9 @@ document.querySelectorAll('a[href="book.html"], .book-cta').forEach(el => {
   if (!el) return;
   // ⚠️  REPLACE the URL below with your actual Calendly scheduling link
   // Example: 'https://calendly.com/ericgrosa/30min'
-  const CALENDLY_URL = 'YOUR_CALENDLY_URL_HERE';
+  const CALENDLY_URL = 'https://calendly.com/erickgrosa/30min';
 
-  if (CALENDLY_URL === 'YOUR_CALENDLY_URL_HERE') return; // Show placeholder until URL is set
+  if (CALENDLY_URL === 'https://calendly.com/erickgrosa/30min') return; // Show placeholder until URL is set
 
   if (typeof Calendly !== 'undefined') {
     Calendly.initInlineWidget({
