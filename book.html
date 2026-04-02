@@ -201,55 +201,43 @@
   <!-- ═══ HubSpot CRM Integration ═══ -->
   <script>
   (function () {
-    var PORTAL_ID = '245764803';
-    var FORM_GUID = '317f6811-5a01-4443-8770-42f2d739c806';
-    var ENDPOINT = 'https://api.hsforms.com/submissions/v3/integration/submit/' + PORTAL_ID + '/' + FORM_GUID;
-
     document.getElementById('intake-form').addEventListener('submit', function (e) {
       e.preventDefault();
       var form = e.target;
       var data = new FormData(form);
-      var fullName = (data.get('name') || '').trim();
-      var spaceIdx = fullName.indexOf(' ');
-      var firstName = spaceIdx >= 0 ? fullName.substring(0, spaceIdx) : fullName;
-      var lastName  = spaceIdx >= 0 ? fullName.substring(spaceIdx + 1) : '';
-      var rawFields = [
-        { name: 'email',                      value: data.get('email')           || '' },
-        { name: 'firstname',                  value: firstName                         },
-        { name: 'lastname',                   value: lastName                          },
-        { name: 'phone',                      value: data.get('phone')           || '' },
-        { name: 'company',                    value: data.get('company')         || '' },
-        { name: 'jobtitle',                   value: data.get('role')            || '' },
-        { name: 'primary_need',               value: data.get('primary_need')    || '' },
-        { name: 'agile_maturity_level',       value: data.get('agile_maturity')  || '' },
-        { name: 'team__org_size',             value: data.get('org_size')        || '' },
-        { name: 'n90day_goal',                value: data.get('goal_90')         || '' },
-        { name: 'how_did_they_hear_about_us', value: data.get('referral_source') || '' }
-      ];
-      var fields = rawFields.filter(function (f) { return f.value.trim() !== ''; });
+
       var submitBtn = document.getElementById('submit-btn');
       var originalHTML = submitBtn.innerHTML;
       submitBtn.disabled = true;
-      submitBtn.innerHTML = '<i class=\"fa fa-spinner fa-spin\" style=\"margin-right:8px;\"></i>Submitting...';
-      fetch(ENDPOINT, {
+      submitBtn.innerHTML = '<i class="fa fa-spinner fa-spin" style="margin-right:8px;"></i>Submitting...';
+
+      fetch('/api/submit-intake', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          fields: fields,
-          context: { pageUri: window.location.href, pageName: document.title }
+          name:             data.get('name')           || '',
+          email:            data.get('email')          || '',
+          phone:            data.get('phone')          || '',
+          company:          data.get('company')        || '',
+          role:             data.get('role')           || '',
+          primary_need:     data.get('primary_need')   || '',
+          agile_maturity:   data.get('agile_maturity') || '',
+          org_size:         data.get('org_size')       || '',
+          goal_90:          data.get('goal_90')        || '',
+          referral_source:  data.get('referral_source')|| '',
         })
       })
       .then(function (res) {
         if (res.ok) {
           if (window.dataLayer) { window.dataLayer.push({ event: 'intake_form_submitted', email: data.get('email') }); }
           var formWrap = form.parentNode;
-          formWrap.innerHTML = '<div style=\"text-align:center;padding:48px 24px;background:var(--white);border-radius:var(--radius-lg);border:2px solid var(--teal);\"><div style=\"width:64px;height:64px;border-radius:50%;background:var(--teal);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;\"><i class=\"fa fa-check\" style=\"color:white;font-size:1.8rem;\"></i></div><h3 style=\"color:var(--navy);margin-bottom:12px;\">You Are All Set!</h3><p style=\"color:var(--text-muted);max-width:380px;margin:0 auto;\">Your intake is submitted. Book your time above if you have not already — Erick will review your answers before the call.</p></div>';
+          formWrap.innerHTML = '<div style="text-align:center;padding:48px 24px;background:var(--white);border-radius:var(--radius-lg);border:2px solid var(--teal);"><div style="width:64px;height:64px;border-radius:50%;background:var(--teal);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;"><i class="fa fa-check" style="color:white;font-size:1.8rem;"></i></div><h3 style="color:var(--navy);margin-bottom:12px;">You Are All Set!</h3><p style="color:var(--text-muted);max-width:380px;margin:0 auto;">Your intake is submitted. Book your time above if you have not already — Erick will review your answers before the call.</p></div>';
         } else {
-          return res.json().then(function (err) { throw new Error((err.errors && err.errors[0] && err.errors[0].message) || 'Submission failed'); });
+          return res.json().then(function (err) { throw new Error(err.error || 'Submission failed'); });
         }
       })
       .catch(function (err) {
-        console.error('HubSpot submission error:', err);
+        console.error('Intake submission error:', err);
         submitBtn.disabled = false;
         submitBtn.innerHTML = originalHTML;
         var existing = form.querySelector('.hs-error-banner');
@@ -257,13 +245,14 @@
           var banner = document.createElement('div');
           banner.className = 'hs-error-banner';
           banner.style.cssText = 'background:#fee;border:1px solid #f88;border-radius:8px;padding:12px 16px;margin-bottom:16px;font-size:.88rem;color:#c00;';
-          banner.innerHTML = '<i class=\"fa fa-exclamation-circle\" style=\"margin-right:6px;\"></i>Something went wrong. Please try again or email <a href=\"mailto:ErickRosa01@gmail.com\">ErickRosa01@gmail.com</a> directly.';
+          banner.innerHTML = '<i class="fa fa-exclamation-circle" style="margin-right:6px;"></i>Something went wrong. Please try again or email <a href="mailto:ErickRosa01@gmail.com">ErickRosa01@gmail.com</a> directly.';
           var step3 = form.querySelector('#step-3');
           step3.insertBefore(banner, step3.firstChild);
         }
       });
     });
   })();
-  </script>
-</body>
+  <\/script>
+
+<\/body>
 </html>
