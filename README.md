@@ -36,7 +36,7 @@ Before going live, replace all placeholder values:
 
 ### 1. Google Analytics 4 (GA4)
 - **File:** All 8 HTML files (in `<head>`)
-- **Find:** `G-XXXXXXXXXX`
+- **Find:** `G-1XK6ZKRGHD`
 - **Replace with:** Your GA4 Measurement ID (format: `G-ABC123XYZ`)
 - **Get it at:** https://analytics.google.com → Admin → Data Streams → Web Stream
 
@@ -94,7 +94,7 @@ Before going live, replace all placeholder values:
 
 ## ✅ Pre-Launch Checklist
 
-- [ ] Swap GA4 Measurement ID (`G-XXXXXXXXXX`)
+- [ ] Swap GA4 Measurement ID (`G-1XK6ZKRGHD`)
 - [ ] Swap GTM Container ID (`GTM-XXXXXXX`)
 - [ ] Swap Meta Pixel ID (`1527706744681600`)
 - [ ] Set Calendly URL in `js/main.js` and uncomment in `book.html`
