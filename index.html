@@ -147,6 +147,50 @@
   </script>
 
   <style>
+  /* ── Image styles ── */
+  .section-img {
+    width: 100%; border-radius: 16px; object-fit: cover;
+    box-shadow: 0 8px 32px rgba(0,0,0,.1);
+  }
+  .hero-img-wrapper {
+    position: absolute; right: 0; top: 0; bottom: 0; width: 45%;
+    overflow: hidden; z-index: 0;
+  }
+  .hero-img-wrapper img {
+    width: 100%; height: 100%; object-fit: cover;
+    opacity: .18; filter: brightness(.7);
+  }
+  .hero-img-wrapper::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(90deg, var(--navy) 0%, transparent 100%);
+  }
+  .services-img-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+    margin-top: 48px;
+  }
+  .services-img-card {
+    border-radius: 16px; overflow: hidden; position: relative;
+    aspect-ratio: 16/10;
+  }
+  .services-img-card img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform .4s ease;
+  }
+  .services-img-card:hover img { transform: scale(1.03); }
+  .services-img-card .img-label {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    padding: 16px 20px;
+    background: linear-gradient(transparent, rgba(10,31,56,.85));
+    color: #fff; font-size: .85rem; font-weight: 600;
+  }
+  .case-img {
+    width: 100%; height: 200px; object-fit: cover;
+  }
+  @media (max-width: 768px) {
+    .hero-img-wrapper { display: none; }
+    .services-img-grid { grid-template-columns: 1fr; }
+  }
+
   /* ── Extended styles for new sections (appends to css/style.css) ── */
 
   /* Who We Serve tabs */
@@ -368,10 +412,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="nav-links">
       <a href="services.html">Services</a>
       <a href="training.html">Training</a>
+      <a href="classes.html">Classes</a>
       <a href="consulting.html">Consulting</a>
       <a href="#ai">AI Integration</a>
       <a href="#clients">Clients</a>
-      <a href="#team">Our Team</a>
       <a href="contact.html">Contact</a>
     </div>
     <a href="book.html" class="btn btn-primary btn-sm nav-cta book-cta">
@@ -387,10 +431,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div class="mobile-menu" role="dialog" aria-modal="true" aria-label="Mobile navigation">
   <a href="services.html">Services</a>
   <a href="training.html">Training</a>
+  <a href="classes.html">Classes</a>
   <a href="consulting.html">Consulting</a>
   <a href="#ai">AI Integration</a>
   <a href="#clients">Clients</a>
-  <a href="#team">Our Team</a>
   <a href="contact.html">Contact</a>
   <a href="book.html" class="btn btn-primary mt-6 book-cta">Book a Free Call</a>
 </div>
@@ -398,6 +442,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- ═══ HERO ═══ -->
 <section class="hero" aria-label="Hero">
   <div class="hero-grid"></div>
+  <div class="hero-img-wrapper" aria-hidden="true">
+    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1200&q=80&auto=format" alt="" loading="eager" />
+  </div>
   <div class="container">
     <div class="hero-content">
       <div class="hero-eyebrow" data-aos="fade-down">
@@ -416,8 +463,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <a href="book.html" class="btn btn-primary btn-lg book-cta">
           Book a Free Consultation <i class="fa fa-calendar-check"></i>
         </a>
-        <a href="services.html" class="btn btn-outline btn-lg">
-          Explore Services <i class="fa fa-arrow-right"></i>
+        <a href="classes.html" class="btn btn-outline btn-lg">
+          View Weekend Classes <i class="fa fa-graduation-cap"></i>
         </a>
       </div>
     </div>
@@ -440,7 +487,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="proof-item">
           <span class="val">$3M+</span>
           <span class="lbl">Revenue Enabled</span>
-        </d)v>
+        </div>
         <div class="proof-item">
           <span class="val" style="font-size:.85rem;letter-spacing:-.01em">Sanofi · Verisk · Comcast</span>
           <span class="lbl">Enterprise Clients</span>
@@ -521,7 +568,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <li>Executive Agile Leadership Workshops</li>
           <li>Power BI for Project Managers</li>
         </ul>
-        <a href="training.html" class="card-link" style="margin-top:20px;display:inline-flex;">View Courses <i class="fa fa-arrow-right"></i></a>
+        <a href="classes.html" class="card-link" style="margin-top:20px;display:inline-flex;">View Weekend Classes <i class="fa fa-arrow-right"></i></a>
       </div>
       <div class="card" data-aos="fade-up" data-aos-delay="0">
         <div class="card-icon"><i class="fa fa-cloud"></i></div>
@@ -563,6 +610,27 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <a href="services.html" class="card-link" style="margin-top:20px;display:inline-flex;">See Options <i class="fa fa-arrow-right"></i></a>
       </div>
     </div>
+
+    <!-- Service imagery grid -->
+    <div class="services-img-grid" data-aos="fade-up">
+      <div class="services-img-card">
+        <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?w=600&q=80&auto=format" alt="Team collaborating in an agile planning session" loading="lazy" />
+        <div class="img-label"><i class="fa fa-rocket"></i> Agile Transformation</div>
+      </div>
+      <div class="services-img-card">
+        <img src="https://images.unsplash.com/photo-1573165662973-4ab3cf3d3508?w=600&q=80&auto=format" alt="Business professionals reviewing project plans" loading="lazy" />
+        <div class="img-label"><i class="fa fa-clipboard-list"></i> Project Management</div>
+      </div>
+      <div class="services-img-card">
+        <img src="https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=600&q=80&auto=format" alt="AI technology integration in business" loading="lazy" />
+        <div class="img-label"><i class="fa fa-robot"></i> AI Integration</div>
+      </div>
+      <div class="services-img-card">
+        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80&auto=format" alt="Data dashboard and analytics visualization" loading="lazy" />
+        <div class="img-label"><i class="fa fa-chart-bar"></i> Power BI &amp; Data</div>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -592,6 +660,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="divider centered"></div>
       <p class="lead">A structured engagement model that delivers value fast — without the fluff of traditional consulting.</p>
     </div>
+    <div style="margin-bottom:48px;border-radius:16px;overflow:hidden;max-height:280px;" data-aos="fade-up">
+      <img src="https://images.unsplash.com/photo-1600880292089-90a7e086ee0c?w=1100&q=80&auto=format" alt="Consultant working with client team" loading="lazy" style="width:100%;height:280px;object-fit:cover;object-position:center 30%;" />
+    </div>
     <div class="process-steps">
       <div class="process-step" data-aos="fade-up" data-aos-delay="0">
         <div class="step-num">1</div>
@@ -613,6 +684,26 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <h4>Sustain</h4>
         <p>We build internal capability so your teams own their results long after we leave.</p>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ WEEKEND CLASSES PROMO (Competitive Strategy: Cross-sell training on homepage) ═══ -->
+<section style="background:linear-gradient(135deg,#00a878 0%,#00916a 100%);padding:56px 0;text-align:center;" aria-label="Weekend classes promo">
+  <div class="container" data-aos="fade-up">
+    <div style="display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:12px;">
+      <i class="fa fa-graduation-cap" style="color:#fff;font-size:1.4rem;"></i>
+      <span style="font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.85);">Now Enrolling</span>
+    </div>
+    <h2 style="color:#fff;font-size:2rem;font-weight:900;margin-bottom:10px;font-family:'DM Sans',sans-serif;">Weekend Certification Classes — $749</h2>
+    <p style="color:rgba(255,255,255,.85);font-size:1.05rem;max-width:600px;margin:0 auto 24px;line-height:1.65;">PMP · SAFe · AI Integration · Agile Fundamentals · Power BI. Live, expert-led intensives — Saturday &amp; Sunday, 9 AM – 5 PM. Small cohorts. Real results.</p>
+    <div style="display:flex;gap:14px;flex-wrap:wrap;justify-content:center;">
+      <a href="classes.html" class="btn btn-primary btn-lg" style="background:#fff;color:#00a878;border-color:#fff;">
+        Browse All Classes <i class="fa fa-arrow-right"></i>
+      </a>
+      <a href="book.html" class="btn btn-outline btn-lg book-cta" style="border-color:rgba(255,255,255,.6);color:#fff;">
+        Ask a Question <i class="fa fa-comment"></i>
+      </a>
     </div>
   </div>
 </section>
@@ -735,6 +826,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
       </div>
       <div class="ai-right" data-aos="fade-left" data-aos-delay="100">
+        <div style="border-radius:16px;overflow:hidden;margin-bottom:16px;">
+          <img src="https://images.unsplash.com/photo-1694903110330-cc64b7e1d21d?w=600&q=80&auto=format" alt="AI-powered business automation" loading="lazy" style="width:100%;height:200px;object-fit:cover;" />
+        </div>
         <div class="ai-stat-card">
           <div class="ai-stat-num">3×</div>
           <div class="ai-stat-label">Faster delivery cycles with AI-augmented project management</div>
@@ -996,7 +1090,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </section>
 
 <!-- ═══ FINAL CTA ═══ -->
-<section class="cta-section" aria-labelledby="cta-heading">
+<section class="cta-section" aria-labelledby="cta-heading" style="position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;z-index:0;">
+    <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=1400&q=80&auto=format" alt="" loading="lazy" style="width:100%;height:100%;object-fit:cover;opacity:.12;filter:brightness(.6);" />
+  </div>
   <div class="container" style="position:relative;z-index:2;">
     <div data-aos="fade-up">
       <span class="section-label" style="background:rgba(0,168,120,.2);color:var(--teal);">Let's Get to Work</span>
@@ -1051,10 +1148,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="footer-col">
         <h5>Company</h5>
         <ul>
+          <li><a href="classes.html">Weekend Classes</a></li>
           <li><a href="#clients">Client Results</a></li>
           <li><a href="#certifications">Certifications</a></li>
           <li><a href="#team">Our Team</a></li>
-          <li><a href="#who-we-serve">Who We Serve</a></li>
           <li><a href="book.html">Book a Call</a></li>
           <li><a href="contact.html">Contact</a></li>
         </ul>
@@ -1075,7 +1172,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="footer-legal">
         <a href="#">Privacy Policy</a>
         <a href="#">Terms of Service</a>
-        </div>
+      </div>
     </div>
   </div>
 </footer>
