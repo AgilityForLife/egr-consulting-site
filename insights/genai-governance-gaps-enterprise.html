@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Hidden Liability: GenAI Governance Gaps in Enterprise Programs | EGR Consulting</title>
+    <meta name="description" content="Most organizations deploying generative AI lack governance frameworks for model risk, data lineage, and regulatory exposure. Learn how to close the gaps before they become liabilities.">
+    <meta name="keywords" content="AI governance frameworks enterprise, GenAI risk management, generative AI compliance">
+
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1XK6ZKRGHD"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-1XK6ZKRGHD');
+    </script>
+
+    <!-- Facebook Pixel -->
+    <script>
+        !function(f,b,e,v,n,t,s)
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.parentNode.insertBefore(t,b)}(window, document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '1527706744681600');
+        fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1527706744681600&ev=PageView&noscript=1"/></noscript>
+
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-XXXXXXX');</script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome 6.5.0 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Site Stylesheet -->
+    <link rel="stylesheet" href="../css/style.css">
+
+    <style>
+        /* Article-Specific Styling */
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 0;
+            font-size: 0.95rem;
+            color: #666;
+            margin-bottom: 2rem;
+        }
+
+        .breadcrumb a {
+            color: #00A878;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .breadcrumb a:hover {
+            color: #0A2540;
+        }
+
+        .breadcrumb .separator {
+            color: #ccc;
+            margin: 0 0.5rem;
+        }
+
+        .article-header {
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .article-category {
+            display: inline-block;
+            background-color: #00A878;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .article-header h1 {
+            font-size: 2.5rem;
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 700;
+            color: #0A2540;
+            margin: 1rem 0;
+            line-height: 1.2;
+        }
+
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            color: #666;
+            font-size: 0.95rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .article-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .article-meta i {
+            color: #00A878;
+        }
+
+        .article-body {
+            max-width: 760px;
+            margin: 0 auto 3rem;
+            line-height: 1.7;
+            color: #333;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .article-body h2 {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #0A2540;
+            margin: 2.5rem 0 1rem;
+            padding-top: 1rem;
+        }
+
+        .article-body h3 {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #0A2540;
+            margin: 1.5rem 0 0.75rem;
+        }
+
+        .article-body p {
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+        }
+
+        .pull-quote {
+            margin: 2rem 0;
+            padding: 1.5rem;
+            padding-left: 1.5rem;
+            border-left: 4px solid #00A878;
+            background-color: #f9f9f9;
+            font-size: 1.1rem;
+            font-style: italic;
+            color: #0A2540;
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 500;
+        }
+
+        .data-callout {
+            background-color: #f0f9f7;
+            border-left: 4px solid #00A878;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 4px;
+        }
+
+        .data-callout .stat {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #0A2540;
+            font-family: 'DM Sans', sans-serif;
+            margin-bottom: 0.5rem;
+        }
+
+        .data-callout .context {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .related-services {
+            background-color: #f5f5f5;
+            padding: 2.5rem;
+            border-radius: 8px;
+            margin: 3rem 0;
+            max-width: 760px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .related-services h3 {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1.4rem;
+            color: #0A2540;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-card {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #ddd;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .service-card:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .service-card:hover {
+            transform: translateX(4px);
+        }
+
+        .service-icon {
+            font-size: 1.5rem;
+            color: #00A878;
+            flex-shrink: 0;
+            margin-top: 0.25rem;
+        }
+
+        .service-content h4 {
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 700;
+            color: #0A2540;
+            margin-bottom: 0.5rem;
+        }
+
+        .service-content p {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 0;
+        }
+
+        .service-content a {
+            display: inline-block;
+            color: #00A878;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .service-content a:hover {
+            color: #0A2540;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, #0A2540 0%, #1a4b6f 100%);
+            color: white;
+            padding: 3rem;
+            border-radius: 8px;
+            text-align: center;
+            margin: 3rem auto;
+            max-width: 760px;
+        }
+
+        .cta-section h3 {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            font-size: 1.05rem;
+            margin-bottom: 1.5rem;
+            opacity: 0.95;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: #00A878;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            background-color: #008a5e;
+            transform: translateY(-2px);
+        }
+
+        .more-insights {
+            max-width: 760px;
+            margin: 3rem auto;
+        }
+
+        .more-insights h3 {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1.4rem;
+            color: #0A2540;
+            margin-bottom: 1.5rem;
+        }
+
+        .insights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .insight-card {
+            background-color: #f9f9f9;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .insight-card:hover {
+            box-shadow: 0 4px 12px rgba(0, 168, 120, 0.15);
+            border-color: #00A878;
+            transform: translateY(-4px);
+        }
+
+        .insight-card .category {
+            font-size: 0.75rem;
+            color: #00A878;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .insight-card h4 {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            color: #0A2540;
+            margin-bottom: 0.5rem;
+            flex-grow: 1;
+        }
+
+        .insight-card .read-time {
+            font-size: 0.8rem;
+            color: #999;
+        }
+
+        @media (max-width: 768px) {
+            .article-header h1 {
+                font-size: 1.8rem;
+            }
+
+            .article-body {
+                padding: 0 1rem;
+            }
+
+            .article-body h2 {
+                font-size: 1.4rem;
+            }
+
+            .article-meta {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.75rem;
+            }
+
+            .insights-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-section {
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">
+                <i class="fas fa-chart-line"></i> EGR Consulting
+            </a>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="../services.html" class="nav-link">Services</a>
+                </li>
+                <li class="nav-item">
+                    <a href="../training.html" class="nav-link">Training</a>
+                </li>
+                <li class="nav-item">
+                    <a href="../classes.html" class="nav-link">Classes</a>
+                </li>
+                <li class="nav-item">
+                    <a href="../consulting.html" class="nav-link">Consulting</a>
+                </li>
+                <li class="nav-item">
+                    <a href="../insights.html" class="nav-link active">Insights</a>
+                </li>
+                <li class="nav-item">
+                    <a href="../contact.html" class="nav-link">Contact</a>
+                </li>
+            </ul>
+            <a href="../book.html" class="nav-cta">Book a Call</a>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Breadcrumb -->
+            <div class="breadcrumb" data-aos="fade-up">
+                <a href="../index.html">Home</a>
+                <span class="separator">/</span>
+                <a href="../insights.html">Insights</a>
+                <span class="separator">/</span>
+                <span>The Hidden Liability: GenAI Governance Gaps in Enterprise Programs</span>
+            </div>
+
+            <!-- Article Header -->
+            <header class="article-header" data-aos="fade-up">
+                <span class="article-category">AI & Technology</span>
+                <h1>The Hidden Liability: GenAI Governance Gaps in Enterprise Programs</h1>
+                <div class="article-meta">
+                    <span><i class="fas fa-user"></i> EGR Consulting</span>
+                    <span><i class="fas fa-calendar"></i> April 11, 2026</span>
+                    <span><i class="fas fa-clock"></i> 9 min read</span>
+                </div>
+            </header>
+
+            <!-- Article Body -->
+            <article class="article-body" data-aos="fade-up">
+                <h2>The Governance Gap Nobody Talks About</h2>
+                <p>Generative AI adoption is explosive. A McKinsey survey found that 72% of organizations have already deployed or are piloting generative AI. Yet a parallel finding tells a more troubling story: 65% of organizations deploying GenAI lack formal governance frameworks for model risk, data lineage, and regulatory exposure.</p>
+                <p>This is a recipe for liability. Consider what happens when an enterprise deploys a GenAI-powered customer service chatbot trained on 12 months of customer interactions, then that chatbot generates a response that violates GDPR by referencing a customer's health condition. Or when a GenAI model used for loan approval exhibits racial bias because the training data skewed toward previous decisions (which themselves were biased). Or when an AI model "hallucinates" (generates plausible-sounding but false information) in a legal discovery process, and that false information is provided to opposing counsel.</p>
+                <p>The problem isn't that these risks are unknown—they're well-documented in NIST's AI Risk Management Framework, the EU AI Act, and dozens of industry white papers. The problem is that most organizations deploying GenAI are doing so outside of formal governance structures. Teams experiment with ChatGPT, show promising results, get approval to build a production application, and move forward without asking: What data is this model trained on? What happens when it makes mistakes? How do we audit its decisions? Who's accountable?</p>
+
+                <div class="data-callout">
+                    <div class="stat">65%</div>
+                    <div class="context">of organizations deploying GenAI lack formal governance frameworks for model risk, data lineage, and regulatory exposure</div>
+                </div>
+
+                <p>The regulatory landscape is shifting rapidly. The EU AI Act (effective March 2024) classifies AI applications by risk level and requires proportional governance for high-risk systems. The SEC is issuing guidance on AI disclosure. Multiple states have passed or are considering AI transparency laws. The GDPR's requirement to be able to explain algorithmic decision-making ("the right to explanation") becomes harder to satisfy with large language models. Meanwhile, executives responsible for risk management don't yet have a clear mental model of what GenAI governance should look like.</p>
+
+                <h2>Five Critical Governance Dimensions</h2>
+                <p><strong>1. Model Risk Management</strong></p>
+                <p>Traditional risk management frameworks (ISO 27001, SOX, etc.) don't map neatly onto GenAI. You can't audit a large language model the way you audit a database. Model risk includes: hallucination risk (how often does the model generate plausible but false information?), bias risk (does the model's output exhibit disparate impact on protected groups?), adversarial robustness (can the model be tricked into generating harmful content?), and behavioral drift (does the model's output quality degrade over time?)</p>
+                <p>Organizations deploying GenAI need evaluation frameworks that measure these risks. This includes red-teaming (intentionally trying to break the model), bias audits (testing for disparate impact), and ongoing performance monitoring post-deployment. Without these, you're flying blind.</p>
+
+                <p><strong>2. Data Lineage and Provenance</strong></p>
+                <p>GenAI models train on data. That data matters. If your GenAI customer service bot trains on 5 years of customer interactions that included personally identifiable information (PII), you've created a model that could leak PII if probed correctly. If your model trains on data from biased historical decisions, those biases embed in the model. The GDPR requires organizations to know what data was used to train models and to be able to explain algorithmic decisions based on that data.</p>
+                <p>Data lineage isn't new (data governance teams have been doing this for years), but it's usually not applied to AI. Organizations need to track: What data was used in training? Where did that data come from? Does it contain PII or sensitive information? What was the quality/bias of that data? This is especially complex with large language models trained on internet-scale data—the provenance is often unknown or mixed.</p>
+
+                <p><strong>3. Output Validation and Hallucination Detection</strong></p>
+                <p>GenAI models hallucinate. This is inherent to how they work—they generate the statistically next likely word or token based on training patterns. Sometimes that generates nonsense that's obviously wrong. Sometimes it generates plausible-sounding falsehoods. A healthcare GenAI system might suggest a medication interaction that doesn't exist. A legal research tool might cite a court decision that was overturned or never existed.</p>
+                <p>Organizations deploying GenAI in consequential domains need validation mechanisms: human review loops for high-stakes decisions, fact-checking integration with external sources, confidence scoring (how confident is the model in this output?), and user interface design that makes clear where information came from ("this is generated by AI, not sourced from our knowledge base").</p>
+
+                <div class="pull-quote">
+                    "GenAI governance isn't about stopping innovation. It's about creating fast lanes for safe innovation and guardrails for risky experiments."
+                </div>
+
+                <p><strong>4. Access Control and Audit Trails</strong></p>
+                <p>Who gets to use this GenAI model? What data are they allowed to input? What decisions can they make based on the output? These questions matter. A GenAI model trained on customer data should not be accessible to employees without a business need. If the model makes sensitive decisions (hiring recommendations, loan approvals, medical diagnoses), every decision should be auditable—who asked, what was the output, what action was taken, was it appealed.</p>
+                <p>This is partly technical (implementing fine-grained access control, logging decisions) and partly organizational (defining who's accountable for AI decisions, establishing oversight mechanisms). Many organizations implementing GenAI skip this step and end up with informal access and no audit trail.</p>
+
+                <p><strong>5. Bias Monitoring and Fairness Testing</strong></p>
+                <p>Bias in GenAI models can emerge from training data, model architecture, or how the model is deployed. A hiring recommendation model trained on historical hiring data will embed the biases of previous hiring decisions. A credit scoring model trained on data from an economically stratified population will exhibit disparate impact based on zip code or protected class proxies. An image generation model trained on internet images will exhibit gender stereotypes.</p>
+                <p>Organizations need continuous bias monitoring: regular audits of model outputs for disparate impact, testing across demographic groups, and mechanisms to address bias when discovered (model retraining, output disclaimers, manual override options).</p>
+
+                <div class="data-callout">
+                    <div class="stat">72%</div>
+                    <div class="context">of organizations have already deployed or are piloting generative AI, but most lack governance frameworks</div>
+                </div>
+
+                <h2>The PMO's Role in AI Governance</h2>
+                <p>This is where many organizations miss an opportunity. PMOs are uniquely positioned to establish AI governance because they already manage risk registers, track dependencies, enforce quality gates, and coordinate across programs. Yet few PMOs have extended their frameworks to explicitly cover AI and GenAI governance.</p>
+                <p>A PMO-led approach to AI governance looks like this: Every project proposal that involves GenAI must include an AI Risk Assessment as part of the charter. This assessment covers: What model is being used? What data will it consume? What are the hallucination, bias, and regulatory risks? What governance controls are we putting in place? What's the escalation path if the model makes a bad decision?</p>
+                <p>During delivery, the PMO establishes AI-specific quality gates. Before moving to production, the model has been audited for bias, the data lineage is documented, the output validation mechanism is in place, and access controls are configured. Post-deployment, the PMO includes AI governance in periodic governance reviews: Is bias monitoring showing concerning trends? Are hallucinations within acceptable bounds? Have we received any regulatory inquiries?</p>
+                <p>This doesn't slow down innovation—if anything, it accelerates it by clarifying risk early and preventing late-stage surprises. A project that progresses through well-defined AI governance gates reaches production faster and with lower liability exposure than a project that skips governance and discovers problems in production.</p>
+
+                <h2>Building an AI Governance Framework</h2>
+                <p><strong>Policy Hierarchy</strong></p>
+                <p>Start with an AI governance policy that articulates the organization's approach to responsible AI. This is a board-level or C-suite statement, not a technical document. It should address: AI is a strategic capability we're investing in. We're committed to responsible AI that minimizes bias and maximizes explainability. We'll embed governance controls proportional to risk. We'll be transparent with stakeholders about our AI use.</p>
+                <p>Beneath this, create domain-specific standards: AI Model Risk Management Standard, AI Data Governance Standard, etc. These provide the details on how governance is implemented.</p>
+
+                <p><strong>Responsible AI Steering Committee</strong></p>
+                <p>Create a steering committee (not another committee that meets monthly and approves nothing) that meets quarterly to review AI programs, identify governance gaps, and escalate risks. Include representation from: Compliance/Legal (regulatory exposure), Risk/Audit (model risk), Data Governance (data lineage), Product (user impact), and Technology (implementation feasibility).</p>
+                <p>The committee doesn't need to approve every AI project (that's for PMOs and program managers). It sets policy, identifies systemic risks, and reviews high-risk deployments.</p>
+
+                <p><strong>Technical Guardrails vs. Organizational Controls</strong></p>
+                <p>Some governance is technical: implementing access controls, logging decisions, automating bias detection. Some is organizational: defining accountability, establishing review processes, training teams on AI risks. The most effective frameworks combine both. A policy that says "all GenAI models must be audited for bias" with no mechanism to perform or enforce audits is theater. A technical bias detection system with no organizational process to act on the findings is wasted investment.</p>
+
+                <h2>Action Plan: 90-Day AI Governance Sprint</h2>
+                <p><strong>Weeks 1-2: Baseline Assessment</strong> — Inventory your organization's GenAI deployments (including shadow AI—unauthorized or ad-hoc use). For each, document: what model, what data, what decisions, what governance exists. This is typically eye-opening. Most organizations discover significantly more AI in production than they realized.</p>
+                <p><strong>Weeks 3-4: Policy Development</strong> — Draft an AI governance policy and charter a Responsible AI Steering Committee. Include representatives from compliance, risk, data, product, and technology.</p>
+                <p><strong>Weeks 5-8: Risk Assessment</strong> — For high-risk AI programs (those making consequential decisions, using sensitive data, or impacting regulators' interests), conduct formal risk assessments using NIST AI RMF as the framework. Identify the highest-risk programs for immediate governance controls.</p>
+                <p><strong>Weeks 9-12: Implementation and Scaling</strong> — Implement governance controls on highest-risk programs. Run a retrospective with your Steering Committee to identify what worked and what needs adjustment. Communicate the framework to broader organization and begin rolling it out across other AI programs.</p>
+
+                <p>GenAI governance isn't about stopping innovation. It's about creating a fast lane for safe innovation and guardrails for risky experiments. Organizations that establish governance early gain competitive advantage—they can deploy AI faster, with greater confidence, and with lower regulatory risk. Those that skip governance face the opposite: slower deployments (when governance eventually arrives and discovers gaps), reputational damage (when AI makes a high-profile mistake), and regulatory penalties (when regulators find undisclosed AI or biased decision-making).</p>
+            </article>
+
+            <!-- Related Services -->
+            <section class="related-services" data-aos="fade-up">
+                <h3>Related Services</h3>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <div class="service-content">
+                        <h4>AI Governance Framework</h4>
+                        <p>Design and implement comprehensive AI governance frameworks aligned with NIST AI RMF, EU AI Act, and organizational risk appetite.</p>
+                        <a href="../services.html">Learn More →</a>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <div class="service-content">
+                        <h4>AI Integration Services</h4>
+                        <p>Implement GenAI with built-in governance controls including bias audits, data lineage, and output validation mechanisms.</p>
+                        <a href="../services.html">Learn More →</a>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <div class="service-content">
+                        <h4>PM Consulting</h4>
+                        <p>Work with our consultants to integrate AI governance into your PMO frameworks and project delivery processes.</p>
+                        <a href="../consulting.html">Learn More →</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CTA Section -->
+            <section class="cta-section" data-aos="fade-up">
+                <h3>Ready to Close Your GenAI Governance Gaps?</h3>
+                <p>Implement a comprehensive AI governance framework that scales innovation while managing risk.</p>
+                <a href="../book.html" class="cta-button">Book a Call with Our Experts</a>
+            </section>
+
+            <!-- More Insights -->
+            <section class="more-insights" data-aos="fade-up">
+                <h3>More Insights</h3>
+                <div class="insights-grid">
+                    <a href="ai-risk-detection-enterprise-projects.html" class="insight-card">
+                        <span class="category">AI & Technology</span>
+                        <h4>How AI Is Transforming Risk Detection</h4>
+                        <span class="read-time">8 min read</span>
+                    </a>
+                    <a href="ai-copilot-democratizing-bi.html" class="insight-card">
+                        <span class="category">Analytics</span>
+                        <h4>Self-Service Analytics Without the Experts</h4>
+                        <span class="read-time">6 min read</span>
+                    </a>
+                    <a href="fortune-100-safe-adoption.html" class="insight-card">
+                        <span class="category">Agile & SAFe</span>
+                        <h4>Why 70% of Fortune 100 Companies Choose SAFe</h4>
+                        <span class="read-time">7 min read</span>
+                    </a>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>EGR Consulting</h4>
+                    <p>Transform your enterprise delivery with proven methodologies and expert guidance.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="../services.html">All Services</a></li>
+                        <li><a href="../services.html">AI Integration</a></li>
+                        <li><a href="../services.html">Agile Transformation</a></li>
+                        <li><a href="../services.html">PM Consulting</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Learning</h4>
+                    <ul>
+                        <li><a href="../training.html">Training Programs</a></li>
+                        <li><a href="../classes.html">Live Classes</a></li>
+                        <li><a href="../insights.html">Insights</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="../consulting.html">Consulting</a></li>
+                        <li><a href="../book.html">Book a Call</a></li>
+                        <li><a href="../contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 EGR Consulting. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JSON-LD Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "The Hidden Liability: GenAI Governance Gaps in Enterprise Programs",
+        "description": "Most organizations deploying generative AI lack governance frameworks for model risk, data lineage, and regulatory exposure. Learn how to close the gaps before they become liabilities.",
+        "image": "https://www.egrconsulting.com/images/genai-governance.jpg",
+        "author": {
+            "@type": "Organization",
+            "name": "EGR Consulting"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "EGR Consulting",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://www.egrconsulting.com/logo.png"
+            }
+        },
+        "datePublished": "2026-04-11",
+        "dateModified": "2026-04-11",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://www.egrconsulting.com/insights/genai-governance-gaps-enterprise.html"
+        }
+    }
+    </script>
+
+    <!-- AOS Animation Library -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true,
+            offset: 100
+        });
+    </script>
+
+    <!-- Main Navigation Script -->
+    <script src="../js/main.js"></script>
+</body>
+</html>

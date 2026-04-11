@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How AI Is Transforming Risk Detection in Enterprise Projects | EGR Consulting</title>
+    <meta name="description" content="Discover how machine learning models detect scope creep, budget overruns, and stakeholder misalignment months before traditional dashboards — and how project managers can leverage AI-driven risk detection.">
+    <meta name="keywords" content="AI risk detection project management, AI forecasting enterprise projects, predictive project analytics">
+
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1XK6ZKRGHD"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-1XK6ZKRGHD');
+    </script>
+
+    <!-- Facebook Pixel -->
+    <script>
+        !function(f,b,e,v,n,t,s)
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.parentNode.insertBefore(t,b)}(window, document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '1527706744681600');
+        fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1527706744681600&ev=PageView&noscript=1"/></noscript>
+
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-XXXXXXX');</script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome 6.5.0 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Site Stylesheet -->
+    <link rel="stylesheet" href="../css/style.css">
+
+    <style>
+        /* Article-Specific Styling */
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 0;
+            font-size: 0.95rem;
+            color: #666;
+            margin-bottom: 2rem;
+        }
+
+        .breadcrumb a {
+            color: #00A878;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .breadcrumb a:hover {
+            color: #0A2540;
+        }
+
+        .breadcrumb .separator {
+            color: #ccc;
+            margin: 0 0.5rem;
+        }
+
+        .article-header {
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .article-category {
+            display: inline-block;
+            background-color: #00A878;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .article-header h1 {
+            font-size: 2.5rem;
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 700;
+            color: #0A2540;
+            margin: 1rem 0;
+            line-height: 1.2;
+        }
+
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            color: #666;
+            font-size: 0.95rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .article-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .article-meta i {
+            color: #00A878;
+        }
+
+        .article-body {
+            max-width: 760px;
+            margin: 0 auto 3rem;
+            line-height: 1.7;
+            color: #333;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .article-body h2 {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #0A2540;
+            margin: 2.5rem 0 1rem;
+            padding-top: 1rem;
+        }
+
+        .article-body p {
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+        }
+
+        .pull-quote {
+            margin: 2rem 0;
+            padding: 1.5rem;
+            padding-left: 1.5rem;
+            border-left: 4px solid #00A878;
+            background-color: #f9f9f9;
+            font-size: 1.1rem;
+            font-style: italic;
+            color: #0A2540;
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 500;
+        }
+
+        .data-callout {
+            background-color: #f0f9f7;
+            border-left: 4px solid #00A878;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 4px;
+        }
+
+        .data-callout .stat {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #0A2540;
+            font-family: 'DM Sans', sans-serif;
+            margin-bottom: 0.5rem;
+        }
+
+        .data-callout .context {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .related-services {
+            background-color: #f5f5f5;
+            padding: 2.5rem;
+            border-radius: 8px;
+            margin: 3rem 0;
+            max-width: 760px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .related-services h3 {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1.4rem;
+            color: #0A2540;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-card {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #ddd;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .service-card:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .service-card:hover {
+            transform: translateX(4px);
+        }
+
+        .service-icon {
+            font-size: 1.5rem;
+            color: #00A878;
+            flex-shrink: 0;
+            margin-top: 0.25rem;
+        }
+
+        .service-content h4 {
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 700;
+            color: #0A2540;
+            margin-bottom: 0.5rem;
+        }
+
+        .service-content p {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 0;
+        }
+
+        .service-content a {
+            display: inline-block;
+            color: #00A878;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .service-content a:hover {
+            color: #0A2540;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, #0A2540 0%, #1a4b6f 100%);
+            color: white;
+            padding: 3rem;
+            border-radius: 8px;
+            text-align: center;
+            margin: 3rem auto;
+            max-width: 760px;
+        }
+
+        .cta-section h3 {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            font-size: 1.05rem;
+            margin-bottom: 1.5rem;
+            opacity: 0.95;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: #00A878;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            background-color: #008a5e;
+            transform: translateY(-2px);
+        }
+
+        .more-insights {
+            max-width: 760px;
+            margin: 3rem auto;
+        }
+
+        .more-insights h3 {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1.4rem;
+            color: #0A2540;
+            margin-bottom: 1.5rem;
+        }
+
+        .insights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .insight-card {
+            background-color: #f9f9f9;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .insight-card:hover {
+            box-shadow: 0 4px 12px rgba(0, 168, 120, 0.15);
+            border-color: #00A878;
+            transform: translateY(-4px);
+        }
+
+        .insight-card .category {
+            font-size: 0.75rem;
+            color: #00A878;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .insight-card h4 {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            color: #0A2540;
+            margin-bottom: 0.5rem;
+            flex-grow: 1;
+        }
+
+        .insight-card .read-time {
+            font-size: 0.8rem;
+            color: #999;
+        }
+
+        @media (max-width: 768px) {
+            .article-header h1 {
+                font-size: 1.8rem;
+            }
+
+            .article-body {
+                padding: 0 1rem;
+            }
+
+            .article-body h2 {
+                font-size: 1.4rem;
+            }
+
+            .article-meta {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.75rem;
+            }
+
+            .insights-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-section {
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">
+                <i class="fas fa-chart-line"></i> EGR Consulting
+            </a>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="../services.html" class="nav-link">Services</a>
+                </li>
+                <li class="nav-item">
+                    <a href="../training.html" class="nav-link">Training</a>
+                </li>
+                <li class="nav-item">
+                    <a href="../classes.html" class="nav-link">Classes</a>
+                </li>
+                <li class="nav-item">
+                    <a href="../consulting.html" class="nav-link">Consulting</a>
+                </li>
+                <li class="nav-item">
+                    <a href="../insights.html" class="nav-link active">Insights</a>
+                </li>
+                <li class="nav-item">
+                    <a href="../contact.html" class="nav-link">Contact</a>
+                </li>
+            </ul>
+            <a href="../book.html" class="nav-cta">Book a Call</a>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Breadcrumb -->
+            <div class="breadcrumb" data-aos="fade-up">
+                <a href="../index.html">Home</a>
+                <span class="separator">/</span>
+                <a href="../insights.html">Insights</a>
+                <span class="separator">/</span>
+                <span>How AI Is Transforming Risk Detection in Enterprise Projects</span>
+            </div>
+
+            <!-- Article Header -->
+            <header class="article-header" data-aos="fade-up">
+                <span class="article-category">AI & Technology</span>
+                <h1>How AI Is Transforming Risk Detection in Enterprise Projects</h1>
+                <div class="article-meta">
+                    <span><i class="fas fa-user"></i> EGR Consulting</span>
+                    <span><i class="fas fa-calendar"></i> April 11, 2026</span>
+                    <span><i class="fas fa-clock"></i> 8 min read</span>
+                </div>
+            </header>
+
+            <!-- Article Body -->
+            <article class="article-body" data-aos="fade-up">
+                <h2>The Limits of Traditional Risk Dashboards</h2>
+                <p>Enterprise project managers have relied on the same risk management playbook for two decades: Red-Amber-Green (RAG) status reports, monthly governance reviews, and quarterly executive steering committee meetings. These proven frameworks have guided countless programs to successful delivery. But they share a critical weakness: they're inherently reactive.</p>
+                <p>A project manager reviewing a RAG dashboard in week 20 of a 24-week delivery is looking at backward-looking data. The budget variance flagged in red last month reflects decisions made six weeks earlier. The schedule risk that appears "manageable" today often reflects the point at which problems become too visible to hide. Meanwhile, the subtle signals—scope creep in status report language, shifting stakeholder sentiment, resource contention patterns—remain buried in unstructured notes and Slack messages.</p>
+                <p>Human bias also plays a larger role than most organizations acknowledge. A veteran project manager who delivered a similar initiative last year may unconsciously downweight historical risks ("we'll be fine, we've seen this before"). A newer PM might over-weight every deviation ("this is a red flag"). Risk scoring is subjective, inconsistent across portfolios, and easily influenced by presentation and politics rather than data.</p>
+
+                <div class="data-callout">
+                    <div class="stat">67%</div>
+                    <div class="context">of enterprise projects experience scope creep, yet traditional dashboards detect it after 40% of the budget has been consumed</div>
+                </div>
+
+                <h2>How ML Models Detect Risk Earlier</h2>
+                <p>Machine learning approaches project risk detection fundamentally differently. Rather than waiting for a PM to interpret leading indicators and assign a risk score, ML models identify patterns in historical project data that humans can't see at scale.</p>
+                <p>Consider historical data. Every project your organization has delivered contains thousands of data points: daily burn rates, resource allocation changes, status report cadence shifts, scope change request volume, stakeholder meeting frequency, budget commitment adjustments, schedule compression, team turnover patterns. Individually, each datapoint might seem noisy. Collectively, they form a fingerprint of project health. ML models trained on decades of project data can recognize the pattern that precedes schedule overrun, scope creep, stakeholder misalignment, or resource exhaustion—often 8-12 weeks before traditional reporting flags it.</p>
+                <p>Natural Language Processing (NLP) unlocks the unstructured data that RAG dashboards ignore. An ML model analyzing the language in status reports can detect shifting sentiment ("we're confident" vs. "we're managing"), rising concern frequency ("risk" mentions increase 3x in the last sprint), and stakeholder friction ("Finance and Product are aligned" vs. recent conflict mentions). The same approach applies to meeting transcripts, email threads, and change request narratives. The model doesn't need a PM to interpret these signals—it recognizes linguistic patterns that correlate with delivery risk.</p>
+                <p>Anomaly detection reveals the unusual that traditional thresholds miss. A resource burn rate that's normal in isolation can be risky in combination with a specific team composition and vendor dependency. ML models can flag when a project's cost trajectory deviates from statistically similar projects—even if the absolute numbers look "on track" by departmental standards. This catches the edge cases that rule-based dashboards are designed to overlook.</p>
+
+                <div class="pull-quote">
+                    "The projects that surprise us aren't the ones with bad data. They're the ones where we had all the signals but didn't recognize the pattern until it was too late."
+                </div>
+
+                <h2>Real-World Applications</h2>
+                <p><strong>Schedule Variance Prediction:</strong> Imagine a model that's trained on 200+ completed projects and can predict whether a 6-month initiative will slip 4+ weeks with 78% accuracy by week 4. Such models exist today. They incorporate velocity trends, dependency tracking, team experience, technology risk, and historical context. When the model flags elevated schedule risk, the PMO can intervene 8 weeks early—asking deeper discovery questions, reducing scope, or reallocating resources. Compare this to discovering the slip at week 18 when options are limited.</p>
+                <p><strong>Stakeholder Sentiment Analysis:</strong> Executive sponsorship is the #1 predictor of delivery success. Yet most organizations track sponsorship as a yes/no data point: "Do we have exec sponsor?" An ML model analyzing sponsor interaction patterns (email response lag, meeting attendance, tone, question complexity) can predict when a sponsor is disengaging or losing confidence in the delivery team. Early detection allows the PMO to escalate, reset expectations, or adjust communications before sponsor withdrawal derails the program.</p>
+                <p><strong>Resource Contention Forecasting:</strong> Large enterprises run dozens of concurrent projects competing for specialized skills. Spreadsheet-based capacity planning breaks down quickly. A model trained on portfolio-wide resource allocation data can predict which skills will become bottlenecks 3 months ahead, which teams will face context-switching strain, and which projects are at risk of losing critical resources to higher-priority work. This allows the PMO to proactively adjust hiring, training, or project timing.</p>
+                <p><strong>Scope Creep Early Warning:</strong> Scope changes don't happen in isolation. They're preceded by rising change request volume, increasing iteration cycles, stakeholder disagreement on acceptance criteria, and shifting requirement language. Models trained on delivered projects can flag the pattern that precedes uncontrolled scope expansion. The pattern is different for different project types—a 12-person digital transformation project has different scope-creep fingerprints than a 50-person infrastructure overhaul—but the model learns both.</p>
+
+                <div class="data-callout">
+                    <div class="stat">78%</div>
+                    <div class="context">accuracy in predicting 4+ week schedule slips by week 4, when intervention still has meaningful impact</div>
+                </div>
+
+                <h2>What This Means for PMOs and Project Managers</h2>
+                <p>The shift from reactive to predictive risk management requires PMOs and PMs to rethink their role. You're no longer primarily a recorder and interpreter of status. You're increasingly a responder to predictive signals and a manager of interventions.</p>
+                <p>This is good news for organizations that embrace it. The days of firefighting and weekend war rooms are numbered. The bad news: the skills required are shifting. Today's high-performing PM needs data literacy—the ability to understand why a model flagged a risk, which signals matter most, and when to trust the model vs. business judgment. They also need prompt engineering skills. The most effective way to probe a predictive risk model is increasingly through natural language queries: "Which aspects of this project have the highest schedule variance?" "How does our resource contention compare to similar programs?" These queries are best phrased with prompt-like clarity.</p>
+                <p>The tool landscape is evolving rapidly. Microsoft Azure AI, Power BI AI visuals, and Copilot are making predictive capabilities accessible to organizations without dedicated data science teams. SAP Analytics Cloud, Tableau, and Looker all have AI-driven forecasting features. Specialized project analytics platforms like Mavenlink, Kantata, and Monday.com are embedding ML risk detection. The question isn't whether to adopt these tools—it's how quickly and in what sequence.</p>
+
+                <h2>Getting Started: A Pragmatic Roadmap</h2>
+                <p><strong>Phase 1 (Weeks 1-4): Historical Data Audit</strong> Before you can train a predictive model, you need to understand what historical project data you have. Conduct an inventory across your project management system, portfolio tool, time tracking, financial systems, and resource management platform. What does complete project data look like? What's in unstructured sources (email, meeting notes, change logs)? This audit informs what signals the model can use.</p>
+                <p><strong>Phase 2 (Weeks 5-8): Pilot Selection</strong> Don't attempt to apply ML-driven risk detection to your entire portfolio at once. Select one program—ideally one that's 4-12 weeks into delivery—as your pilot. The program should be large enough to matter (if it slips, business impact is real), but not so large that implementation feels risky. Establish a baseline: what risk did your current processes identify in the first month? That's the yardstick against which you'll measure the ML model.</p>
+                <p><strong>Phase 3 (Weeks 9-14): Integration and Validation</strong> Deploy the predictive tool for the pilot program. Set expectations: the model won't be perfect immediately. The first 8-12 weeks are about understanding which signals are most predictive in your environment. When the model flags a risk, conduct a structured post-mortem: was the signal real? What was the underlying cause? This feedback loop trains the model to your organization's specific patterns.</p>
+                <p><strong>Phase 4 (Weeks 15-20): Measure Accuracy and Scale</strong> By week 16 of the pilot, you'll have 4+ weeks of prediction history to assess. Did the model correctly predict which risks materialized? Where was it wrong? Accuracy targets should be 70%+ for early detection and 60%+ for boundary cases. Once you're comfortable, roll out to additional programs and refine the model in parallel.</p>
+
+                <p>AI-driven risk detection isn't magic. It won't replace experienced project managers or eliminate the need for judgment. But it removes the constraint that humans can only process a limited amount of data, and it replaces subjective bias with patterns derived from decades of organizational history. For PMOs managing large portfolios, that's a competitive advantage worth pursuing.</p>
+            </article>
+
+            <!-- Related Services -->
+            <section class="related-services" data-aos="fade-up">
+                <h3>Related Services</h3>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <div class="service-content">
+                        <h4>AI Integration Services</h4>
+                        <p>Implement ML-driven risk detection, predictive analytics, and AI-assisted decision-making in your delivery framework.</p>
+                        <a href="../services.html">Learn More →</a>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <div class="service-content">
+                        <h4>PMP Exam Prep</h4>
+                        <p>Master risk management practices and prepare for PMP certification with current best practices including emerging technologies.</p>
+                        <a href="../training.html">Learn More →</a>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <div class="service-content">
+                        <h4>PM Consulting</h4>
+                        <p>Work with EGR consultants to design and implement AI-enhanced project governance and risk management frameworks.</p>
+                        <a href="../consulting.html">Learn More →</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CTA Section -->
+            <section class="cta-section" data-aos="fade-up">
+                <h3>Ready to Transform Your Risk Detection?</h3>
+                <p>Implement AI-driven predictive analytics and shift from reactive to proactive program delivery.</p>
+                <a href="../book.html" class="cta-button">Book a Call with Our Experts</a>
+            </section>
+
+            <!-- More Insights -->
+            <section class="more-insights" data-aos="fade-up">
+                <h3>More Insights</h3>
+                <div class="insights-grid">
+                    <a href="fortune-100-safe-adoption.html" class="insight-card">
+                        <span class="category">Agile & SAFe</span>
+                        <h4>Why 70% of Fortune 100 Companies Choose SAFe</h4>
+                        <span class="read-time">7 min read</span>
+                    </a>
+                    <a href="genai-governance-gaps-enterprise.html" class="insight-card">
+                        <span class="category">AI & Technology</span>
+                        <h4>The Hidden Liability: GenAI Governance Gaps</h4>
+                        <span class="read-time">9 min read</span>
+                    </a>
+                    <a href="ai-copilot-democratizing-bi.html" class="insight-card">
+                        <span class="category">Analytics</span>
+                        <h4>Self-Service Analytics Without the Experts</h4>
+                        <span class="read-time">6 min read</span>
+                    </a>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>EGR Consulting</h4>
+                    <p>Transform your enterprise delivery with proven methodologies and expert guidance.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="../services.html">All Services</a></li>
+                        <li><a href="../services.html">AI Integration</a></li>
+                        <li><a href="../services.html">Agile Transformation</a></li>
+                        <li><a href="../services.html">PM Consulting</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Learning</h4>
+                    <ul>
+                        <li><a href="../training.html">Training Programs</a></li>
+                        <li><a href="../classes.html">Live Classes</a></li>
+                        <li><a href="../insights.html">Insights</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="../consulting.html">Consulting</a></li>
+                        <li><a href="../book.html">Book a Call</a></li>
+                        <li><a href="../contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 EGR Consulting. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JSON-LD Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "How AI Is Transforming Risk Detection in Enterprise Projects",
+        "description": "Discover how machine learning models detect scope creep, budget overruns, and stakeholder misalignment months before traditional dashboards — and how project managers can leverage AI-driven risk detection.",
+        "image": "https://www.egrconsulting.com/images/ai-risk-detection.jpg",
+        "author": {
+            "@type": "Organization",
+            "name": "EGR Consulting"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "EGR Consulting",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://www.egrconsulting.com/logo.png"
+            }
+        },
+        "datePublished": "2026-04-11",
+        "dateModified": "2026-04-11",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://www.egrconsulting.com/insights/ai-risk-detection-enterprise-projects.html"
+        }
+    }
+    </script>
+
+    <!-- AOS Animation Library -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true,
+            offset: 100
+        });
+    </script>
+
+    <!-- Main Navigation Script -->
+    <script src="../js/main.js"></script>
+</body>
+</html>
