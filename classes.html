@@ -253,6 +253,48 @@
     text-decoration: none;
   }
   .btn-enroll:hover { background: #00916a; transform: translateY(-1px); }
+  .btn-enroll:disabled { background: #7ecfb8; cursor: not-allowed; transform: none; }
+
+  /* Prep course badge */
+  .prep-badge {
+    display: inline-flex; align-items: center; gap: 5px;
+    font-size: .68rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+    color: #f59e0b; background: rgba(245,158,11,.12); border-radius: 20px;
+    padding: 3px 10px; margin-bottom: 6px;
+  }
+
+  /* Weekend picker modal */
+  .modal-overlay {
+    position: fixed; inset: 0; background: rgba(10,31,56,.72); z-index: 9999;
+    display: flex; align-items: center; justify-content: center; padding: 20px;
+  }
+  .modal-box {
+    background: #fff; border-radius: 20px; padding: 40px 36px 32px;
+    max-width: 520px; width: 100%; position: relative;
+    box-shadow: 0 24px 80px rgba(0,0,0,.25);
+  }
+  .modal-close {
+    position: absolute; top: 16px; right: 20px; background: none; border: none;
+    font-size: 1.5rem; cursor: pointer; color: #6b7280; line-height: 1;
+  }
+  .modal-close:hover { color: #0a1f38; }
+  .modal-icon { font-size: 2rem; color: #00a878; margin-bottom: 12px; }
+  .modal-box h3 { font-size: 1.4rem; color: #0a1f38; margin: 0 0 6px; }
+  .modal-subtitle { color: #6b7280; font-size: .92rem; margin-bottom: 20px; }
+  .weekend-options { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
+  .weekend-option {
+    display: flex; align-items: center; gap: 14px; padding: 14px 18px;
+    border: 2px solid #e5e7eb; border-radius: 12px; cursor: pointer;
+    transition: border-color .2s, background .2s;
+  }
+  .weekend-option:hover { border-color: #00a878; background: rgba(0,168,120,.04); }
+  .weekend-option.selected { border-color: #00a878; background: rgba(0,168,120,.08); }
+  .weekend-option input[type="radio"] { accent-color: #00a878; width: 18px; height: 18px; flex-shrink: 0; }
+  .weekend-option-label { flex: 1; }
+  .weekend-option-label strong { display: block; font-size: .95rem; color: #0a1f38; }
+  .weekend-option-label span { font-size: .8rem; color: #6b7280; }
+  .modal-note { font-size: .78rem; color: #9ca3af; margin: 0 0 20px; line-height: 1.5; }
+  .modal-confirm { width: 100%; justify-content: center; padding: 16px; font-size: 1rem; }
 
   /* ROI section */
   .roi-section { background: #fff; padding: 80px 0; }
@@ -398,6 +440,23 @@
   <a href="book.html" class="btn btn-primary mt-6 book-cta">Book a Free Call</a>
 </div>
 
+<!-- ═══ WEEKEND PICKER MODAL ═══ -->
+<div id="weekendModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle" style="display:none;">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeWeekendModal()" aria-label="Close">&times;</button>
+    <div class="modal-icon"><i class="fa fa-calendar-check"></i></div>
+    <h3 id="modalTitle">Choose Your Weekend</h3>
+    <p id="modalSubtitle" class="modal-subtitle">Select the start weekend for your training session.</p>
+    <div id="weekendOptions" class="weekend-options"></div>
+    <p class="modal-note" id="modalNote"></p>
+    <div class="modal-actions">
+      <button id="modalConfirmBtn" class="btn-enroll modal-confirm" onclick="confirmWeekend()" disabled>
+        Continue to Payment <i class="fa fa-arrow-right"></i>
+      </button>
+    </div>
+  </div>
+</div>
+
 <!-- ═══ HERO ═══ -->
 <section class="classes-hero" aria-label="Classes hero" style="position:relative;overflow:hidden;">
   <div style="position:absolute;inset:0;z-index:0;">
@@ -431,7 +490,7 @@
       <span class="section-label">Course Catalog</span>
       <h2>Choose Your Path</h2>
       <div class="divider centered"></div>
-      <p class="lead">Each course is a full weekend intensive — Saturday &amp; Sunday, 9 AM to 5 PM. Everything you need to level up, in one focused weekend.</p>
+      <p class="lead">Each course is a full weekend intensive — Saturday &amp; Sunday, 9 AM to 5 PM. PMP Prep spans two consecutive weekends. Select your preferred start weekend at checkout.</p>
     </div>
 
     <div class="filter-tabs" data-aos="fade-up">
@@ -443,18 +502,19 @@
 
     <div class="courses-grid">
 
-      <!-- ── PMP Exam Prep ── -->
+      <!-- ── PMP Prep ── -->
       <div class="course-card" data-category="pm" data-aos="fade-up" data-aos-delay="0">
         <div class="course-card-header">
           <div class="urgency-badge"><i class="fa fa-fire"></i> Popular</div>
           <div class="course-badge">Project Management</div>
-          <h3>PMP Exam Preparation</h3>
+          <div class="prep-badge"><i class="fa fa-certificate"></i> Prep Course · 2 Weekends</div>
+          <h3>PMP Prep</h3>
           <div class="instructor">Instructor: <strong>Erick G. Rosa, PMP, SPC6</strong></div>
         </div>
         <div class="course-card-body">
-          <p>Comprehensive PMP exam prep covering predictive, agile, and hybrid approaches aligned with the current PMI ECO. Includes practice exams, study guides, and 35 contact hours toward your PMP application.</p>
+          <p>Comprehensive PMP exam prep covering predictive, agile, and hybrid approaches aligned with the current PMI ECO. Spans <strong>two full weekends</strong> — includes practice exams, study guides, and 35 contact hours toward your PMP application.</p>
           <div class="course-meta">
-            <div class="meta-item"><i class="fa fa-calendar"></i> Weekend Intensive</div>
+            <div class="meta-item"><i class="fa fa-calendar"></i> 2-Weekend Intensive</div>
             <div class="meta-item"><i class="fa fa-clock"></i> Sat &amp; Sun, 9AM–5PM</div>
             <div class="meta-item"><i class="fa fa-users"></i> Max 15 Students</div>
             <div class="meta-item"><i class="fa fa-laptop"></i> Live &amp; Remote</div>
@@ -474,22 +534,23 @@
         </div>
         <div class="course-card-footer">
           <div class="course-price">$749<span>All materials included</span></div>
-          <button class="btn-enroll" onclick="handleEnroll('pmp')">
+          <button class="btn-enroll" onclick="openWeekendModal('pmp', 2)">
             Enroll Now <i class="fa fa-arrow-right"></i>
           </button>
         </div>
       </div>
 
-      <!-- ── SAFe Agile Certification ── -->
+      <!-- ── SAFe Agilest ── -->
       <div class="course-card" data-category="agile" data-aos="fade-up" data-aos-delay="80">
         <div class="course-card-header">
           <div class="urgency-badge"><i class="fa fa-fire"></i> High Demand</div>
           <div class="course-badge">Agile</div>
-          <h3>SAFe Agile Certification</h3>
+          <div class="prep-badge"><i class="fa fa-certificate"></i> Prep Course</div>
+          <h3>SAFe Agilest</h3>
           <div class="instructor">Instructor: <strong>Erick G. Rosa, PMP, SPC6</strong></div>
         </div>
         <div class="course-card-body">
-          <p>SAFe certification training covering Leading SAFe (SA), SAFe Scrum Master (SSM), and SAFe Product Owner/Manager (SPO/SPM) pathways. Learn to scale agile across teams and launch Agile Release Trains.</p>
+          <p>Leading SAFe (SA) certification prep — learn to lead a Lean-Agile enterprise using the Scaled Agile Framework. Covers SAFe principles, PI Planning, ART execution, and Lean portfolio management for leaders and change agents.</p>
           <div class="course-meta">
             <div class="meta-item"><i class="fa fa-calendar"></i> Weekend Intensive</div>
             <div class="meta-item"><i class="fa fa-clock"></i> Sat &amp; Sun, 9AM–5PM</div>
@@ -502,16 +563,54 @@
               <li>SAFe Principles</li>
               <li>Lean-Agile Leadership</li>
               <li>PI Planning</li>
-              <li>ART Launch</li>
-              <li>Value Stream Mapping</li>
-              <li>Team of Teams</li>
-              <li>Exam Prep</li>
+              <li>ART Execution</li>
+              <li>Lean Portfolio Mgmt</li>
+              <li>Business Agility</li>
+              <li>SA Exam Prep</li>
             </ul>
           </div>
         </div>
         <div class="course-card-footer">
           <div class="course-price">$749<span>All materials included</span></div>
-          <button class="btn-enroll" onclick="handleEnroll('safe')">
+          <button class="btn-enroll" onclick="openWeekendModal('safe_agilist', 1)">
+            Enroll Now <i class="fa fa-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- ── SAFE Scrum Master ── -->
+      <div class="course-card" data-category="agile" data-aos="fade-up" data-aos-delay="120">
+        <div class="course-card-header">
+          <div class="urgency-badge"><i class="fa fa-star"></i> Bestseller</div>
+          <div class="course-badge">Agile</div>
+          <div class="prep-badge"><i class="fa fa-certificate"></i> Prep Course</div>
+          <h3>SAFE Scrum Master</h3>
+          <div class="instructor">Instructor: <strong>Erick G. Rosa, PMP, SPC6</strong></div>
+        </div>
+        <div class="course-card-body">
+          <p>SAFe Scrum Master (SSM) certification prep — master the skills to facilitate and support Agile teams within a SAFe enterprise. Covers team-level ceremonies, impediment removal, coaching, and ART coordination.</p>
+          <div class="course-meta">
+            <div class="meta-item"><i class="fa fa-calendar"></i> Weekend Intensive</div>
+            <div class="meta-item"><i class="fa fa-clock"></i> Sat &amp; Sun, 9AM–5PM</div>
+            <div class="meta-item"><i class="fa fa-users"></i> Max 15 Students</div>
+            <div class="meta-item"><i class="fa fa-laptop"></i> Live &amp; Remote</div>
+          </div>
+          <div class="course-topics">
+            <h4>What You'll Master</h4>
+            <ul class="topic-list">
+              <li>SAFe Team Agility</li>
+              <li>Scrum at Scale</li>
+              <li>PI Ceremonies</li>
+              <li>Impediment Removal</li>
+              <li>Agile Coaching</li>
+              <li>ART Sync</li>
+              <li>SSM Exam Prep</li>
+            </ul>
+          </div>
+        </div>
+        <div class="course-card-footer">
+          <div class="course-price">$749<span>All materials included</span></div>
+          <button class="btn-enroll" onclick="openWeekendModal('safe_scrummaster', 1)">
             Enroll Now <i class="fa fa-arrow-right"></i>
           </button>
         </div>
@@ -522,7 +621,7 @@
         <div class="course-card-header">
           <div class="urgency-badge"><i class="fa fa-bolt"></i> New</div>
           <div class="course-badge">AI &amp; Automation</div>
-          <h3>AI Integration for Business</h3>
+          <h3>Claude AI</h3>
           <div class="instructor">Instructor: <strong>Erick G. Rosa, PMP, SPC6</strong></div>
         </div>
         <div class="course-card-body">
@@ -548,7 +647,7 @@
         </div>
         <div class="course-card-footer">
           <div class="course-price">$749<span>All materials included</span></div>
-          <button class="btn-enroll" onclick="handleEnroll('ai')">
+          <button class="btn-enroll" onclick="openWeekendModal('ai', 1)">
             Enroll Now <i class="fa fa-arrow-right"></i>
           </button>
         </div>
@@ -584,7 +683,7 @@
         </div>
         <div class="course-card-footer">
           <div class="course-price">$749<span>All materials included</span></div>
-          <button class="btn-enroll" onclick="handleEnroll('agile')">
+          <button class="btn-enroll" onclick="openWeekendModal('agile', 1)">
             Enroll Now <i class="fa fa-arrow-right"></i>
           </button>
         </div>
@@ -594,7 +693,7 @@
       <div class="course-card" data-category="ai" data-aos="fade-up" data-aos-delay="80">
         <div class="course-card-header">
           <div class="course-badge">Data &amp; Analytics</div>
-          <h3>Power BI for Project Managers</h3>
+          <h3>PowerBI</h3>
           <div class="instructor">Instructor: <strong>Erick G. Rosa, PMP, SPC6</strong></div>
         </div>
         <div class="course-card-body">
@@ -620,7 +719,7 @@
         </div>
         <div class="course-card-footer">
           <div class="course-price">$749<span>All materials included</span></div>
-          <button class="btn-enroll" onclick="handleEnroll('powerbi')">
+          <button class="btn-enroll" onclick="openWeekendModal('powerbi', 1)">
             Enroll Now <i class="fa fa-arrow-right"></i>
           </button>
         </div>
@@ -906,38 +1005,159 @@
   // 2. Set up a server endpoint that creates Checkout Sessions
   // 3. Redirect to the session URL
 
+  // ── Stripe Payment Links ──
   const stripePriceMap = {
-    pmp:     'https://buy.stripe.com/7sYfZg85L7zy8Ds7XJ57W04',
-    ai:      'https://buy.stripe.com/eVq8wO0Djf20bPE7XJ57W05',
-    agile:   'https://buy.stripe.com/6oUfZg1Hn1ba06W4Lx57W06',
-    powerbi: 'https://buy.stripe.com/3cI5kCfyd7zy7zo5PB57W07',
-    safe:    'https://buy.stripe.com/00w6oGgCh0761b0cdZ57W08'
+    pmp:            'https://buy.stripe.com/7sYfZg85L7zy8Ds7XJ57W04',
+    ai:             'https://buy.stripe.com/eVq8wO0Djf20bPE7XJ57W05',
+    agile:          'https://buy.stripe.com/6oUfZg1Hn1ba06W4Lx57W06',
+    powerbi:        'https://buy.stripe.com/3cI5kCfyd7zy7zo5PB57W07',
+    safe_scrummaster: 'https://buy.stripe.com/00w6oGgCh0761b0cdZ57W08',
+    safe_agilist:   'https://buy.stripe.com/28E00i4Tz3ji2f45PB57W09'
   };
 
-  function handleEnroll(courseId) {
-    const url = stripePriceMap[courseId];
-    if (url && !url.includes('YOUR_')) {
-      // Redirect to Stripe Payment Link
-      window.location.href = url;
+  const courseNames = {
+    pmp:              'PMP Prep',
+    ai:               'Claude AI',
+    agile:            'Agile Fundamentals',
+    powerbi:          'PowerBI',
+    safe_scrummaster: 'SAFE Scrum Master',
+    safe_agilist:     'SAFe Agilest'
+  };
+
+  // ── Weekend Picker State ──
+  let _activeCourseId   = null;
+  let _activeWeekends   = 1;
+  let _selectedWeekend  = null;
+
+  // Generate the next N upcoming Saturdays from today
+  function getUpcomingWeekends(count) {
+    const weekends = [];
+    const today = new Date();
+    // Find next Saturday (day 6)
+    const d = new Date(today);
+    const day = d.getDay();
+    const daysUntilSat = (6 - day + 7) % 7 || 7; // at least 1 week out
+    d.setDate(d.getDate() + daysUntilSat);
+    for (let i = 0; i < count; i++) {
+      const sat = new Date(d);
+      const sun = new Date(d);
+      sun.setDate(sun.getDate() + 1);
+      weekends.push({ sat, sun });
+      d.setDate(d.getDate() + 7);
+    }
+    return weekends;
+  }
+
+  function fmtDate(d) {
+    return d.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' });
+  }
+
+  function openWeekendModal(courseId, numWeekends) {
+    _activeCourseId  = courseId;
+    _activeWeekends  = numWeekends;
+    _selectedWeekend = null;
+
+    const name = courseNames[courseId] || courseId;
+    document.getElementById('modalTitle').textContent = 'Choose Your Weekend — ' + name;
+
+    if (numWeekends === 2) {
+      document.getElementById('modalSubtitle').textContent =
+        'PMP Prep spans two consecutive weekends. Select your start weekend below.';
+      document.getElementById('modalNote').textContent =
+        '⚠️ Weekend 2 automatically follows the next week (Sat–Sun). Both weekends are required.';
     } else {
-      // Fallback: show alert with instructions
-      alert('Payment links are being configured. Please contact us at info@egrconsultingservices.com or call 347-754-4463 to enroll.');
+      document.getElementById('modalSubtitle').textContent =
+        'Select the weekend you\'d like to attend this course.';
+      document.getElementById('modalNote').textContent =
+        'Each session runs Saturday & Sunday, 9 AM – 5 PM. All times Eastern.';
     }
 
-    // Track enrollment click in GA4
+    const container = document.getElementById('weekendOptions');
+    container.innerHTML = '';
+    const upcoming = getUpcomingWeekends(6);
+
+    upcoming.forEach((wk, idx) => {
+      const id = 'wk_' + idx;
+      const dateKey = wk.sat.toISOString().slice(0, 10);
+      let label, sublabel;
+
+      if (numWeekends === 2) {
+        const sun2 = new Date(wk.sat);
+        sun2.setDate(sun2.getDate() + 8);
+        const sat2 = new Date(wk.sat);
+        sat2.setDate(sat2.getDate() + 7);
+        label = fmtDate(wk.sat) + ' – ' + fmtDate(wk.sun);
+        sublabel = 'Weekend 2: ' + fmtDate(sat2) + ' – ' + fmtDate(sun2);
+      } else {
+        label = fmtDate(wk.sat) + ' – ' + fmtDate(wk.sun);
+        sublabel = 'Saturday & Sunday · 9 AM – 5 PM ET';
+      }
+
+      const div = document.createElement('label');
+      div.className = 'weekend-option';
+      div.htmlFor = id;
+      div.innerHTML = `
+        <input type="radio" name="weekend" id="${id}" value="${dateKey}" onchange="selectWeekend('${dateKey}', this.closest('.weekend-option'))">
+        <div class="weekend-option-label">
+          <strong>${label}</strong>
+          <span>${sublabel}</span>
+        </div>`;
+      container.appendChild(div);
+    });
+
+    document.getElementById('modalConfirmBtn').disabled = true;
+    document.getElementById('weekendModal').style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
+
+  function selectWeekend(dateKey, el) {
+    document.querySelectorAll('.weekend-option').forEach(o => o.classList.remove('selected'));
+    el.classList.add('selected');
+    _selectedWeekend = dateKey;
+    document.getElementById('modalConfirmBtn').disabled = false;
+  }
+
+  function closeWeekendModal() {
+    document.getElementById('weekendModal').style.display = 'none';
+    document.body.style.overflow = '';
+    _activeCourseId = _selectedWeekend = null;
+  }
+
+  function confirmWeekend() {
+    if (!_activeCourseId || !_selectedWeekend) return;
+    const baseUrl = stripePriceMap[_activeCourseId];
+    if (!baseUrl || baseUrl.includes('YOUR_')) {
+      alert('Payment links are being configured. Contact us at info@egrconsultingservices.com or call 347-754-4463 to enroll.');
+      closeWeekendModal();
+      return;
+    }
+    // Pass selected weekend + course as client_reference_id for Stripe tracking
+    const ref = _activeCourseId + '_' + _selectedWeekend;
+    const url  = baseUrl + '?client_reference_id=' + encodeURIComponent(ref);
+
+    // Analytics tracking
     if (typeof gtag === 'function') {
       gtag('event', 'begin_checkout', {
-        currency: 'USD',
-        value: 749,
-        items: [{ item_id: courseId, item_name: courseId.toUpperCase() + ' Course', price: 749 }]
+        currency: 'USD', value: 749,
+        items: [{ item_id: _activeCourseId, item_name: courseNames[_activeCourseId] || _activeCourseId, price: 749 }]
       });
     }
-
-    // Track in Facebook Pixel
     if (typeof fbq === 'function') {
-      fbq('track', 'InitiateCheckout', { value: 749, currency: 'USD', content_name: courseId });
+      fbq('track', 'InitiateCheckout', { value: 749, currency: 'USD', content_name: _activeCourseId });
     }
+
+    closeWeekendModal();
+    window.location.href = url;
   }
+
+  // Close modal on overlay click
+  document.getElementById('weekendModal').addEventListener('click', function(e) {
+    if (e.target === this) closeWeekendModal();
+  });
+  // Close on Escape key
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeWeekendModal();
+  });
 </script>
 </body>
 </html>
