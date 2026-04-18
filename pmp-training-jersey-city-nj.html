@@ -15,7 +15,13 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="PMP Training Jersey City NJ | EGR Consulting">
     <meta name="twitter:description" content="PMP certification training and exam prep for Jersey City, NJ project managers.">
-    <link rel="canonical" href="https://egrconsultingservices.com/pmp-training-jersey-city-nj">
+    <link rel="canonical" href="https://www.egrconsultingservices.com/pmp-training-jersey-city-nj">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
 
     <!-- Course JSON-LD -->
     <script type="application/ld+json">
@@ -117,13 +123,6 @@
     <style>
         *{margin:0;padding:0;box-sizing:border-box}
         body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;line-height:1.6;color:#333;background:#f9f9f9}
-        header{background:#1a3a52;color:#fff;padding:1rem 0}
-        .header-content{max-width:1200px;margin:0 auto;padding:0 2rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
-        .logo{font-size:1.5rem;font-weight:700;color:#fff;text-decoration:none}
-        .header-contact a{color:#fff;text-decoration:none;margin-left:1.5rem}
-        .breadcrumb{max-width:1200px;margin:0 auto;padding:1rem 2rem;font-size:.9rem;background:#f5f5f5}
-        .breadcrumb a{color:#1a3a52;text-decoration:none}
-        .breadcrumb span{margin:0 .5rem;color:#999}
         .hero{background:linear-gradient(135deg,#1a3a52 0%,#2d5f7f 100%);color:#fff;padding:4rem 2rem;text-align:center}
         .hero-content{max-width:900px;margin:0 auto}
         h1{font-size:2.5rem;margin-bottom:1.5rem;line-height:1.2}
@@ -141,28 +140,44 @@
         .cta-section{background:linear-gradient(135deg,#e8740f 0%,#d16600 100%);color:#fff;text-align:center;padding:3.5rem 2rem;border-radius:8px}
         .cta-section h2{color:#fff}
         .cta-section .cta-button{background:#fff;color:#e8740f}
-        footer{background:#1a3a52;color:#fff;text-align:center;padding:2rem;margin-top:3rem}
-        footer a{color:#e8f0f5;text-decoration:none;margin:0 1rem}
         @media (max-width:768px){h1{font-size:1.85rem}h2{font-size:1.5rem}.two-col{grid-template-columns:1fr}}
     </style>
 </head>
 <body>
 
-<header>
-    <div class="header-content">
-        <a href="https://egrconsultingservices.com" class="logo">EGR Consulting Services</a>
-        <div class="header-contact">
-            <a href="tel:347-754-4463">347-754-4463</a>
-            <a href="https://egrconsultingservices.com/book" class="cta-button" style="padding:.5rem 1.2rem;font-size:.9rem">Book a Free Consultation</a>
-        </div>
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">
+      <span class="nav-logo-text">EGR Consulting</span>
+      <span class="nav-logo-sub">PM · Agile · Training</span>
+    </a>
+    <div class="nav-links">
+      <a href="/about">About</a>
+      <a href="/services">Services</a>
+      <a href="/training" class="active">Training</a>
+      <a href="/classes">Classes</a>
+      <a href="/consulting">Consulting</a>
+      <a href="/insights">Insights</a>
+      <a href="/contact">Contact</a>
     </div>
-</header>
-
-<nav class="breadcrumb" aria-label="Breadcrumb">
-    <a href="https://egrconsultingservices.com">Home</a><span>›</span>
-    <a href="https://egrconsultingservices.com/training">Training</a><span>›</span>
-    PMP Training Jersey City NJ
+    <a href="/book" class="btn btn-primary btn-sm nav-cta book-cta">Book a Call <i class="fa fa-arrow-right"></i></a>
+    <button class="hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+  </div>
 </nav>
+<div class="mobile-menu">
+  <a href="/about">About</a><a href="/services">Services</a><a href="/training">Training</a><a href="/classes">Classes</a><a href="/consulting">Consulting</a>
+  <a href="/insights">Insights</a><a href="/contact">Contact</a>
+  <a href="/book" class="btn btn-primary mt-6 book-cta">Book a Free Call</a>
+</div>
+
+<div class="container" style="padding-top:1rem;">
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="/">Home</a><span class="sep">/</span>
+    <a href="/training">Training</a><span class="sep">/</span>
+    <span class="current">PMP Training Jersey City NJ</span>
+  </nav>
+</div>
 
 <section class="hero">
     <div class="hero-content">
@@ -254,16 +269,46 @@
     <p style="margin-top:1.5rem">Or call <a href="tel:347-754-4463" style="color:#fff;font-weight:700">347-754-4463</a></p>
 </section>
 
-<footer>
-    <p><strong>EGR Consulting Services</strong> | Bloomfield, NJ 07003 | <a href="tel:347-754-4463">347-754-4463</a></p>
-    <p style="margin-top:1rem">
-        <a href="https://egrconsultingservices.com">Home</a> |
-        <a href="https://egrconsultingservices.com/training">Training</a> |
-        <a href="https://egrconsultingservices.com/consulting">Consulting</a> |
-        <a href="https://egrconsultingservices.com/book">Book a Consultation</a>
-    </p>
-    <p style="margin-top:1rem;font-size:.9rem">Serving Jersey City, Newark, Bloomfield, NYC, Philadelphia, Stamford, and the tri-state region.</p>
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo-text">EGR Consulting</div>
+        <div class="footer-logo-sub">PM · Agile · Training</div>
+        <p>Enterprise-grade project management consulting, agile transformation, and AI integration for teams serious about delivery excellence.</p>
+        <div class="footer-social">
+          <a href="https://www.linkedin.com/in/erickgrosa" target="_blank" rel="noopener" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://www.credly.com/users/erick-rosa" target="_blank" rel="noopener" class="social-icon"><i class="fa fa-medal"></i></a>
+          <a href="mailto:ErickRosa01@gmail.com" class="social-icon"><i class="fa fa-envelope"></i></a>
+        </div>
+      </div>
+      <div class="footer-col"><h5>Services</h5><ul>
+        <li><a href="/training">PMP Exam Prep</a></li><li><a href="/training">SAFe Certification</a></li>
+        <li><a href="/training">Power BI Training</a></li><li><a href="/consulting">PM Consulting</a></li>
+        <li><a href="/services">Agile Transformation</a></li>
+        <li><a href="/services">AI Integration</a></li>
+        <li><a href="/services">Staff Augmentation</a></li>
+      </ul></div>
+      <div class="footer-col"><h5>Company</h5><ul>
+        <li><a href="/about">About Us</a></li><li><a href="/services">All Services</a></li>
+        <li><a href="/classes">Weekend Classes</a></li>
+        <li><a href="/insights">Insights</a></li>
+        <li><a href="/book">Book a Call</a></li><li><a href="/contact">Contact</a></li>
+      </ul></div>
+      <div class="footer-col"><h5>Contact</h5><ul>
+        <li><a href="tel:3477544463"><i class="fa fa-phone" style="width:14px;margin-right:6px;"></i>347-754-4463</a></li>
+        <li><a href="mailto:ErickRosa01@gmail.com"><i class="fa fa-envelope" style="width:14px;margin-right:6px;"></i>ErickRosa01@gmail.com</a></li>
+        <li><a href="#"><i class="fa fa-location-dot" style="width:14px;margin-right:6px;"></i>Bloomfield, NJ</a></li>
+      </ul></div>
+    </div>
+    <div class="footer-bottom">
+      <p>© <script>document.write(new Date().getFullYear())</script> EGR Consulting · Erick G. Rosa, PMP, PMI-ACP, SPC6</p>
+      <div class="footer-legal"><a href="#">Privacy Policy</a><a href="#">Terms of Service</a></div>
+    </div>
+  </div>
 </footer>
+<script src="js/main.js"></script>
 
 </body>
 </html>

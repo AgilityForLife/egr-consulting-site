@@ -11,7 +11,13 @@
     <meta property="og:description" content="Expert PMP training and exam preparation in Newark, NJ. Learn from certified instructor Erick Rosa with 15+ years of experience.">
     <meta property="og:url" content="https://egrconsultingservices.com/pmp-training-newark-nj">
     <meta property="og:type" content="website">
-    <link rel="canonical" href="https://egrconsultingservices.com/pmp-training-newark-nj">
+    <link rel="canonical" href="https://www.egrconsultingservices.com/pmp-training-newark-nj">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
 
     <!-- JSON-LD Schema -->
     <script type="application/ld+json">
@@ -99,65 +105,6 @@
             line-height: 1.6;
             color: #333;
             background-color: #f9f9f9;
-        }
-
-        header {
-            background-color: #1a3a52;
-            color: white;
-            padding: 1rem 0;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .header-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            text-decoration: none;
-            color: white;
-        }
-
-        .header-contact {
-            font-size: 0.95rem;
-        }
-
-        .header-contact a {
-            color: #fff;
-            text-decoration: none;
-            margin-left: 1.5rem;
-        }
-
-        .header-contact a:hover {
-            color: #e8f0f5;
-        }
-
-        .breadcrumb {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 1rem 2rem;
-            font-size: 0.9rem;
-            background-color: #f5f5f5;
-        }
-
-        .breadcrumb a {
-            color: #1a3a52;
-            text-decoration: none;
-        }
-
-        .breadcrumb a:hover {
-            text-decoration: underline;
-        }
-
-        .breadcrumb span {
-            margin: 0 0.5rem;
-            color: #999;
         }
 
         /* Hero Section */
@@ -368,53 +315,6 @@
             color: #e8f0f5;
         }
 
-        /* Footer */
-        footer {
-            background-color: #1a3a52;
-            color: white;
-            padding: 2.5rem;
-            text-align: center;
-            font-size: 0.95rem;
-            margin-top: 3rem;
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .footer-info {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .footer-info-item h3 {
-            font-size: 1rem;
-            margin-bottom: 0.5rem;
-            color: #e8f0f5;
-        }
-
-        .footer-info-item p {
-            color: #bbb;
-        }
-
-        .footer-info-item a {
-            color: #e8f0f5;
-            text-decoration: none;
-        }
-
-        .footer-info-item a:hover {
-            text-decoration: underline;
-        }
-
-        .footer-bottom {
-            border-top: 1px solid #2d5f7f;
-            padding-top: 1.5rem;
-            color: #999;
-        }
-
         /* Responsive Design */
         @media (max-width: 768px) {
             h1 {
@@ -450,10 +350,6 @@
 
             .why-choose-grid,
             .learning-outcomes {
-                grid-template-columns: 1fr;
-            }
-
-            .footer-info {
                 grid-template-columns: 1fr;
             }
 
@@ -501,25 +397,40 @@
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <div class="header-content">
-            <a href="https://egrconsultingservices.com" class="logo">EGR Consulting Services</a>
-            <div class="header-contact">
-                <a href="tel:347-754-4463">347-754-4463</a>
-                <a href="https://egrconsultingservices.com/book">Book Consultation</a>
-            </div>
+    <!-- NAV -->
+    <nav class="nav">
+      <div class="nav-inner">
+        <a href="/" class="nav-logo">
+          <span class="nav-logo-text">EGR Consulting</span>
+          <span class="nav-logo-sub">PM · Agile · Training</span>
+        </a>
+        <div class="nav-links">
+          <a href="/about">About</a>
+          <a href="/services">Services</a>
+          <a href="/training" class="active">Training</a>
+          <a href="/classes">Classes</a>
+          <a href="/consulting">Consulting</a>
+          <a href="/insights">Insights</a>
+          <a href="/contact">Contact</a>
         </div>
-    </header>
+        <a href="/book" class="btn btn-primary btn-sm nav-cta book-cta">Book a Call <i class="fa fa-arrow-right"></i></a>
+        <button class="hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+      </div>
+    </nav>
+    <div class="mobile-menu">
+      <a href="/about">About</a><a href="/services">Services</a><a href="/training">Training</a><a href="/classes">Classes</a><a href="/consulting">Consulting</a>
+      <a href="/insights">Insights</a><a href="/contact">Contact</a>
+      <a href="/book" class="btn btn-primary mt-6 book-cta">Book a Free Call</a>
+    </div>
 
     <!-- Breadcrumb Navigation -->
-    <nav class="breadcrumb">
-        <a href="https://egrconsultingservices.com">Home</a>
-        <span>/</span>
-        <a href="https://egrconsultingservices.com/training">Training</a>
-        <span>/</span>
-        <span>PMP Training Newark NJ</span>
-    </nav>
+    <div class="container" style="padding-top:1rem;">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="/">Home</a><span class="sep">/</span>
+        <a href="/training">Training</a><span class="sep">/</span>
+        <span class="current">PMP Training Newark NJ</span>
+      </nav>
+    </div>
 
     <!-- Hero Section -->
     <section class="hero">
@@ -640,30 +551,46 @@
 
     </div>
 
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-info">
-                <div class="footer-info-item">
-                    <h3>EGR Consulting Services</h3>
-                    <p>Professional training and consulting services for project management excellence.</p>
-                </div>
-                <div class="footer-info-item">
-                    <h3>Contact Information</h3>
-                    <p>Phone: <a href="tel:347-754-4463">347-754-4463</a></p>
-                    <p>Address: Bloomfield, NJ 07003</p>
-                </div>
-                <div class="footer-info-item">
-                    <h3>Quick Links</h3>
-                    <p><a href="https://egrconsultingservices.com">Home</a></p>
-                    <p><a href="https://egrconsultingservices.com/book">Book Consultation</a></p>
-                </div>
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <div class="footer-logo-text">EGR Consulting</div>
+            <div class="footer-logo-sub">PM · Agile · Training</div>
+            <p>Enterprise-grade project management consulting, agile transformation, and AI integration for teams serious about delivery excellence.</p>
+            <div class="footer-social">
+              <a href="https://www.linkedin.com/in/erickgrosa" target="_blank" rel="noopener" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+              <a href="https://www.credly.com/users/erick-rosa" target="_blank" rel="noopener" class="social-icon"><i class="fa fa-medal"></i></a>
+              <a href="mailto:ErickRosa01@gmail.com" class="social-icon"><i class="fa fa-envelope"></i></a>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 EGR Consulting Services. All rights reserved. Bloomfield, NJ 07003</p>
-            </div>
+          </div>
+          <div class="footer-col"><h5>Services</h5><ul>
+            <li><a href="/training">PMP Exam Prep</a></li><li><a href="/training">SAFe Certification</a></li>
+            <li><a href="/training">Power BI Training</a></li><li><a href="/consulting">PM Consulting</a></li>
+            <li><a href="/services">Agile Transformation</a></li>
+            <li><a href="/services">AI Integration</a></li>
+            <li><a href="/services">Staff Augmentation</a></li>
+          </ul></div>
+          <div class="footer-col"><h5>Company</h5><ul>
+            <li><a href="/about">About Us</a></li><li><a href="/services">All Services</a></li>
+            <li><a href="/classes">Weekend Classes</a></li>
+            <li><a href="/insights">Insights</a></li>
+            <li><a href="/book">Book a Call</a></li><li><a href="/contact">Contact</a></li>
+          </ul></div>
+          <div class="footer-col"><h5>Contact</h5><ul>
+            <li><a href="tel:3477544463"><i class="fa fa-phone" style="width:14px;margin-right:6px;"></i>347-754-4463</a></li>
+            <li><a href="mailto:ErickRosa01@gmail.com"><i class="fa fa-envelope" style="width:14px;margin-right:6px;"></i>ErickRosa01@gmail.com</a></li>
+            <li><a href="#"><i class="fa fa-location-dot" style="width:14px;margin-right:6px;"></i>Bloomfield, NJ</a></li>
+          </ul></div>
         </div>
+        <div class="footer-bottom">
+          <p>© <script>document.write(new Date().getFullYear())</script> EGR Consulting · Erick G. Rosa, PMP, PMI-ACP, SPC6</p>
+          <div class="footer-legal"><a href="#">Privacy Policy</a><a href="#">Terms of Service</a></div>
+        </div>
+      </div>
     </footer>
+    <script src="js/main.js"></script>
 
     <!-- FAQ Toggle Script -->
     <script>
