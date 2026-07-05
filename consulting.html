@@ -56,8 +56,55 @@
     <h1>Delivery Leadership<br/>That Actually Delivers.</h1>
     <p>End-to-end PM and agile consulting for cloud, data, and platform programs. Embedded or advisory. Our senior consultants work directly with your teams — no handoffs to juniors.</p>
     <div class="btn-group" style="margin-top:32px;">
-      <a href="/book" class="btn btn-primary btn-lg book-cta">Get a Proposal <i class="fa fa-calendar-check"></i></a>
+      <a href="#proposal-form" class="btn btn-primary btn-lg btn-shine">Get a Proposal <i class="fa fa-arrow-right"></i></a>
       <a href="/about" class="btn btn-outline btn-lg">About EGR <i class="fa fa-arrow-right"></i></a>
+    </div>
+  </div>
+</section>
+
+<!-- GET A PROPOSAL -->
+<section class="section bg-white" id="proposal-form">
+  <div class="container">
+    <div class="grid-2" style="gap:48px;align-items:center;">
+      <div data-aos="fade-right">
+        <span class="section-label">Get a Proposal</span>
+        <h2>Tell Us Your Biggest Delivery Challenge</h2>
+        <div class="divider"></div>
+        <p class="lead">Share a few details below and Erick will personally reply within 1 business day with a tailored proposal — no generic templates, no sales pressure.</p>
+        <ul style="display:flex;flex-direction:column;gap:12px;margin-top:20px;">
+          <li style="display:flex;align-items:flex-start;gap:10px;font-size:.9rem;color:var(--text-muted);"><i class="fa fa-circle-check" style="color:var(--teal);margin-top:3px;flex-shrink:0;"></i>Reviewed personally by Erick — not routed to a sales team</li>
+          <li style="display:flex;align-items:flex-start;gap:10px;font-size:.9rem;color:var(--text-muted);"><i class="fa fa-circle-check" style="color:var(--teal);margin-top:3px;flex-shrink:0;"></i>Reply within 1 business day with next steps</li>
+          <li style="display:flex;align-items:flex-start;gap:10px;font-size:.9rem;color:var(--text-muted);"><i class="fa fa-circle-check" style="color:var(--teal);margin-top:3px;flex-shrink:0;"></i>No obligation — this is a conversation, not a contract</li>
+        </ul>
+      </div>
+      <div data-aos="fade-left" data-aos-delay="100">
+        <div style="background:var(--bg);border-radius:var(--radius-xl);padding:36px;box-shadow:var(--shadow-md);border:1px solid var(--border);">
+          <form id="proposal-form-el" novalidate>
+            <div class="form-group">
+              <label class="form-label" for="p-name">Full Name <span class="req">*</span></label>
+              <input class="form-control" type="text" id="p-name" name="name" placeholder="Your full name" required autocomplete="name" data-error="Please enter your name" />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="p-email">Email Address <span class="req">*</span></label>
+              <input class="form-control" type="email" id="p-email" name="email" placeholder="you@company.com" required autocomplete="email" data-error="Please enter a valid email address" />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="p-company">Company / Organization</label>
+              <input class="form-control" type="text" id="p-company" name="company" placeholder="Acme Corp / Federal Agency" autocomplete="organization" />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="p-message">What's your biggest delivery challenge? <span class="req">*</span></label>
+              <textarea class="form-control" id="p-message" name="message" rows="4" placeholder="e.g. 'Our releases keep slipping and we can't get visibility into cross-team dependencies'..." required data-error="Please tell us about your challenge"></textarea>
+            </div>
+            <button type="submit" id="proposal-submit-btn" class="btn btn-primary btn-lg btn-shine" style="width:100%;justify-content:center;">
+              Request a Proposal <i class="fa fa-paper-plane"></i>
+            </button>
+            <p style="text-align:center;font-size:.8rem;color:var(--text-light);margin-top:14px;">
+              <i class="fa fa-lock" style="margin-right:4px;"></i>Your information is kept private.
+            </p>
+          </form>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -298,8 +345,8 @@
   <div class="container" style="position:relative;z-index:2;text-align:center;">
     <div data-aos="fade-up">
       <h2>Need delivery leadership<br/>you can trust?</h2>
-      <p>Book a free 30-minute strategy call. We'll assess your program and map a clear path to better delivery — whether you bring EGR Consulting in or not.</p>
-      <a href="/book" class="btn btn-primary btn-lg book-cta">Book a Free Strategy Call <i class="fa fa-calendar-check"></i></a>
+      <p>Book a free consultation. We'll assess your program and map a clear path to better delivery — whether you bring EGR Consulting in or not.</p>
+      <a href="/book" class="btn btn-primary btn-lg book-cta">Book a Free Consultation <i class="fa fa-calendar-check"></i></a>
     </div>
   </div>
 </section>
@@ -341,7 +388,101 @@
   </div>
 </footer>
 
+<!-- Sticky CTA Bar -->
+<div class="sticky-cta-bar">
+  <div class="sticky-cta-bar-text">Free consultation<span>No obligation</span></div>
+  <a href="/book" class="btn btn-primary btn-sm book-cta">Book Now <i class="fa fa-arrow-right"></i></a>
+</div>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 <script src="js/main.js"></script>
+
+<!-- ═══ HubSpot CRM Integration (Proposal Request Form) ═══ -->
+<script>
+(function () {
+  var form = document.getElementById('proposal-form-el');
+  if (!form) return;
+
+  var requiredFields = ['p-name', 'p-email', 'p-message'].map(function (id) {
+    return document.getElementById(id);
+  });
+
+  requiredFields.forEach(function (input) {
+    input.addEventListener('blur', function () {
+      window.egrValidateField && window.egrValidateField(input);
+    });
+  });
+
+  function showError(message) {
+    var existing = form.querySelector('.hs-error-banner');
+    if (existing) existing.remove();
+    var banner = document.createElement('div');
+    banner.className = 'hs-error-banner';
+    banner.style.cssText = 'background:#fee;border:1px solid #f88;border-radius:8px;padding:12px 16px;margin-bottom:16px;font-size:.88rem;color:#c00;';
+    banner.innerHTML = '<i class="fa fa-exclamation-circle" style="margin-right:6px;"></i>' + message + ' <button type="button" class="hs-retry-btn" style="background:none;border:none;color:#c00;font-weight:700;text-decoration:underline;cursor:pointer;padding:0;">Try again</button> or email <a href="mailto:ErickRosa01@gmail.com">ErickRosa01@gmail.com</a>.';
+    form.insertBefore(banner, form.firstChild);
+    banner.querySelector('.hs-retry-btn').addEventListener('click', function () {
+      banner.remove();
+      form.requestSubmit ? form.requestSubmit() : form.dispatchEvent(new Event('submit', { cancelable: true }));
+    });
+  }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    var allValid = true;
+    requiredFields.forEach(function (input) {
+      var valid = window.egrValidateField ? window.egrValidateField(input) : !!input.value.trim();
+      if (!valid) allValid = false;
+    });
+    if (!allValid) return;
+
+    var data = new FormData(form);
+    var submitBtn = document.getElementById('proposal-submit-btn');
+    var originalHTML = submitBtn.innerHTML;
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<i class="fa fa-spinner fa-spin" style="margin-right:8px;"></i>Sending...';
+
+    fetch('/api/submit-contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name:    data.get('name')    || '',
+        email:   data.get('email')   || '',
+        company: data.get('company') || '',
+        message: data.get('message') || '',
+        type:    'proposal_request',
+        source:  'consulting-page'
+      })
+    })
+    .then(function (res) {
+      if (res.ok) {
+        if (typeof fbq === 'function')  fbq('track', 'Lead');
+        if (typeof gtag === 'function') gtag('event', 'generate_lead', { event_category: 'form', event_label: 'proposal_request' });
+
+        var formWrap = form.parentNode;
+        formWrap.innerHTML =
+          '<div class="form-success">' +
+            '<svg class="success-check" viewBox="0 0 72 72" aria-hidden="true">' +
+              '<circle cx="36" cy="36" r="34"/>' +
+              '<path d="M20 37l11 11 21-23"/>' +
+            '</svg>' +
+            '<h3 style="color:var(--navy);margin-bottom:12px;">Proposal Request Received</h3>' +
+            '<p style="color:var(--text-muted);max-width:380px;margin:0 auto;">Expect a tailored reply within 1 business day.</p>' +
+          '</div>';
+      } else {
+        return res.json().then(function (err) { throw new Error(err.error || 'Submission failed'); });
+      }
+    })
+    .catch(function (err) {
+      console.error('Proposal submission error:', err);
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = originalHTML;
+      showError('Something went wrong sending your request.');
+    });
+  });
+})();
+</script>
+
 </body>
 </html>

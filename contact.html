@@ -143,10 +143,23 @@
         <div style="background:var(--navy);border-radius:var(--radius-lg);padding:28px 24px;margin-top:28px;">
           <div style="font-size:.82rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--teal);margin-bottom:10px;">Fastest Response</div>
           <p style="font-size:.9rem;color:rgba(255,255,255,.75);margin-bottom:16px;line-height:1.6;">
-            For the fastest response, book a free 30-minute strategy call directly on the calendar — no back-and-forth required.
+            For the fastest response, submit the free consultation intake — Erick personally reviews every submission and replies within 1 business day.
           </p>
           <a href="/book" class="btn btn-primary book-cta" style="width:100%;justify-content:center;">
-            Book a Free Call <i class="fa fa-calendar-check"></i>
+            Book a Free Consultation <i class="fa fa-calendar-check"></i>
+          </a>
+        </div>
+
+        <!-- Quick Contact Row -->
+        <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:20px;">
+          <a href="tel:3477544463" class="btn btn-outline-dark" style="flex:1;min-width:150px;justify-content:center;">
+            <i class="fa fa-phone"></i> Call Now
+          </a>
+          <button type="button" class="btn btn-outline-dark" data-copy="ErickRosa01@gmail.com" style="flex:1;min-width:150px;justify-content:center;">
+            <i class="fa fa-envelope"></i> Copy Email
+          </button>
+          <a href="https://www.linkedin.com/in/erickgrosa" target="_blank" rel="noopener" class="btn" style="flex:1;min-width:150px;justify-content:center;background:#0A66C2;color:white;">
+            <i class="fab fa-linkedin"></i> LinkedIn
           </a>
         </div>
       </div>
@@ -157,20 +170,14 @@
           <h3 style="margin-bottom:6px;">Send a Message</h3>
           <p style="font-size:.9rem;color:var(--text-muted);margin-bottom:24px;">We'll respond within one business day.</p>
 
-          <!-- ⚠️  Replace YOUR_CONTACT_FORM_ID with your Formspree contact form ID -->
-          <form id="contact-form"
-                action="https://formspree.io/f/YOUR_CONTACT_FORM_ID"
-                method="POST">
-            <input type="hidden" name="_next" value="thankyou.html" />
-            <input type="hidden" name="_subject" value="New EGR Consulting Contact Form Submission" />
-
+          <form id="contact-form" novalidate>
             <div class="form-group">
               <label class="form-label" for="c-name">Full Name <span class="req">*</span></label>
-              <input class="form-control" type="text" id="c-name" name="name" placeholder="Your full name" required autocomplete="name" />
+              <input class="form-control" type="text" id="c-name" name="name" placeholder="Your full name" required autocomplete="name" data-error="Please enter your name" />
             </div>
             <div class="form-group">
               <label class="form-label" for="c-email">Email Address <span class="req">*</span></label>
-              <input class="form-control" type="email" id="c-email" name="email" placeholder="you@company.com" required autocomplete="email" />
+              <input class="form-control" type="email" id="c-email" name="email" placeholder="you@company.com" required autocomplete="email" data-error="Please enter a valid email address" />
             </div>
             <div class="form-group">
               <label class="form-label" for="c-phone">Phone (optional)</label>
@@ -193,9 +200,9 @@
               <label class="form-label" for="c-message">Message <span class="req">*</span></label>
               <textarea class="form-control" id="c-message" name="message" rows="5"
                 placeholder="Tell us a bit about your situation, team, and what you're looking to accomplish..."
-                required></textarea>
+                required data-error="Please enter a message"></textarea>
             </div>
-            <button type="submit" class="btn btn-primary btn-lg" style="width:100%;justify-content:center;">
+            <button type="submit" id="contact-submit-btn" class="btn btn-primary btn-lg btn-shine" style="width:100%;justify-content:center;">
               Send Message <i class="fa fa-paper-plane"></i>
             </button>
             <p style="text-align:center;font-size:.8rem;color:var(--text-light);margin-top:14px;">
@@ -276,5 +283,93 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 <script src="js/main.js"></script>
+
+<!-- ═══ HubSpot CRM Integration (Contact Form) ═══ -->
+<script>
+(function () {
+  var form = document.getElementById('contact-form');
+  if (!form) return;
+
+  var requiredFields = ['c-name', 'c-email', 'c-message'].map(function (id) {
+    return document.getElementById(id);
+  });
+
+  requiredFields.forEach(function (input) {
+    input.addEventListener('blur', function () {
+      window.egrValidateField && window.egrValidateField(input);
+    });
+  });
+
+  function showError(message) {
+    var existing = form.querySelector('.hs-error-banner');
+    if (existing) existing.remove();
+    var banner = document.createElement('div');
+    banner.className = 'hs-error-banner';
+    banner.style.cssText = 'background:#fee;border:1px solid #f88;border-radius:8px;padding:12px 16px;margin-bottom:16px;font-size:.88rem;color:#c00;';
+    banner.innerHTML = '<i class="fa fa-exclamation-circle" style="margin-right:6px;"></i>' + message + ' <button type="button" class="hs-retry-btn" style="background:none;border:none;color:#c00;font-weight:700;text-decoration:underline;cursor:pointer;padding:0;">Try again</button> or reach us directly: <a href="mailto:ErickRosa01@gmail.com">ErickRosa01@gmail.com</a> / <a href="tel:3477544463">347-754-4463</a>.';
+    form.insertBefore(banner, form.firstChild);
+    banner.querySelector('.hs-retry-btn').addEventListener('click', function () {
+      banner.remove();
+      form.requestSubmit ? form.requestSubmit() : form.dispatchEvent(new Event('submit', { cancelable: true }));
+    });
+  }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    var allValid = true;
+    requiredFields.forEach(function (input) {
+      var valid = window.egrValidateField ? window.egrValidateField(input) : !!input.value.trim();
+      if (!valid) allValid = false;
+    });
+    if (!allValid) return;
+
+    var data = new FormData(form);
+    var submitBtn = document.getElementById('contact-submit-btn');
+    var originalHTML = submitBtn.innerHTML;
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<i class="fa fa-spinner fa-spin" style="margin-right:8px;"></i>Sending...';
+
+    fetch('/api/submit-contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name:    data.get('name')    || '',
+        email:   data.get('email')   || '',
+        phone:   data.get('phone')   || '',
+        subject: data.get('subject') || '',
+        message: data.get('message') || '',
+        source:  'contact-page'
+      })
+    })
+    .then(function (res) {
+      if (res.ok) {
+        if (typeof fbq === 'function')  fbq('track', 'Lead');
+        if (typeof gtag === 'function') gtag('event', 'generate_lead', { event_category: 'form', event_label: 'contact_form' });
+
+        var formWrap = form.parentNode;
+        formWrap.innerHTML =
+          '<div class="form-success">' +
+            '<svg class="success-check" viewBox="0 0 72 72" aria-hidden="true">' +
+              '<circle cx="36" cy="36" r="34"/>' +
+              '<path d="M20 37l11 11 21-23"/>' +
+            '</svg>' +
+            '<h3 style="color:var(--navy);margin-bottom:12px;">Message Received</h3>' +
+            '<p style="color:var(--text-muted);max-width:400px;margin:0 auto;">Erick replies within 1 business day.</p>' +
+          '</div>';
+      } else {
+        return res.json().then(function (err) { throw new Error(err.error || 'Submission failed'); });
+      }
+    })
+    .catch(function (err) {
+      console.error('Contact submission error:', err);
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = originalHTML;
+      showError('Something went wrong sending your message.');
+    });
+  });
+})();
+</script>
+
 </body>
 </html>

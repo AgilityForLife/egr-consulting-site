@@ -129,7 +129,7 @@
 
   .classes-hero {
     background: linear-gradient(135deg, #061828 0%, #0d2d52 60%, #061828 100%);
-    padding: 140px 0 80px;
+    padding: 130px 0 56px;
     position: relative;
     overflow: hidden;
   }
@@ -159,10 +159,12 @@
   .trust-item i { color: #00a878; font-size: 1rem; }
 
   /* Filter tabs */
-  .filter-section { padding: 32px 0 0; background: var(--bg, #f5f7fa); }
+  .filter-section { padding: 24px 0 0; background: var(--bg, #f5f7fa); }
   .filter-tabs {
     display: flex; gap: 8px; flex-wrap: wrap; justify-content: center;
-    margin-bottom: 40px;
+    margin-bottom: 32px;
+    position: sticky; top: 80px; z-index: 40;
+    background: var(--bg, #f5f7fa); padding: 12px 0;
   }
   .filter-tab {
     padding: 10px 22px; border-radius: 24px; border: 1px solid #dde1e6;
@@ -174,6 +176,14 @@
   .filter-tab.active {
     background: #00a878; color: #fff; border-color: #00a878;
   }
+
+  /* Filter empty state */
+  .filter-empty {
+    display: none; text-align: center; padding: 60px 20px; color: #64748b;
+    font-size: .98rem;
+  }
+  .filter-empty.visible { display: block; }
+  .filter-empty a { color: #00a878; font-weight: 700; text-decoration: underline; }
 
   /* Course grid */
   .courses-grid {
@@ -224,6 +234,21 @@
   }
   .meta-item i { color: #00a878; width: 16px; text-align: center; }
 
+  /* Cohort date line + included perks */
+  .cohort-line {
+    display: flex; align-items: center; gap: 8px; font-size: .84rem;
+    font-weight: 600; color: #0a1f38; background: rgba(0,168,120,.06);
+    border: 1px solid rgba(0,168,120,.18); border-radius: 8px;
+    padding: 8px 12px; margin-bottom: 16px;
+  }
+  .cohort-line i { color: #00a878; }
+  .perk-lines { display: flex; flex-direction: column; gap: 6px; margin-bottom: 20px; }
+  .perk-line {
+    display: flex; align-items: center; gap: 8px;
+    font-size: .8rem; color: #64748b;
+  }
+  .perk-line i { color: #00a878; width: 14px; text-align: center; }
+
   .course-topics { margin-bottom: 24px; }
   .course-topics h4 {
     font-size: .78rem; font-weight: 700; text-transform: uppercase;
@@ -272,7 +297,7 @@
     padding: 3px 10px; margin-bottom: 6px;
   }
 
-  /* Weekend picker modal */
+  /* Weekend picker modal (2-step: weekend select -> contact info) */
   .modal-overlay {
     position: fixed; inset: 0; background: rgba(10,31,56,.72); z-index: 9999;
     display: flex; align-items: center; justify-content: center; padding: 20px;
@@ -290,20 +315,82 @@
   .modal-icon { font-size: 2rem; color: #00a878; margin-bottom: 12px; }
   .modal-box h3 { font-size: 1.4rem; color: #0a1f38; margin: 0 0 6px; }
   .modal-subtitle { color: #6b7280; font-size: .92rem; margin-bottom: 20px; }
+
+  /* Step progress indicator */
+  .modal-progress {
+    display: flex; align-items: center; gap: 8px; margin-bottom: 18px;
+  }
+  .modal-progress-label {
+    font-size: .72rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+    color: #00a878;
+  }
+  .modal-progress-track {
+    flex: 1; height: 4px; background: #e5e7eb; border-radius: 4px; overflow: hidden;
+  }
+  .modal-progress-fill {
+    height: 100%; background: #00a878; border-radius: 4px;
+    transition: width .3s ease; width: 50%;
+  }
+  .modal-step { display: none; }
+  .modal-step.active { display: block; }
+
   .weekend-options { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
   .weekend-option {
     display: flex; align-items: center; gap: 14px; padding: 14px 18px;
     border: 2px solid #e5e7eb; border-radius: 12px; cursor: pointer;
-    transition: border-color .2s, background .2s;
+    position: relative; transition: border-color .2s, background .2s;
   }
   .weekend-option:hover { border-color: #00a878; background: rgba(0,168,120,.04); }
   .weekend-option.selected { border-color: #00a878; background: rgba(0,168,120,.08); }
+  .weekend-option.selected .weekend-check { display: flex; }
   .weekend-option input[type="radio"] { accent-color: #00a878; width: 18px; height: 18px; flex-shrink: 0; }
   .weekend-option-label { flex: 1; }
   .weekend-option-label strong { display: block; font-size: .95rem; color: #0a1f38; }
   .weekend-option-label span { font-size: .8rem; color: #6b7280; }
+  .weekend-check {
+    display: none; align-items: center; justify-content: center;
+    width: 22px; height: 22px; border-radius: 50%; background: #00a878;
+    color: #fff; font-size: .7rem; flex-shrink: 0;
+  }
   .modal-note { font-size: .78rem; color: #9ca3af; margin: 0 0 20px; line-height: 1.5; }
   .modal-confirm { width: 100%; justify-content: center; padding: 16px; font-size: 1rem; }
+
+  /* Step 2: contact form */
+  .modal-form-group { margin-bottom: 16px; }
+  .modal-form-group label {
+    display: block; font-size: .82rem; font-weight: 700; color: #0a1f38;
+    margin-bottom: 6px;
+  }
+  .modal-form-group input {
+    width: 100%; padding: 12px 14px; border: 2px solid #e5e7eb; border-radius: 10px;
+    font-size: .95rem; font-family: inherit; color: #0a1f38;
+    transition: border-color .2s;
+  }
+  .modal-form-group input:focus { outline: none; border-color: #00a878; }
+  .modal-summary {
+    background: rgba(0,168,120,.06); border: 1px solid rgba(0,168,120,.18);
+    border-radius: 10px; padding: 12px 14px; margin-bottom: 20px;
+    font-size: .84rem; color: #0a1f38;
+  }
+  .modal-summary strong { color: #00a878; }
+  .modal-back {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: none; border: none; color: #6b7280; font-size: .85rem;
+    font-weight: 600; cursor: pointer; padding: 0; margin-bottom: 16px;
+    font-family: inherit;
+  }
+  .modal-back:hover { color: #0a1f38; }
+  .stripe-lock-note {
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    font-size: .78rem; color: #9ca3af; margin-top: 14px;
+  }
+  .stripe-lock-note i { color: #00a878; }
+  .modal-spinner {
+    display: inline-block; width: 16px; height: 16px;
+    border: 2px solid rgba(255,255,255,.4); border-top-color: #fff;
+    border-radius: 50%; animation: modal-spin .7s linear infinite; margin-right: 8px;
+  }
+  @keyframes modal-spin { to { transform: rotate(360deg); } }
 
   /* ROI section */
   .roi-section { background: #fff; padding: 80px 0; }
@@ -409,6 +496,14 @@
   @media (max-width: 600px) {
     .roi-grid { grid-template-columns: 1fr; }
     .instructor-header { flex-direction: column; text-align: center; }
+    .filter-tabs {
+      top: 64px;
+      flex-wrap: nowrap; justify-content: flex-start;
+      overflow-x: auto; -webkit-overflow-scrolling: touch;
+      scrollbar-width: none; padding-left: 16px; padding-right: 16px;
+    }
+    .filter-tabs::-webkit-scrollbar { display: none; }
+    .filter-tab { flex: 0 0 auto; white-space: nowrap; }
   }
   </style>
 </head>
@@ -454,20 +549,57 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <a href="#" onclick="document.querySelector('.courses-grid').scrollIntoView({behavior:'smooth'});return false;" class="btn btn-primary mt-6">View Courses</a>
 </div>
 
-<!-- ═══ WEEKEND PICKER MODAL ═══ -->
+<!-- ═══ WEEKEND PICKER MODAL (2-step: weekend -> contact info) ═══ -->
 <div id="weekendModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle" style="display:none;">
-  <div class="modal-box">
+  <div class="modal-box modal-card">
     <button class="modal-close" onclick="closeWeekendModal()" aria-label="Close">&times;</button>
-    <div class="modal-icon"><i class="fa fa-calendar-check"></i></div>
-    <h3 id="modalTitle">Choose Your Weekend</h3>
-    <p id="modalSubtitle" class="modal-subtitle">Select the start weekend for your training session.</p>
-    <div id="weekendOptions" class="weekend-options"></div>
-    <p class="modal-note" id="modalNote"></p>
-    <div class="modal-actions">
-      <button id="modalConfirmBtn" class="btn-enroll modal-confirm" onclick="confirmWeekend()" disabled>
-        Continue to Payment <i class="fa fa-arrow-right"></i>
-      </button>
+
+    <div class="modal-progress">
+      <span class="modal-progress-label" id="modalStepLabel">Step 1 of 2</span>
+      <div class="modal-progress-track"><div class="modal-progress-fill" id="modalProgressFill" style="width:50%;"></div></div>
     </div>
+
+    <!-- STEP 1: Choose weekend -->
+    <div id="modalStep1" class="modal-step active">
+      <div class="modal-icon"><i class="fa fa-calendar-check"></i></div>
+      <h3 id="modalTitle">Choose Your Weekend</h3>
+      <p id="modalSubtitle" class="modal-subtitle">Select the start weekend for your training session.</p>
+      <div id="weekendOptions" class="weekend-options"></div>
+      <p class="modal-note" id="modalNote"></p>
+      <div class="modal-actions">
+        <button id="modalConfirmBtn" class="btn-enroll modal-confirm btn-shine" onclick="goToStep2()" disabled>
+          Continue <i class="fa fa-arrow-right"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- STEP 2: Contact info -->
+    <div id="modalStep2" class="modal-step">
+      <button type="button" class="modal-back" onclick="goToStep1()"><i class="fa fa-arrow-left"></i> Back</button>
+      <div class="modal-icon"><i class="fa fa-envelope-open-text"></i></div>
+      <h3>Where should we send it?</h3>
+      <p class="modal-subtitle">Where should we send your enrollment confirmation and prep materials?</p>
+
+      <div class="modal-summary" id="modalSummary"></div>
+
+      <form id="enrollContactForm" novalidate>
+        <div class="modal-form-group">
+          <label for="enrollName">Name <span style="font-weight:400;color:#9ca3af;">(optional)</span></label>
+          <input type="text" id="enrollName" name="name" placeholder="Jane Smith" autocomplete="name" />
+        </div>
+        <div class="modal-form-group">
+          <label for="enrollEmail">Email <span style="color:#ef4444;">*</span></label>
+          <input type="email" id="enrollEmail" name="email" placeholder="jane@company.com" required autocomplete="email" />
+        </div>
+        <div class="modal-actions">
+          <button type="submit" id="modalContinueBtn" class="btn-enroll modal-confirm btn-shine">
+            Continue to Secure Checkout <i class="fa fa-arrow-right"></i>
+          </button>
+        </div>
+        <div class="stripe-lock-note"><i class="fa fa-lock"></i> Secure payment via Stripe &middot; $749</div>
+      </form>
+    </div>
+
   </div>
 </div>
 
@@ -514,10 +646,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <button class="filter-tab" onclick="filterCourses('ai', this)">AI &amp; Data</button>
     </div>
 
-    <div class="courses-grid">
+    <div class="courses-grid" id="coursesGrid">
 
       <!-- ── PMP Prep ── -->
-      <div class="course-card" data-category="pm" data-aos="fade-up" data-aos-delay="0">
+      <div class="course-card" id="course-pmp" data-category="pm" data-course="pmp" data-aos="fade-up" data-aos-delay="0">
         <div class="course-card-header">
           <div class="urgency-badge"><i class="fa fa-fire"></i> Popular</div>
           <div class="course-badge">Project Management</div>
@@ -532,6 +664,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <div class="meta-item"><i class="fa fa-clock"></i> Sat &amp; Sun, 9AM–5PM</div>
             <div class="meta-item"><i class="fa fa-users"></i> Max 15 Students</div>
             <div class="meta-item"><i class="fa fa-laptop"></i> Live &amp; Remote</div>
+          </div>
+          <div class="cohort-line" data-cohort-line><i class="fa fa-calendar-day"></i> <span data-cohort-text>Next cohort: loading…</span></div>
+          <div class="perk-lines">
+            <div class="perk-line"><i class="fa fa-certificate"></i> Certificate of completion included</div>
+            <div class="perk-line"><i class="fa fa-users"></i> Teams of 4+ save 15%</div>
           </div>
           <div class="course-topics">
             <h4>What You'll Master</h4>
@@ -555,7 +692,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
 
       <!-- ── SAFe Agilest ── -->
-      <div class="course-card" data-category="agile" data-aos="fade-up" data-aos-delay="80">
+      <div class="course-card" id="course-safe_agilist" data-category="agile" data-course="safe_agilist" data-aos="fade-up" data-aos-delay="80">
         <div class="course-card-header">
           <div class="urgency-badge"><i class="fa fa-fire"></i> High Demand</div>
           <div class="course-badge">Agile</div>
@@ -570,6 +707,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <div class="meta-item"><i class="fa fa-clock"></i> Sat &amp; Sun, 9AM–5PM</div>
             <div class="meta-item"><i class="fa fa-users"></i> Max 15 Students</div>
             <div class="meta-item"><i class="fa fa-laptop"></i> Live &amp; Remote</div>
+          </div>
+          <div class="cohort-line" data-cohort-line><i class="fa fa-calendar-day"></i> <span data-cohort-text>Next cohort: loading…</span></div>
+          <div class="perk-lines">
+            <div class="perk-line"><i class="fa fa-certificate"></i> Certificate of completion included</div>
+            <div class="perk-line"><i class="fa fa-users"></i> Teams of 4+ save 15%</div>
           </div>
           <div class="course-topics">
             <h4>What You'll Master</h4>
@@ -593,7 +735,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
 
       <!-- ── SAFE Scrum Master ── -->
-      <div class="course-card" data-category="agile" data-aos="fade-up" data-aos-delay="120">
+      <div class="course-card" data-category="agile" data-course="safe_scrummaster" data-aos="fade-up" data-aos-delay="160">
         <div class="course-card-header">
           <div class="urgency-badge"><i class="fa fa-star"></i> Bestseller</div>
           <div class="course-badge">Agile</div>
@@ -608,6 +750,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <div class="meta-item"><i class="fa fa-clock"></i> Sat &amp; Sun, 9AM–5PM</div>
             <div class="meta-item"><i class="fa fa-users"></i> Max 15 Students</div>
             <div class="meta-item"><i class="fa fa-laptop"></i> Live &amp; Remote</div>
+          </div>
+          <div class="cohort-line" data-cohort-line><i class="fa fa-calendar-day"></i> <span data-cohort-text>Next cohort: loading…</span></div>
+          <div class="perk-lines">
+            <div class="perk-line"><i class="fa fa-certificate"></i> Certificate of completion included</div>
+            <div class="perk-line"><i class="fa fa-users"></i> Teams of 4+ save 15%</div>
           </div>
           <div class="course-topics">
             <h4>What You'll Master</h4>
@@ -631,7 +778,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
 
       <!-- ── AI Integration ── -->
-      <div class="course-card" data-category="ai" data-aos="fade-up" data-aos-delay="160">
+      <div class="course-card" data-category="ai" data-course="ai" data-aos="fade-up" data-aos-delay="240">
         <div class="course-card-header">
           <div class="urgency-badge"><i class="fa fa-bolt"></i> New</div>
           <div class="course-badge">AI &amp; Automation</div>
@@ -645,6 +792,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <div class="meta-item"><i class="fa fa-clock"></i> Sat &amp; Sun, 9AM–5PM</div>
             <div class="meta-item"><i class="fa fa-users"></i> Max 15 Students</div>
             <div class="meta-item"><i class="fa fa-laptop"></i> Live &amp; Remote</div>
+          </div>
+          <div class="cohort-line" data-cohort-line><i class="fa fa-calendar-day"></i> <span data-cohort-text>Next cohort: loading…</span></div>
+          <div class="perk-lines">
+            <div class="perk-line"><i class="fa fa-certificate"></i> Certificate of completion included</div>
+            <div class="perk-line"><i class="fa fa-users"></i> Teams of 4+ save 15%</div>
           </div>
           <div class="course-topics">
             <h4>What You'll Master</h4>
@@ -668,7 +820,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
 
       <!-- ── Agile Fundamentals ── -->
-      <div class="course-card" data-category="agile" data-aos="fade-up" data-aos-delay="0">
+      <div class="course-card" data-category="agile" data-course="agile" data-aos="fade-up" data-aos-delay="320">
         <div class="course-card-header">
           <div class="course-badge">Agile</div>
           <h3>Agile Fundamentals</h3>
@@ -681,6 +833,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <div class="meta-item"><i class="fa fa-clock"></i> Sat &amp; Sun, 9AM–5PM</div>
             <div class="meta-item"><i class="fa fa-users"></i> Max 15 Students</div>
             <div class="meta-item"><i class="fa fa-laptop"></i> Live &amp; Remote</div>
+          </div>
+          <div class="cohort-line" data-cohort-line><i class="fa fa-calendar-day"></i> <span data-cohort-text>Next cohort: loading…</span></div>
+          <div class="perk-lines">
+            <div class="perk-line"><i class="fa fa-certificate"></i> Certificate of completion included</div>
+            <div class="perk-line"><i class="fa fa-users"></i> Teams of 4+ save 15%</div>
           </div>
           <div class="course-topics">
             <h4>What You'll Master</h4>
@@ -704,7 +861,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
 
       <!-- ── Power BI ── -->
-      <div class="course-card" data-category="ai" data-aos="fade-up" data-aos-delay="80">
+      <div class="course-card" data-category="ai" data-course="powerbi" data-aos="fade-up" data-aos-delay="400">
         <div class="course-card-header">
           <div class="course-badge">Data &amp; Analytics</div>
           <h3>PowerBI</h3>
@@ -717,6 +874,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <div class="meta-item"><i class="fa fa-clock"></i> Sat &amp; Sun, 9AM–5PM</div>
             <div class="meta-item"><i class="fa fa-users"></i> Max 15 Students</div>
             <div class="meta-item"><i class="fa fa-laptop"></i> Live &amp; Remote</div>
+          </div>
+          <div class="cohort-line" data-cohort-line><i class="fa fa-calendar-day"></i> <span data-cohort-text>Next cohort: loading…</span></div>
+          <div class="perk-lines">
+            <div class="perk-line"><i class="fa fa-certificate"></i> Certificate of completion included</div>
+            <div class="perk-line"><i class="fa fa-users"></i> Teams of 4+ save 15%</div>
           </div>
           <div class="course-topics">
             <h4>What You'll Master</h4>
@@ -740,6 +902,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
 
     </div>
+
+    <div class="filter-empty" id="filterEmpty">
+      <i class="fa fa-folder-open" style="font-size:1.6rem;color:#cbd5e1;margin-bottom:12px;display:block;"></i>
+      No courses in this category — <a href="#" onclick="filterCourses('all', document.querySelector('.filter-tab')); return false;">view all courses</a>.
+    </div>
+
   </div>
 </section>
 
@@ -973,6 +1141,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </footer>
 
+<!-- ═══ STICKY MOBILE CTA BAR ═══ -->
+<div class="sticky-cta-bar" id="stickyCtaBar">
+  <div class="sticky-cta-bar-text">Weekend classes &middot; $749<span>PMP, SAFe, AI &amp; more</span></div>
+  <a href="#" class="btn btn-primary" onclick="document.querySelector('.courses-grid').scrollIntoView({behavior:'smooth'});return false;">
+    Enroll Now <i class="fa fa-arrow-right"></i>
+  </a>
+</div>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 <script src="js/main.js"></script>
 <script>
@@ -980,13 +1156,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   function filterCourses(category, btn) {
     document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
     btn.classList.add('active');
+    let visibleCount = 0;
     document.querySelectorAll('.course-card').forEach(card => {
       if (category === 'all' || card.dataset.category === category) {
         card.classList.remove('hidden');
+        visibleCount++;
       } else {
         card.classList.add('hidden');
       }
     });
+    const emptyState = document.getElementById('filterEmpty');
+    if (emptyState) emptyState.classList.toggle('visible', visibleCount === 0);
   }
 
   // ── FAQ Toggle ──
@@ -1040,8 +1220,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   let _activeCourseId   = null;
   let _activeWeekends   = 1;
   let _selectedWeekend  = null;
+  let _redirecting      = false;
 
-  // Generate the next N upcoming Saturdays from today
+  // Generate the next N upcoming Saturdays from today (at least 7 days out)
   function getUpcomingWeekends(count) {
     const weekends = [];
     const today = new Date();
@@ -1064,10 +1245,31 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     return d.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' });
   }
 
+  function fmtDateShort(d) {
+    return d.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
+  }
+
+  // ── Course Card Cohort Dates ──
+  // Populate each course card's "Next cohort" line with the same
+  // next-upcoming-Saturday logic used by the modal.
+  function populateCohortDates() {
+    document.querySelectorAll('.course-card[data-course]').forEach(card => {
+      const courseId = card.dataset.course;
+      const textEl = card.querySelector('[data-cohort-text]');
+      if (!textEl) return;
+      const upcoming = getUpcomingWeekends(1);
+      const sat = upcoming[0].sat;
+      let text = 'Next cohort: ' + fmtDateShort(sat);
+      if (courseId === 'pmp') text += ' (2 consecutive weekends)';
+      textEl.textContent = text;
+    });
+  }
+
   function openWeekendModal(courseId, numWeekends) {
     _activeCourseId  = courseId;
     _activeWeekends  = numWeekends;
     _selectedWeekend = null;
+    _redirecting     = false;
 
     const name = courseNames[courseId] || courseId;
     document.getElementById('modalTitle').textContent = 'Choose Your Weekend — ' + name;
@@ -1113,12 +1315,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="weekend-option-label">
           <strong>${label}</strong>
           <span>${sublabel}</span>
-        </div>`;
+        </div>
+        <div class="weekend-check"><i class="fa fa-check"></i></div>`;
       container.appendChild(div);
     });
 
+    // Reset to step 1 every time the modal opens
+    showModalStep(1);
     document.getElementById('modalConfirmBtn').disabled = true;
-    document.getElementById('weekendModal').style.display = 'flex';
+    document.getElementById('enrollContactForm').reset();
+    clearFieldError(document.getElementById('enrollEmail'));
+
+    const modalEl = document.getElementById('weekendModal');
+    modalEl.style.display = 'flex';
+    // Force reflow so the modal-open transition (shared utility) reliably plays
+    void modalEl.offsetWidth;
+    modalEl.classList.add('modal-open');
     document.body.style.overflow = 'hidden';
   }
 
@@ -1130,12 +1342,80 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   }
 
   function closeWeekendModal() {
-    document.getElementById('weekendModal').style.display = 'none';
+    const modalEl = document.getElementById('weekendModal');
+    modalEl.classList.remove('modal-open');
+    modalEl.style.display = 'none';
     document.body.style.overflow = '';
     _activeCourseId = _selectedWeekend = null;
   }
 
-  function confirmWeekend() {
+  // ── Step Navigation ──
+  function showModalStep(step) {
+    document.getElementById('modalStep1').classList.toggle('active', step === 1);
+    document.getElementById('modalStep2').classList.toggle('active', step === 2);
+    document.getElementById('modalStepLabel').textContent = 'Step ' + step + ' of 2';
+    document.getElementById('modalProgressFill').style.width = (step === 1 ? '50%' : '100%');
+  }
+
+  function goToStep2() {
+    if (!_activeCourseId || !_selectedWeekend) return;
+    const name = courseNames[_activeCourseId] || _activeCourseId;
+    const sat = new Date(_selectedWeekend + 'T00:00:00');
+    let summary = 'Enrolling in <strong>' + name + '</strong> &middot; cohort starting ' + fmtDateShort(sat);
+    if (_activeWeekends === 2) summary += ' (2 consecutive weekends)';
+    document.getElementById('modalSummary').innerHTML = summary;
+    showModalStep(2);
+  }
+
+  function goToStep1() {
+    showModalStep(1);
+  }
+
+  // ── Field validation helper (uses shared window.egrValidateField if available) ──
+  function clearFieldError(input) {
+    if (!input) return;
+    input.classList.remove('input-error');
+    const err = input.parentElement.querySelector('.field-error');
+    if (err) err.remove();
+  }
+
+  function validateEmailField(input) {
+    if (typeof window.egrValidateField === 'function') {
+      return window.egrValidateField(input);
+    }
+    // Fallback validation if shared helper isn't loaded yet
+    const value = (input.value || '').trim();
+    const isValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+    if (!isValid) {
+      input.classList.add('input-error');
+      if (!input.parentElement.querySelector('.field-error')) {
+        const msg = document.createElement('div');
+        msg.className = 'field-error';
+        msg.style.cssText = 'color:#ef4444;font-size:.78rem;margin-top:6px;';
+        msg.textContent = 'Please enter a valid email address.';
+        input.parentElement.appendChild(msg);
+      }
+    } else {
+      clearFieldError(input);
+    }
+    return isValid;
+  }
+
+  // ── Step 2 form submit: validate, track, notify backend, redirect to Stripe ──
+  document.getElementById('enrollContactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    if (_redirecting) return;
+
+    const emailInput = document.getElementById('enrollEmail');
+    const nameInput  = document.getElementById('enrollName');
+    const email = (emailInput.value || '').trim();
+    const name  = (nameInput.value || '').trim();
+
+    if (!validateEmailField(emailInput)) {
+      emailInput.focus();
+      return;
+    }
+
     if (!_activeCourseId || !_selectedWeekend) return;
     const baseUrl = stripePriceMap[_activeCourseId];
     if (!baseUrl || baseUrl.includes('YOUR_')) {
@@ -1143,24 +1423,53 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       closeWeekendModal();
       return;
     }
-    // Pass selected weekend + course as client_reference_id for Stripe tracking
-    const ref = _activeCourseId + '_' + _selectedWeekend;
-    const url  = baseUrl + '?client_reference_id=' + encodeURIComponent(ref);
 
-    // Analytics tracking
+    const courseId = _activeCourseId;
+    const courseName = courseNames[courseId] || courseId;
+    const selectedDate = _selectedWeekend;
+    const ref = courseId + '_' + selectedDate;
+    const url = baseUrl
+      + '?client_reference_id=' + encodeURIComponent(ref)
+      + '&prefilled_email=' + encodeURIComponent(email);
+
+    // (a) Analytics — enriched with course id, selected date, value, currency
     if (typeof gtag === 'function') {
       gtag('event', 'begin_checkout', {
         currency: 'USD', value: 749,
-        items: [{ item_id: _activeCourseId, item_name: courseNames[_activeCourseId] || _activeCourseId, price: 749 }]
+        items: [{ item_id: courseId, item_name: courseName, price: 749 }],
+        course_id: courseId, cohort_date: selectedDate
       });
     }
     if (typeof fbq === 'function') {
-      fbq('track', 'InitiateCheckout', { value: 749, currency: 'USD', content_name: _activeCourseId });
+      fbq('track', 'InitiateCheckout', {
+        value: 749, currency: 'USD', content_name: courseId,
+        course_id: courseId, cohort_date: selectedDate
+      });
     }
 
-    closeWeekendModal();
-    window.location.href = url;
-  }
+    // (b) Fire-and-forget lead capture — never blocks checkout
+    fetch('/api/submit-contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name: name,
+        email: email,
+        type: 'class_lead',
+        message: 'Started enrollment: ' + courseName + ' — cohort ' + selectedDate,
+        source: 'classes-enroll-modal'
+      })
+    }).catch(() => {});
+
+    // (c) Disable button + show redirecting state, then send to Stripe
+    _redirecting = true;
+    const btn = document.getElementById('modalContinueBtn');
+    btn.disabled = true;
+    btn.innerHTML = '<span class="modal-spinner"></span> Redirecting to secure checkout…';
+
+    setTimeout(() => {
+      window.location.href = url;
+    }, 400);
+  });
 
   // Close modal on overlay click
   document.getElementById('weekendModal').addEventListener('click', function(e) {
@@ -1170,6 +1479,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') closeWeekendModal();
   });
+
+  // Live-validate email field on blur
+  document.getElementById('enrollEmail').addEventListener('blur', function() {
+    if (this.value.trim()) validateEmailField(this);
+  });
+
+  // ── Init ──
+  document.addEventListener('DOMContentLoaded', populateCohortDates);
 </script>
 </body>
 </html>

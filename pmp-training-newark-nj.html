@@ -21,6 +21,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
     <link rel="stylesheet" href="css/style.css" />
 
     <!-- JSON-LD Schema -->
@@ -399,6 +400,7 @@
                 font-size: 0.95rem;
             }
         }
+
     </style>
 </head>
 <body>
@@ -450,7 +452,7 @@
     <div class="container">
 
         <!-- Why Choose EGR Consulting -->
-        <section>
+        <section data-aos="fade-up">
             <div class="section-content">
                 <h2>Why Choose EGR Consulting for PMP Training?</h2>
                 <p>Not all PMP training programs are created equal. At EGR Consulting Services, your instructor is Erick G. Rosa, a Project Management Professional with over 15 years of direct experience managing complex projects across multiple industries. Erick holds the PMP credential from PMI, along with PMI-ACP and SPC6 certifications, bringing real-world insights that extend far beyond textbook theory.</p>
@@ -477,7 +479,7 @@
         </section>
 
         <!-- What You'll Learn -->
-        <section>
+        <section data-aos="fade-up">
             <div class="section-content">
                 <h2>What You'll Learn in Our PMP Training Program</h2>
                 <p>Our PMP certification training in Newark covers the complete PMBOK (Project Management Body of Knowledge) framework and prepares you thoroughly for the PMP exam. You'll develop both theoretical knowledge and practical skills essential for managing projects professionally.</p>
@@ -510,7 +512,7 @@
         </section>
 
         <!-- FAQ Section -->
-        <section>
+        <section data-aos="fade-up">
             <div class="section-content">
                 <h2>Frequently Asked Questions About PMP Training</h2>
                 <div class="faq-container">
@@ -548,7 +550,7 @@
         </section>
 
         <!-- CTA Section -->
-        <section class="cta-section">
+        <section class="cta-section" data-aos="fade-up">
             <h2>Ready to Become a Certified Project Management Professional?</h2>
             <p>Take the first step toward advancing your career. Book a free consultation with Erick G. Rosa to discuss your goals, assess your readiness, and create a personalized PMP certification plan tailored to your needs.</p>
             <a href="/book" class="cta-button">Book Your Free Consultation Today</a>
@@ -595,6 +597,14 @@
         </div>
       </div>
     </footer>
+
+    <!-- ═══ STICKY MOBILE CTA BAR ═══ -->
+    <div class="sticky-cta-bar" id="stickyCtaBar">
+      <div class="sticky-cta-bar-text">PMP Prep &middot; $749<span>Weekend cohorts in Newark, NJ</span></div>
+      <a href="/classes#course-pmp" class="btn btn-primary">Enroll <i class="fa fa-arrow-right"></i></a>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script src="js/main.js"></script>
 
     <!-- FAQ Toggle Script -->

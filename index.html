@@ -443,27 +443,30 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </div>
 
 <!-- ═══ HERO ═══ -->
-<section class="hero" aria-label="Hero">
+<section class="hero hero-animated" aria-label="Hero">
+  <div class="hero-orb hero-orb--teal-lg" aria-hidden="true"></div>
+  <div class="hero-orb hero-orb--navy-md" aria-hidden="true"></div>
+  <div class="hero-orb hero-orb--teal-sm" aria-hidden="true"></div>
   <div class="hero-grid"></div>
   <div class="hero-img-wrapper" aria-hidden="true">
     <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1200&q=80&auto=format" alt="" loading="eager" />
   </div>
   <div class="container">
     <div class="hero-content">
-      <div class="hero-eyebrow" data-aos="fade-down">
+      <div class="hero-eyebrow">
         <i class="fa fa-shield-halved"></i>
         PMP · PMI-ACP · SPC6 Certified
       </div>
-      <h1 data-aos="fade-up" data-aos-delay="80">
+      <h1>
         Transform How Your<br/>
         <span class="accent">Teams Deliver.</span>
       </h1>
-      <p class="lead" data-aos="fade-up" data-aos-delay="160">
+      <p class="lead">
         PMP &amp; SAFe Certified coaching, training, and consulting for organizations
         ready to scale agile, integrate AI, and execute with precision.
       </p>
-      <div class="btn-group" data-aos="fade-up" data-aos-delay="240">
-        <a href="/book" class="btn btn-primary btn-lg book-cta">
+      <div class="btn-group">
+        <a href="/book" class="btn btn-primary btn-lg btn-shine btn-pulse book-cta">
           Book a Free Consultation <i class="fa fa-calendar-check"></i>
         </a>
         <a href="/classes" class="btn btn-outline btn-lg">
@@ -640,8 +643,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- ═══ CLIENTS STRIP ═══ -->
 <section class="clients-section" aria-label="Past clients">
   <div class="container">
-    <p class="clients-label">Trusted by teams at</p>
-    <div class="clients-logos">
+    <p class="clients-label" data-aos="fade-up">Trusted by teams at</p>
+    <div class="clients-logos" data-aos="fade-up" data-aos-delay="80">
       <span class="client-logo">Sanofi</span>
       <span class="client-logo">Verisk</span>
       <span class="client-logo">Comcast</span>
@@ -698,11 +701,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <i class="fa fa-graduation-cap" style="color:#fff;font-size:1.4rem;"></i>
       <span style="font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.85);">Now Enrolling</span>
     </div>
-    <h2 style="color:#fff;font-size:2rem;font-weight:900;margin-bottom:10px;font-family:'DM Sans',sans-serif;">Weekend Certification Classes — $749</h2>
-    <p style="color:rgba(255,255,255,.85);font-size:1.05rem;max-width:600px;margin:0 auto 24px;line-height:1.65;">PMP · SAFe · AI Integration · Agile Fundamentals · Power BI. Live, expert-led intensives — Saturday &amp; Sunday, 9 AM – 5 PM. Small cohorts. Real results.</p>
+    <h2 style="color:#fff;font-size:2rem;font-weight:900;margin-bottom:6px;font-family:'DM Sans',sans-serif;">Weekend Certification Classes</h2>
+    <p style="color:#fff;font-size:1.3rem;font-weight:700;margin-bottom:10px;">$749 · All materials included</p>
+    <p style="color:rgba(255,255,255,.85);font-size:1.05rem;max-width:600px;margin:0 auto 8px;line-height:1.65;">PMP · SAFe · AI Integration · Agile Fundamentals · Power BI. Live, expert-led intensives — Saturday &amp; Sunday, 9 AM – 5 PM. Small cohorts. Real results.</p>
+    <p style="color:rgba(255,255,255,.85);font-size:.9rem;font-weight:600;margin-bottom:24px;">Teams of 4+ save 15%</p>
     <div style="display:flex;gap:14px;flex-wrap:wrap;justify-content:center;">
-      <a href="/classes" class="btn btn-primary btn-lg" style="background:#fff;color:#00a878;border-color:#fff;">
-        Browse All Classes <i class="fa fa-arrow-right"></i>
+      <a href="/classes" class="btn btn-primary btn-lg btn-shine" style="background:#fff;color:#00a878;border-color:#fff;">
+        View Weekend Classes <i class="fa fa-arrow-right"></i>
       </a>
       <a href="/book" class="btn btn-outline btn-lg book-cta" style="border-color:rgba(255,255,255,.6);color:#fff;">
         Ask a Question <i class="fa fa-comment"></i>
@@ -1181,6 +1186,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </div>
 </footer>
+
+<!-- ═══ STICKY MOBILE CTA BAR ═══ -->
+<div class="sticky-cta-bar" aria-label="Quick booking">
+  <div class="sticky-cta-bar-text">
+    Ready to talk delivery?
+    <span>Free 30-minute strategy call</span>
+  </div>
+  <a href="/book" class="btn btn-primary btn-sm book-cta">Book a Call</a>
+</div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 <script src="js/main.js"></script>

@@ -60,10 +60,10 @@
 document.addEventListener('DOMContentLoaded', () => {
   if (typeof AOS !== 'undefined') {
     AOS.init({
-      duration: 600,
-      easing:   'ease-out-quad',
+      duration: 700,
+      easing:   'ease-out-cubic',
       once:     true,
-      offset:   60,
+      offset:   80,
     });
   }
 });
@@ -155,7 +155,7 @@ document.addEventListener('click', e => {
     });
   });
 
-  // Formspree + conversion tracking
+  // Conversion tracking on form submit
   form.addEventListener('submit', e => {
     // Fire conversion events
     if (typeof fbq === 'function')   fbq('track', 'Lead');
@@ -223,25 +223,62 @@ document.querySelectorAll('a[href="book.html"], .book-cta').forEach(el => {
   counters.forEach(c => observer.observe(c));
 })();
 
-/* ── Calendly Embed ── */
-(function initCalendly() {
-  const el = document.getElementById('calendly-embed');
-  if (!el) return;
-  // ⚠️  REPLACE the URL below with your actual Calendly scheduling link
-  // Example: 'https://calendly.com/ericgrosa/30min'
-  const CALENDLY_URL = 'https://calendly.com/erickgrosa/30min';
+/* ── Sticky CTA Bar ── */
+(function initStickyCtaBar() {
+  const bar = document.querySelector('.sticky-cta-bar');
+  if (!bar) return;
 
-  if (CALENDLY_URL === 'https://calendly.com/erickgrosa/30min') return; // Show placeholder until URL is set
+  const SHOW_AFTER = 600;
+  let footerInView = false;
 
-  if (typeof Calendly !== 'undefined') {
-    Calendly.initInlineWidget({
-      url:    CALENDLY_URL,
-      parentElement: el,
-      prefill: {},
-      utm: {}
-    });
+  const footer = document.querySelector('.footer');
+  if (footer && 'IntersectionObserver' in window) {
+    const footerObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => { footerInView = entry.isIntersecting; });
+      update();
+    }, { threshold: 0.01 });
+    footerObserver.observe(footer);
   }
+
+  function update() {
+    const shouldShow = window.scrollY > SHOW_AFTER && !footerInView;
+    bar.classList.toggle('visible', shouldShow);
+  }
+
+  window.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', update);
+  update();
 })();
+
+/* ── Field Validation Helper (site-wide) ── */
+window.egrValidateField = function egrValidateField(input) {
+  if (!input) return true;
+
+  const existing = input.parentElement && input.parentElement.querySelector('.field-error');
+  let valid = true;
+
+  if (input.hasAttribute('required') && !input.value.trim()) {
+    valid = false;
+  } else if (input.type === 'email' && input.value.trim()) {
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(input.value.trim())) valid = false;
+  }
+
+  input.classList.toggle('input-error', !valid);
+
+  if (!valid) {
+    if (!existing) {
+      const msg = document.createElement('span');
+      msg.className = 'field-error';
+      msg.textContent = input.dataset.error || 'This field is required';
+      input.insertAdjacentElement('afterend', msg);
+    }
+  } else if (existing) {
+    existing.remove();
+  }
+
+  return valid;
+};
 
 /* ── Copy email to clipboard ── */
 document.querySelectorAll('[data-copy]').forEach(btn => {

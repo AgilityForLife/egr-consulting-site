@@ -21,6 +21,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
     <link rel="stylesheet" href="css/style.css" />
 
     <!-- Course JSON-LD -->
@@ -141,6 +142,7 @@
         .cta-section h2{color:#fff}
         .cta-section .cta-button{background:#fff;color:#e8740f}
         @media (max-width:768px){h1{font-size:1.85rem}h2{font-size:1.5rem}.two-col{grid-template-columns:1fr}}
+
     </style>
 </head>
 <body>
@@ -187,7 +189,7 @@
     </div>
 </section>
 
-<section>
+<section data-aos="fade-up">
     <div class="section-content">
         <h2>Why Jersey City Project Managers Choose EGR Consulting</h2>
         <p>Jersey City is the capital of Hudson County's financial and tech economy. The project managers who run here compete on delivery — fast, compliant, and outcome-driven. Our PMP program is built around that reality. You get a <strong>PMP-certified instructor with 15+ years of real portfolio experience</strong> at Fortune 100 organizations, not a generalist reading from a slide deck.</p>
@@ -212,7 +214,7 @@
     </div>
 </section>
 
-<section>
+<section data-aos="fade-up">
     <div class="section-content">
         <h2>What's Included</h2>
         <ul style="padding-left:1.5rem;margin-top:1rem;line-height:2">
@@ -226,7 +228,7 @@
     </div>
 </section>
 
-<section>
+<section data-aos="fade-up">
     <div class="section-content">
         <h2>Who This Is For</h2>
         <p>This Jersey City PMP program is designed for:</p>
@@ -240,7 +242,7 @@
     </div>
 </section>
 
-<section>
+<section data-aos="fade-up">
     <div class="section-content">
         <h2>Frequently Asked Questions</h2>
         <div class="faq-item">
@@ -262,7 +264,7 @@
     </div>
 </section>
 
-<section class="cta-section">
+<section class="cta-section" data-aos="fade-up">
     <h2>Get Your PMP — Jersey City, NJ</h2>
     <p style="margin-bottom:2rem;font-size:1.1rem">Book a free 15-minute consultation. Get a clear roadmap to PMP certification that works around your Jersey City schedule.</p>
     <a href="/book" class="cta-button">Book Your Free Consultation</a>
@@ -308,6 +310,14 @@
     </div>
   </div>
 </footer>
+
+<!-- ═══ STICKY MOBILE CTA BAR ═══ -->
+<div class="sticky-cta-bar" id="stickyCtaBar">
+  <div class="sticky-cta-bar-text">PMP Prep &middot; $749<span>Weekend cohorts in Jersey City, NJ</span></div>
+  <a href="/classes#course-pmp" class="btn btn-primary">Enroll <i class="fa fa-arrow-right"></i></a>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 <script src="js/main.js"></script>
 
 </body>

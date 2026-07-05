@@ -36,6 +36,6 @@
   ],
   "functions": {
     "api/submit-intake.js": { "maxDuration": 10 },
-    "api/calendly-webhook.js": { "maxDuration": 10 }
+    "api/submit-contact.js": { "maxDuration": 10 }
   }
 }
