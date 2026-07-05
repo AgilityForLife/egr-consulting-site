@@ -49,6 +49,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
   <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/immersive.css" />
 
   <!-- Stripe -->
   <script src="https://js.stripe.com/v3/"></script>
@@ -128,16 +129,19 @@
   /* ── Classes Page Styles ── */
 
   .classes-hero {
-    background: linear-gradient(135deg, #061828 0%, #0d2d52 60%, #061828 100%);
     padding: 130px 0 56px;
     position: relative;
     overflow: hidden;
   }
+  .classes-hero .zoom-layer {
+    background: linear-gradient(135deg, #061828 0%, #0d2d52 60%, #061828 100%);
+  }
   .classes-hero::before {
     content: ''; position: absolute; inset: 0;
     background: radial-gradient(ellipse 60% 80% at 60% 50%, rgba(0,168,120,.08) 0%, transparent 70%);
+    z-index: 1;
   }
-  .classes-hero .container { position: relative; z-index: 1; }
+  .classes-hero .container { position: relative; z-index: 2; }
   .classes-hero h1 {
     color: #fff; font-size: 3rem; font-weight: 900; line-height: 1.15; margin-bottom: 16px;
     font-family: 'DM Sans', sans-serif;
@@ -507,7 +511,7 @@
   }
   </style>
 </head>
-<body>
+<body data-immersive>
 <!-- GTM noscript -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PQS56S8"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -604,11 +608,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </div>
 
 <!-- ═══ HERO ═══ -->
-<section class="classes-hero" aria-label="Classes hero" style="position:relative;overflow:hidden;">
+<section class="classes-hero" aria-label="Classes hero" style="position:relative;overflow:hidden;" data-zoom-bg>
+  <div class="zoom-layer" data-zoom-layer style="z-index:-1;"></div>
   <div style="position:absolute;inset:0;z-index:0;">
     <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=1400&q=80&auto=format" alt="" loading="eager" style="width:100%;height:100%;object-fit:cover;opacity:.15;filter:brightness(.5);" />
   </div>
-  <div class="container" style="position:relative;z-index:1;">
+  <div class="container" style="position:relative;z-index:2;">
     <div data-aos="fade-up">
       <span style="display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#00a878;background:rgba(0,168,120,.15);border-radius:20px;padding:5px 14px;margin-bottom:16px;">
         <i class="fa fa-graduation-cap"></i> Weekend Certification Training
@@ -629,7 +634,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </section>
 
-<!-- ═══ FILTER + COURSE CATALOG ═══ -->
+<!-- ═══ FILTER + COURSE CATALOG ═══ (contains sticky .filter-tabs — no data-scene per rules) -->
 <section class="filter-section" aria-label="Course catalog">
   <div class="container">
     <div class="section-header centered" data-aos="fade-up" style="margin-bottom:8px;">
@@ -912,7 +917,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </section>
 
 <!-- ═══ ROI SECTION ═══ -->
-<section class="roi-section" aria-label="Return on investment">
+<section class="roi-section" aria-label="Return on investment" data-scene>
   <div class="container">
     <div class="section-header centered" data-aos="fade-up">
       <span class="section-label">Why Invest in Training</span>
@@ -945,7 +950,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </section>
 
 <!-- ═══ ABOUT EGR SECTION ═══ -->
-<section class="instructor-section" aria-label="About EGR Consulting">
+<section class="instructor-section" aria-label="About EGR Consulting" data-scene>
   <div class="container">
     <div class="section-header centered" data-aos="fade-up">
       <span class="section-label">Why EGR</span>
@@ -976,7 +981,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </section>
 
 <!-- ═══ GROUP DISCOUNT BANNER ═══ -->
-<section class="group-banner" aria-label="Group discount">
+<section class="group-banner" aria-label="Group discount" data-scene>
   <div class="container" data-aos="fade-up">
     <h3>Enrolling a Team? Save 15%.</h3>
     <p>Groups of 4 or more get 15% off per seat. Custom corporate training packages also available.</p>
@@ -987,7 +992,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </section>
 
 <!-- ═══ FAQ ═══ -->
-<section class="faq-section" aria-label="Frequently asked questions">
+<section class="faq-section" aria-label="Frequently asked questions" data-scene>
   <div class="container">
     <div class="section-header centered" data-aos="fade-up">
       <span class="section-label">FAQ</span>
@@ -1061,7 +1066,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </section>
 
 <!-- ═══ FINAL CTA ═══ -->
-<section class="cta-section" aria-labelledby="classes-cta-heading" style="position:relative;overflow:hidden;">
+<section class="cta-section" aria-labelledby="classes-cta-heading" style="position:relative;overflow:hidden;" data-scene>
   <div style="position:absolute;inset:0;z-index:0;">
     <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1400&q=80&auto=format" alt="" loading="lazy" style="width:100%;height:100%;object-fit:cover;opacity:.1;filter:brightness(.5);" />
   </div>
@@ -1071,7 +1076,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <h2 id="classes-cta-heading" style="margin-top:12px;">Your next career milestone<br/>starts this weekend.</h2>
       <p>Pick a course, select your preferred weekend, and enroll today. Walk into Monday with new skills and confidence.</p>
       <div style="display:flex;gap:16px;flex-wrap:wrap;justify-content:center;margin-top:8px;">
-        <a href="#" onclick="document.querySelector('.courses-grid').scrollIntoView({behavior:'smooth'});return false;" class="btn btn-primary btn-lg">
+        <a href="#" onclick="document.querySelector('.courses-grid').scrollIntoView({behavior:'smooth'});return false;" class="btn btn-primary btn-lg" data-magnetic>
           Browse Courses &amp; Enroll <i class="fa fa-arrow-up"></i>
         </a>
         <a href="/contact" class="btn btn-outline btn-lg">
@@ -1488,5 +1493,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   // ── Init ──
   document.addEventListener('DOMContentLoaded', populateCohortDates);
 </script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script defer src="js/immersive.js"></script>
 </body>
 </html>

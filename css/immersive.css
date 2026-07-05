@@ -1,0 +1,227 @@
+/* ============================================================
+   EGR CONSULTING — IMMERSIVE.CSS
+   Additive styles for the scrollytelling engine (js/immersive.js).
+   Keep small — this file only supplies structure/helpers that the
+   engine needs; it does not duplicate css/style.css.
+   ============================================================ */
+
+/* ── Scroll progress bar ── */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  z-index: 1200;
+  background: rgba(255, 255, 255, 0.08);
+  pointer-events: none;
+}
+
+.scroll-progress-fill {
+  height: 100%;
+  width: 100%;
+  transform-origin: left center;
+  transform: scaleX(0);
+  background: linear-gradient(90deg, var(--teal, #00a878) 0%, #00d6a0 100%);
+}
+
+/* ── Nav hide/reveal on scroll direction ── */
+.nav {
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), background 0.3s ease, box-shadow 0.3s ease, backdrop-filter 0.3s ease;
+}
+
+.nav.nav-hidden {
+  transform: translateY(-100%);
+}
+
+/* ── Zoom-layer helpers (used by data-zoom-bg / data-zoom-layer / data-tunnel-exit) ── */
+[data-zoom-bg] {
+  position: relative;
+  overflow: hidden;
+}
+
+.zoom-layer,
+[data-zoom-layer] {
+  position: absolute;
+  inset: 0;
+  will-change: transform;
+}
+
+/* ── Hero tunnel-exit ── */
+[data-tunnel-exit] {
+  will-change: transform, opacity, filter;
+  transform-origin: center center;
+}
+
+/* ── Tunnel stage: dark immersive backdrop for the pinned sequence ── */
+.tunnel-stage {
+  position: relative;
+  background:
+    radial-gradient(ellipse 60% 50% at 50% 55%, rgba(0, 168, 120, 0.16), transparent 70%),
+    radial-gradient(ellipse 90% 80% at 50% 50%, rgba(13, 49, 89, 0.85), transparent 100%),
+    linear-gradient(180deg, var(--navy-dark, #061828) 0%, var(--navy, #0A2540) 50%, var(--navy-dark, #061828) 100%);
+  overflow: hidden;
+}
+
+.tunnel-stage::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 56px 56px;
+  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 50%, #000 30%, transparent 75%);
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 50%, #000 30%, transparent 75%);
+  pointer-events: none;
+}
+
+.tunnel-stage .section-header h2 { color: #fff; }
+.tunnel-stage .section-header .lead { color: rgba(255, 255, 255, 0.72); }
+.tunnel-stage .section-label {
+  background: rgba(0, 168, 120, 0.16);
+  color: var(--teal, #00A878);
+}
+
+.tunnel-stage .tunnel-item {
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.06);
+  border-color: transparent;
+}
+
+/* ── Tunnel sequence ── */
+[data-tunnel] {
+  perspective: 1200px;
+}
+
+@media (min-width: 1024px) {
+  [data-tunnel] {
+    min-height: 100vh;
+  }
+}
+
+[data-tunnel-item] {
+  will-change: transform, opacity;
+  transform-style: preserve-3d;
+  width: min(90vw, 640px);
+}
+
+/* Visual treatment for the services tunnel cards (large, centered,
+   one-line value prop + single CTA — see index.html #services). */
+.tunnel-item {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-xl);
+  padding: 56px 48px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.tunnel-item .card-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radius-md);
+  background: var(--teal-light);
+  color: var(--teal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  margin-bottom: 12px;
+}
+
+.tunnel-item h3 {
+  font-size: 1.6rem;
+  color: var(--navy);
+  margin-bottom: 4px;
+}
+
+.tunnel-item .lead {
+  font-size: 1.05rem;
+  max-width: 480px;
+  margin-bottom: 20px;
+}
+
+/* Non-desktop fallback: tunnel items render as a normal stacked list.
+   The engine does not alter layout on tablet/mobile tiers — these
+   rules simply keep spacing clean when items are NOT absolutely
+   positioned (i.e. no inline `position: absolute` has been applied
+   by the engine). */
+@media (max-width: 1023px) {
+  [data-tunnel] {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    perspective: none;
+  }
+
+  [data-tunnel-item] {
+    position: static;
+    width: 100%;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+}
+
+/* ── Scene entrance helper (initial state is set via JS/gsap.set,
+   never via CSS — this class is purely a marker/no-op safeguard) ──
+   NOTE: deliberately no `will-change` here. will-change: transform
+   (like an actual transform) creates a new containing block for any
+   position:fixed descendant — since [data-scene] can wrap a
+   [data-tunnel]/[data-tunnel-exit] pinned element (e.g. the #services
+   section), a static CSS will-change would permanently break
+   ScrollTrigger's fixed-position pinning for that descendant. GSAP
+   applies will-change dynamically to whatever it tweens, which is
+   sufficient. */
+[data-scene] {
+  backface-visibility: hidden;
+}
+
+/* ── Parallax layers ── */
+[data-parallax] {
+  will-change: transform;
+}
+
+/* ── Magnetic buttons ── */
+[data-magnetic] {
+  will-change: transform;
+  display: inline-flex;
+}
+
+/* ── Reduced motion safety net ── */
+@media (prefers-reduced-motion: reduce) {
+  .scroll-progress {
+    display: none;
+  }
+
+  .nav.nav-hidden {
+    transform: none;
+  }
+
+  [data-scene],
+  [data-zoom-layer],
+  .zoom-layer,
+  [data-tunnel-item],
+  [data-parallax],
+  [data-magnetic] {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    will-change: auto;
+  }
+
+  [data-tunnel] {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    perspective: none;
+  }
+
+  [data-tunnel-item] {
+    position: static !important;
+    width: 100%;
+  }
+}

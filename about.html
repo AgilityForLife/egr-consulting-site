@@ -25,8 +25,9 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
   <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/immersive.css" />
     <link rel="canonical" href="https://www.egrconsultingservices.com/about" /></head>
-<body>
+<body data-immersive>
 
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PQS56S8" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
@@ -57,7 +58,8 @@
 </div>
 
 <!-- PAGE HERO -->
-<section class="page-hero">
+<section class="page-hero" data-zoom-bg>
+  <div class="zoom-layer" data-zoom-layer></div>
   <div class="page-hero-grid"></div>
   <div class="container" style="position:relative;z-index:2;">
     <nav class="breadcrumb" aria-label="Breadcrumb">
@@ -69,7 +71,7 @@
   </div>
 </section>
 
-<!-- BIO SECTION -->
+<!-- BIO SECTION (contains position:sticky .bio-photo-wrap — no data-scene per rules) -->
 <section class="section" style="background:var(--white);">
   <div class="container">
     <div class="bio-wrap">
@@ -154,7 +156,7 @@
 </section>
 
 <!-- CERTIFICATIONS GRID -->
-<section class="section" style="background:var(--bg);">
+<section class="section" style="background:var(--bg);" data-scene>
   <div class="container">
     <div class="section-header centered" data-aos="fade-up">
       <span class="section-label">Credentials</span>
@@ -262,7 +264,7 @@
 </section>
 
 <!-- EXPERIENCE TIMELINE -->
-<section class="section bg-white">
+<section class="section bg-white" data-scene>
   <div class="container">
     <div class="grid-2" style="gap:60px;align-items:start;">
       <div data-aos="fade-right">
@@ -382,13 +384,13 @@
 </section>
 
 <!-- CTA -->
-<section class="cta-section">
+<section class="cta-section" data-scene>
   <div class="container" style="position:relative;z-index:2;text-align:center;">
     <div data-aos="fade-up">
       <h2>Ready to work with Erick?</h2>
       <p>Book a free 30-minute strategy call and let's map your path to delivery excellence.</p>
       <div class="btn-group" style="justify-content:center;">
-        <a href="/book" class="btn btn-primary btn-lg book-cta">Book a Free Consultation <i class="fa fa-calendar-check"></i></a>
+        <a href="/book" class="btn btn-primary btn-lg book-cta" data-magnetic>Book a Free Consultation <i class="fa fa-calendar-check"></i></a>
         <a href="/services" class="btn btn-outline btn-lg">See Services <i class="fa fa-arrow-right"></i></a>
       </div>
     </div>
@@ -437,5 +439,8 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 <script src="js/main.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script defer src="js/immersive.js"></script>
 </body>
 </html>

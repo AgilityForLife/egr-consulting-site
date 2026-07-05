@@ -22,8 +22,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/immersive.css" />
     <link rel="canonical" href="https://www.egrconsultingservices.com/thankyou" /></head>
-<body>
+<body data-immersive>
 
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PQS56S8" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
@@ -53,7 +54,7 @@
     </p>
 
     <!-- Next Steps -->
-    <div class="next-steps">
+    <div class="next-steps" data-scene>
       <div class="next-step-item">
         <div class="next-step-num">1</div>
         <div class="next-step-text">
@@ -114,5 +115,8 @@
 </section>
 
 <script src="js/main.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script defer src="js/immersive.js"></script>
 </body>
 </html>

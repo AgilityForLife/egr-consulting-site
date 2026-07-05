@@ -22,6 +22,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
   <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/immersive.css" />
     <link rel="canonical" href="https://www.egrconsultingservices.com/training" /></head>
 <script type="application/ld+json">
 [
@@ -76,7 +77,7 @@
   }
 ]
 </script>
-<body>
+<body data-immersive>
 
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PQS56S8" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
@@ -100,7 +101,8 @@
 </div>
 
 <!-- PAGE HERO -->
-<section class="page-hero">
+<section class="page-hero" data-zoom-bg>
+  <div class="zoom-layer" data-zoom-layer></div>
   <div class="page-hero-grid"></div>
   <div class="container" style="position:relative;z-index:2;">
     <nav class="breadcrumb" aria-label="Breadcrumb">
@@ -110,14 +112,14 @@
     <h1>Get Certified.<br/>Get Hired. Get Results.</h1>
     <p>Live, cohort-based PMP and SAFe certification training taught by SPC6 and PMP certified consultants with enterprise delivery experience. Pass on your first attempt — or we'll work with you until you do.</p>
     <div class="btn-group" style="margin-top:32px;">
-      <a href="/book" class="btn btn-primary btn-lg book-cta">Reserve Your Seat <i class="fa fa-calendar-check"></i></a>
+      <a href="/book" class="btn btn-primary btn-lg book-cta" data-magnetic>Reserve Your Seat <i class="fa fa-calendar-check"></i></a>
       <a href="#courses" class="btn btn-outline btn-lg">See All Courses <i class="fa fa-arrow-down"></i></a>
     </div>
   </div>
 </section>
 
 <!-- TRAINING VALUE PROPS -->
-<section class="section-sm" style="background:var(--bg);">
+<section class="section-sm" style="background:var(--bg);" data-scene>
   <div class="container">
     <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;" class="value-grid">
       <div style="display:flex;align-items:flex-start;gap:16px;padding:24px;background:var(--white);border-radius:var(--radius-md);border:1px solid var(--border);" data-aos="fade-up">
@@ -156,7 +158,7 @@
 </style>
 
 <!-- COURSES -->
-<section class="section bg-white" id="courses">
+<section class="section bg-white" id="courses" data-scene>
   <div class="container">
     <div class="section-header centered" data-aos="fade-up">
       <span class="section-label">Current Programs</span>
@@ -285,7 +287,7 @@
 </section>
 
 <!-- CORPORATE TRAINING -->
-<section class="section" style="background:var(--bg);">
+<section class="section" style="background:var(--bg);" data-scene>
   <div class="container">
     <div class="grid-2" style="gap:60px;align-items:center;">
       <div data-aos="fade-right">
@@ -357,12 +359,12 @@
 </section>
 
 <!-- CTA -->
-<section class="cta-section">
+<section class="cta-section" data-scene>
   <div class="container" style="position:relative;z-index:2;text-align:center;">
     <div data-aos="fade-up">
       <h2>Ready to get certified?</h2>
       <p>Reserve your seat in the next cohort or get a custom corporate training quote. Spots are limited.</p>
-      <a href="/book" class="btn btn-primary btn-lg book-cta">Reserve Your Seat Today <i class="fa fa-calendar-check"></i></a>
+      <a href="/book" class="btn btn-primary btn-lg book-cta" data-magnetic>Reserve Your Seat Today <i class="fa fa-calendar-check"></i></a>
     </div>
   </div>
 </section>
@@ -406,5 +408,8 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 <script src="js/main.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script defer src="js/immersive.js"></script>
 </body>
 </html>

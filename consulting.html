@@ -22,8 +22,9 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
   <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/immersive.css" />
     <link rel="canonical" href="https://www.egrconsultingservices.com/consulting" /></head>
-<body>
+<body data-immersive>
 
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PQS56S8" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
@@ -46,7 +47,8 @@
 </div>
 
 <!-- PAGE HERO -->
-<section class="page-hero">
+<section class="page-hero" data-zoom-bg>
+  <div class="zoom-layer" data-zoom-layer></div>
   <div class="page-hero-grid"></div>
   <div class="container" style="position:relative;z-index:2;">
     <nav class="breadcrumb" aria-label="Breadcrumb">
@@ -56,13 +58,13 @@
     <h1>Delivery Leadership<br/>That Actually Delivers.</h1>
     <p>End-to-end PM and agile consulting for cloud, data, and platform programs. Embedded or advisory. Our senior consultants work directly with your teams — no handoffs to juniors.</p>
     <div class="btn-group" style="margin-top:32px;">
-      <a href="#proposal-form" class="btn btn-primary btn-lg btn-shine">Get a Proposal <i class="fa fa-arrow-right"></i></a>
+      <a href="#proposal-form" class="btn btn-primary btn-lg btn-shine" data-magnetic>Get a Proposal <i class="fa fa-arrow-right"></i></a>
       <a href="/about" class="btn btn-outline btn-lg">About EGR <i class="fa fa-arrow-right"></i></a>
     </div>
   </div>
 </section>
 
-<!-- GET A PROPOSAL -->
+<!-- GET A PROPOSAL (contains proposal form — no data-scene per rules) -->
 <section class="section bg-white" id="proposal-form">
   <div class="container">
     <div class="grid-2" style="gap:48px;align-items:center;">
@@ -110,7 +112,7 @@
 </section>
 
 <!-- CONSULTING PILLARS -->
-<section class="section" style="background:var(--bg);">
+<section class="section" style="background:var(--bg);" data-scene>
   <div class="container">
     <div class="section-header centered" data-aos="fade-up">
       <span class="section-label">Consulting Focus Areas</span>
@@ -187,7 +189,7 @@
 </section>
 
 <!-- TECH EXPERTISE -->
-<section class="section bg-white">
+<section class="section bg-white" data-scene>
   <div class="container">
     <div class="section-header" data-aos="fade-up">
       <span class="section-label">Technical Depth</span>
@@ -246,7 +248,7 @@
 </style>
 
 <!-- CASE STUDIES / IMPACT -->
-<section class="section" style="background:var(--bg);">
+<section class="section" style="background:var(--bg);" data-scene>
   <div class="container">
     <div class="section-header centered" data-aos="fade-up">
       <span class="section-label">Real Results</span>
@@ -308,7 +310,7 @@
 </section>
 
 <!-- WHO I WORK WITH -->
-<section class="section bg-white">
+<section class="section bg-white" data-scene>
   <div class="container">
     <div class="section-header centered" data-aos="fade-up">
       <span class="section-label">Ideal Clients</span>
@@ -341,12 +343,12 @@
 </section>
 
 <!-- CTA -->
-<section class="cta-section">
+<section class="cta-section" data-scene>
   <div class="container" style="position:relative;z-index:2;text-align:center;">
     <div data-aos="fade-up">
       <h2>Need delivery leadership<br/>you can trust?</h2>
       <p>Book a free consultation. We'll assess your program and map a clear path to better delivery — whether you bring EGR Consulting in or not.</p>
-      <a href="/book" class="btn btn-primary btn-lg book-cta">Book a Free Consultation <i class="fa fa-calendar-check"></i></a>
+      <a href="/book" class="btn btn-primary btn-lg book-cta" data-magnetic>Book a Free Consultation <i class="fa fa-calendar-check"></i></a>
     </div>
   </div>
 </section>
@@ -484,5 +486,8 @@
 })();
 </script>
 
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script defer src="js/immersive.js"></script>
 </body>
 </html>

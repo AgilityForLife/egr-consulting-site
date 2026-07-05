@@ -49,6 +49,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
   <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/immersive.css" />
 
   <!-- Schema.org JSON-LD -->
   <script type="application/ld+json">
@@ -397,7 +398,7 @@
   .card-list li::before { content: '✓'; color: var(--teal); font-weight: 700; flex-shrink: 0; margin-top: 2px; }
   </style>
 </head>
-<body>
+<body data-immersive>
 
 <!-- GTM noscript -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PQS56S8"
@@ -443,13 +444,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </div>
 
 <!-- ═══ HERO ═══ -->
-<section class="hero hero-animated" aria-label="Hero">
-  <div class="hero-orb hero-orb--teal-lg" aria-hidden="true"></div>
-  <div class="hero-orb hero-orb--navy-md" aria-hidden="true"></div>
-  <div class="hero-orb hero-orb--teal-sm" aria-hidden="true"></div>
-  <div class="hero-grid"></div>
-  <div class="hero-img-wrapper" aria-hidden="true">
-    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1200&q=80&auto=format" alt="" loading="eager" />
+<section class="hero hero-animated" data-tunnel-exit aria-label="Hero">
+  <div data-zoom-layer aria-hidden="true">
+    <div class="hero-orb hero-orb--teal-lg" data-parallax data-speed="0.28" aria-hidden="true"></div>
+    <div class="hero-orb hero-orb--navy-md" data-parallax data-speed="0.16" aria-hidden="true"></div>
+    <div class="hero-orb hero-orb--teal-sm" data-parallax data-speed="0.34" aria-hidden="true"></div>
+    <div class="hero-grid"></div>
+    <div class="hero-img-wrapper" aria-hidden="true">
+      <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1200&q=80&auto=format" alt="" loading="eager" />
+    </div>
   </div>
   <div class="container">
     <div class="hero-content">
@@ -458,18 +461,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         PMP · PMI-ACP · SPC6 Certified
       </div>
       <h1>
-        Transform How Your<br/>
-        <span class="accent">Teams Deliver.</span>
+        <span data-words>Transform How Your</span><br/>
+        <span class="accent" data-words>Teams Deliver.</span>
       </h1>
       <p class="lead">
         PMP &amp; SAFe Certified coaching, training, and consulting for organizations
         ready to scale agile, integrate AI, and execute with precision.
       </p>
       <div class="btn-group">
-        <a href="/book" class="btn btn-primary btn-lg btn-shine btn-pulse book-cta">
+        <a href="/book" class="btn btn-primary btn-lg btn-shine btn-pulse book-cta" data-magnetic>
           Book a Free Consultation <i class="fa fa-calendar-check"></i>
         </a>
-        <a href="/classes" class="btn btn-outline btn-lg">
+        <a href="/classes" class="btn btn-outline btn-lg" data-magnetic>
           View Weekend Classes <i class="fa fa-graduation-cap"></i>
         </a>
       </div>
@@ -504,7 +507,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </section>
 
 <!-- ═══ STATS ═══ -->
-<section class="stats-strip" aria-label="Key metrics">
+<section class="stats-strip" data-scene aria-label="Key metrics">
   <div class="container">
     <div class="stats-grid">
       <div class="stat-item" data-aos="fade-up">
@@ -527,8 +530,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </section>
 
-<!-- ═══ SERVICES OVERVIEW ═══ -->
-<section class="section bg-white" id="services" aria-labelledby="services-heading">
+<!-- ═══ SERVICES OVERVIEW — TUNNEL SEQUENCE ═══ -->
+<section class="section tunnel-stage" id="services" data-scene aria-labelledby="services-heading">
   <div class="container">
     <div class="section-header centered" data-aos="fade-up">
       <span class="section-label">What We Do</span>
@@ -536,84 +539,25 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="divider centered"></div>
       <p class="lead">From coaching individual teams to orchestrating enterprise-wide transformations — we bring the methodology, tools, and real-world experience to get it done right.</p>
     </div>
-    <div class="grid-3">
-      <div class="card" data-aos="fade-up" data-aos-delay="0">
+
+    <div class="tunnel" data-tunnel>
+      <div class="tunnel-item" data-tunnel-item>
         <div class="card-icon"><i class="fa fa-rocket"></i></div>
-        <h3>Agile Transformation</h3>
-        <p>Full-scale agile adoptions and SAFe implementations — from individual team coaching to enterprise ART launches and PI Planning facilitation.</p>
-        <ul class="card-list">
-          <li>SAFe Implementation &amp; Coaching (SPC6)</li>
-          <li>PI Planning Design &amp; Facilitation</li>
-          <li>Scrum Master &amp; PO Mentoring</li>
-          <li>Value Stream Mapping</li>
-          <li>Jira / Jira Align Configuration</li>
-        </ul>
-        <a href="/consulting" class="card-link" style="margin-top:20px;display:inline-flex;">Learn More <i class="fa fa-arrow-right"></i></a>
+        <h3>Agile Transformation &amp; Consulting</h3>
+        <p class="lead">Full-scale agile adoptions and SAFe implementations — from individual team coaching to enterprise ART launches and PI Planning facilitation.</p>
+        <a href="/consulting" class="btn btn-primary btn-lg">Explore Consulting <i class="fa fa-arrow-right"></i></a>
       </div>
-      <div class="card" data-aos="fade-up" data-aos-delay="100">
+      <div class="tunnel-item" data-tunnel-item>
         <div class="card-icon"><i class="fa fa-clipboard-list"></i></div>
-        <h3>Project &amp; Program Management</h3>
-        <p>PMI-standard delivery leadership for complex cross-functional programs — from roadmap planning to executive governance and release readiness.</p>
-        <ul class="card-list">
-          <li>Program &amp; Portfolio Roadmap Execution</li>
-          <li>Cross-Team Dependency Management</li>
-          <li>Executive Stakeholder Reporting</li>
-          <li>Risk Mitigation &amp; Release Governance</li>
-          <li>Budget &amp; Vendor Management</li>
-        </ul>
-        <a href="/consulting" class="card-link" style="margin-top:20px;display:inline-flex;">Learn More <i class="fa fa-arrow-right"></i></a>
+        <h3>Project &amp; Program Management Training</h3>
+        <p class="lead">PMI-standard delivery leadership for complex cross-functional programs — from roadmap planning to executive governance and release readiness.</p>
+        <a href="/training" class="btn btn-primary btn-lg">Explore Training <i class="fa fa-arrow-right"></i></a>
       </div>
-      <div class="card" data-aos="fade-up" data-aos-delay="200">
+      <div class="tunnel-item" data-tunnel-item>
         <div class="card-icon"><i class="fa fa-graduation-cap"></i></div>
-        <h3>Certification Training</h3>
-        <p>PMP, SAFe, and Power BI prep that actually gets people certified and ready for real-world delivery. Cohort-based, live, and practical.</p>
-        <ul class="card-list">
-          <li>PMP Exam Prep &amp; Coaching</li>
-          <li>SAFe Certification Training (SA, SSM, SPO)</li>
-          <li>Agile Fundamentals for Teams</li>
-          <li>Executive Agile Leadership Workshops</li>
-          <li>Power BI for Project Managers</li>
-        </ul>
-        <a href="/classes" class="card-link" style="margin-top:20px;display:inline-flex;">View Weekend Classes <i class="fa fa-arrow-right"></i></a>
-      </div>
-      <div class="card" data-aos="fade-up" data-aos-delay="0">
-        <div class="card-icon"><i class="fa fa-cloud"></i></div>
-        <h3>Cloud &amp; DevOps Delivery</h3>
-        <p>Technical program management for cloud infrastructure migration, modernization, and DevOps platform delivery across major cloud providers.</p>
-        <ul class="card-list">
-          <li>Cloud Infrastructure Program Leadership</li>
-          <li>CI/CD Pipeline &amp; GitHub Actions Delivery</li>
-          <li>GitHub / GitOps Workflow Implementation</li>
-          <li>Infrastructure-as-Code (Terraform) Delivery</li>
-          <li>Release Readiness &amp; SLA Compliance</li>
-        </ul>
-        <a href="/consulting" class="card-link" style="margin-top:20px;display:inline-flex;">Learn More <i class="fa fa-arrow-right"></i></a>
-      </div>
-      <div class="card" data-aos="fade-up" data-aos-delay="100">
-        <div class="card-icon"><i class="fa fa-robot"></i></div>
-        <h3>AI Integration &amp; Strategy</h3>
-        <p>Helping businesses adopt AI tools intelligently — embedding automation and AI-powered workflows into existing operations and delivery pipelines.</p>
-        <ul class="card-list">
-          <li>AI Readiness Assessment</li>
-          <li>AI Tool Selection &amp; Rollout Planning</li>
-          <li>Workflow Automation with AI</li>
-          <li>AI-Augmented Project Management</li>
-          <li>Responsible AI Governance Framework</li>
-        </ul>
-        <a href="#ai" class="card-link" style="margin-top:20px;display:inline-flex;">Learn More <i class="fa fa-arrow-right"></i></a>
-      </div>
-      <div class="card" data-aos="fade-up" data-aos-delay="200">
-        <div class="card-icon"><i class="fa fa-people-group"></i></div>
-        <h3>Corporate Training</h3>
-        <p>Custom workshops and boot camps built for your teams, your stack, and your goals. Delivered to government agencies and enterprises.</p>
-        <ul class="card-list">
-          <li>Custom Agile &amp; PM Workshops</li>
-          <li>Government Agency Training Programs</li>
-          <li>Backlog Management &amp; Story Writing</li>
-          <li>Salesforce CRM Delivery Training</li>
-          <li>On-site &amp; Remote Delivery</li>
-        </ul>
-        <a href="/services" class="card-link" style="margin-top:20px;display:inline-flex;">See Options <i class="fa fa-arrow-right"></i></a>
+        <h3>Certification Classes</h3>
+        <p class="lead">PMP, SAFe, and Power BI prep that actually gets people certified and ready for real-world delivery. Cohort-based, live, and practical.</p>
+        <a href="/classes" class="btn btn-primary btn-lg">View Weekend Classes <i class="fa fa-arrow-right"></i></a>
       </div>
     </div>
 
@@ -641,7 +585,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </section>
 
 <!-- ═══ CLIENTS STRIP ═══ -->
-<section class="clients-section" aria-label="Past clients">
+<section class="clients-section" data-scene aria-label="Past clients">
   <div class="container">
     <p class="clients-label" data-aos="fade-up">Trusted by teams at</p>
     <div class="clients-logos" data-aos="fade-up" data-aos-delay="80">
@@ -658,7 +602,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </section>
 
 <!-- ═══ HOW WE ENGAGE ═══ -->
-<section class="section" style="background:var(--bg);" aria-label="Our process">
+<section class="section" style="background:var(--bg);" data-scene aria-label="Our process">
   <div class="container">
     <div class="section-header centered" data-aos="fade-up">
       <span class="section-label">Our Approach</span>
@@ -666,8 +610,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="divider centered"></div>
       <p class="lead">A structured engagement model that delivers value fast — without the fluff of traditional consulting.</p>
     </div>
-    <div style="margin-bottom:48px;border-radius:16px;overflow:hidden;max-height:280px;" data-aos="fade-up">
-      <img src="https://images.unsplash.com/photo-1600880292089-90a7e086ee0c?w=1100&q=80&auto=format" alt="Consultant working with client team" loading="lazy" style="width:100%;height:280px;object-fit:cover;object-position:center 30%;" />
+    <div class="process-img-zoom" data-zoom-bg style="margin-bottom:48px;border-radius:16px;overflow:hidden;height:280px;position:relative;" data-aos="fade-up">
+      <img data-zoom-layer src="https://images.unsplash.com/photo-1600880292089-90a7e086ee0c?w=1100&q=80&auto=format" alt="Consultant working with client team" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center 30%;position:absolute;inset:0;" />
     </div>
     <div class="process-steps">
       <div class="process-step" data-aos="fade-up" data-aos-delay="0">
@@ -695,8 +639,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </section>
 
 <!-- ═══ WEEKEND CLASSES PROMO (Competitive Strategy: Cross-sell training on homepage) ═══ -->
-<section style="background:linear-gradient(135deg,#00a878 0%,#00916a 100%);padding:56px 0;text-align:center;" aria-label="Weekend classes promo">
-  <div class="container" data-aos="fade-up">
+<section style="padding:56px 0;text-align:center;position:relative;overflow:hidden;" data-scene data-zoom-bg aria-label="Weekend classes promo">
+  <div data-zoom-layer style="background:linear-gradient(135deg,#00a878 0%,#00916a 100%);z-index:0;"></div>
+  <div class="container" style="position:relative;z-index:1;">
     <div style="display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:12px;">
       <i class="fa fa-graduation-cap" style="color:#fff;font-size:1.4rem;"></i>
       <span style="font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.85);">Now Enrolling</span>
@@ -717,7 +662,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </section>
 
 <!-- ═══ WHO WE SERVE ═══ -->
-<section class="section bg-white" id="who-we-serve" aria-labelledby="serve-heading">
+<section class="section bg-white" id="who-we-serve" data-scene aria-labelledby="serve-heading">
   <div class="container">
     <div class="section-header" data-aos="fade-up">
       <span class="section-label">Who We Serve</span>
@@ -788,7 +733,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </section>
 
 <!-- ═══ AI INTEGRATION ═══ -->
-<section class="section ai-section" id="ai" aria-labelledby="ai-heading">
+<section class="section ai-section" id="ai" data-scene aria-labelledby="ai-heading">
   <div class="container">
     <div class="ai-grid">
       <div class="ai-left" data-aos="fade-right">
@@ -859,7 +804,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </section>
 
 <!-- ═══ PAST CLIENTS / CASE STUDIES ═══ -->
-<section class="section" style="background:var(--bg);" id="clients" aria-labelledby="clients-heading">
+<section class="section" style="background:var(--bg);" id="clients" data-scene aria-labelledby="clients-heading">
   <div class="container">
     <div class="section-header centered" data-aos="fade-up">
       <span class="section-label">Client Impact</span>
@@ -957,7 +902,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </section>
 
 <!-- ═══ CERTIFICATIONS ═══ -->
-<section class="section bg-white" id="certifications" aria-labelledby="certs-heading">
+<section class="section bg-white" id="certifications" data-scene aria-labelledby="certs-heading">
   <div class="container">
     <div class="section-header centered" data-aos="fade-up">
       <span class="section-label">Credentials &amp; Certifications</span>
@@ -1032,7 +977,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </section>
 
 <!-- ═══ MEET THE TEAM ═══ -->
-<section class="section" style="background:var(--bg);" id="team" aria-labelledby="team-heading">
+<section class="section" style="background:var(--bg);" id="team" data-scene aria-labelledby="team-heading">
   <div class="container">
     <div class="section-header centered" data-aos="fade-up">
       <span class="section-label">Our Team</span>
@@ -1098,8 +1043,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </section>
 
 <!-- ═══ FINAL CTA ═══ -->
-<section class="cta-section" aria-labelledby="cta-heading" style="position:relative;overflow:hidden;">
-  <div style="position:absolute;inset:0;z-index:0;">
+<section class="cta-section" data-scene data-zoom-bg aria-labelledby="cta-heading" style="position:relative;overflow:hidden;">
+  <div data-zoom-layer style="z-index:0;">
     <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=1400&q=80&auto=format" alt="" loading="lazy" style="width:100%;height:100%;object-fit:cover;opacity:.12;filter:brightness(.6);" />
   </div>
   <div class="container" style="position:relative;z-index:2;">
@@ -1198,6 +1143,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 <script src="js/main.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+<script src="js/immersive.js" defer></script>
 <script>
   // Business size tab switcher
   function showSize(id, btn) {

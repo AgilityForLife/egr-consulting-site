@@ -49,6 +49,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
   <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/immersive.css" />
 
   <!-- Schema.org JSON-LD -->
   <script type="application/ld+json">
@@ -642,7 +643,7 @@
   }
   </style>
 </head>
-<body>
+<body data-immersive>
 
 <!-- GTM noscript -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PQS56S8"
@@ -684,7 +685,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </div>
 
 <!-- ═══ HERO ═══ -->
-<section class="insights-hero" aria-label="Insights Hero">
+<section class="insights-hero" aria-label="Insights Hero" data-zoom-bg>
+  <div class="zoom-layer" data-zoom-layer style="background: linear-gradient(135deg, #061828 0%, #0a2d52 40%, #0d3159 100%);"></div>
   <div class="container">
     <div class="insights-hero-content" data-aos="fade-up">
       <h1>Insights & Research</h1>
@@ -694,7 +696,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </section>
 
 <!-- ═══ CATEGORY FILTERS ═══ -->
-<section class="section" aria-label="Insights">
+<section class="section" aria-label="Insights" data-scene>
   <div class="container">
     <!-- Filter Pills -->
     <div class="category-filters" role="tablist" aria-label="Filter insights by category">
@@ -921,5 +923,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     offset: 50
   });
 </script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script defer src="js/immersive.js"></script>
 </body>
 </html>
