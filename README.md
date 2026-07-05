@@ -150,7 +150,7 @@ consulting-website/
 
 **Erick G. Rosa**
 📧 ErickRosa01@gmail.com
-📞 347-754-4463
+📞 786-505-9530
 🔗 linkedin.com/in/erickgrosa
 🏅 credly.com/users/erick-rosa
 📍 West Orange / Jersey City, NJ
