@@ -160,7 +160,7 @@
   }
   .hero-img-wrapper img {
     width: 100%; height: 100%; object-fit: cover;
-    opacity: .18; filter: brightness(.7);
+    opacity: .38;
   }
   .hero-img-wrapper::after {
     content: ''; position: absolute; inset: 0;
@@ -189,7 +189,12 @@
     width: 100%; height: 200px; object-fit: cover;
   }
   @media (max-width: 768px) {
-    .hero-img-wrapper { display: none; }
+    /* Full-bleed hero photo on mobile instead of hiding it */
+    .hero-img-wrapper { width: 100%; }
+    .hero-img-wrapper img { opacity: .22; }
+    .hero-img-wrapper::after {
+      background: linear-gradient(180deg, rgba(10,37,64,.55) 0%, rgba(10,37,64,.2) 55%, var(--navy) 100%);
+    }
     .services-img-grid { grid-template-columns: 1fr; }
   }
 
@@ -451,7 +456,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="hero-orb hero-orb--teal-sm" data-parallax data-speed="0.34" aria-hidden="true"></div>
     <div class="hero-grid"></div>
     <div class="hero-img-wrapper" aria-hidden="true">
-      <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1200&q=80&auto=format" alt="" loading="eager" />
+      <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1600&q=80&auto=format" alt="" loading="eager" />
     </div>
   </div>
   <div class="container">
@@ -780,7 +785,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <div class="ai-right" data-aos="fade-left" data-aos-delay="100">
         <div style="border-radius:16px;overflow:hidden;margin-bottom:16px;">
-          <img src="https://images.unsplash.com/photo-1694903110330-cc64b7e1d21d?w=600&q=80&auto=format" alt="AI-powered business automation" loading="lazy" style="width:100%;height:200px;object-fit:cover;" />
+          <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800&q=80&auto=format" alt="Circuit board representing AI integration" loading="lazy" style="width:100%;height:200px;object-fit:cover;" />
         </div>
         <div class="ai-stat-card">
           <div class="ai-stat-num">3×</div>
@@ -1045,7 +1050,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- ═══ FINAL CTA ═══ -->
 <section class="cta-section" data-scene data-zoom-bg aria-labelledby="cta-heading" style="position:relative;overflow:hidden;">
   <div data-zoom-layer style="z-index:0;">
-    <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=1400&q=80&auto=format" alt="" loading="lazy" style="width:100%;height:100%;object-fit:cover;opacity:.12;filter:brightness(.6);" />
+    <img src="https://images.unsplash.com/photo-1444723121867-7a241cacace9?w=1600&q=80&auto=format" alt="" loading="lazy" style="width:100%;height:100%;object-fit:cover;opacity:.32;" />
   </div>
   <div class="container" style="position:relative;z-index:2;">
     <div data-aos="fade-up">
