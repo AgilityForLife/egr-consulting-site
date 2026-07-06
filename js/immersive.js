@@ -239,181 +239,6 @@
     }
   }
 
-  /* ── [data-brand-bridge] EGR mark + sprint-cycle ring ──
-     Choreography (scrubbed on desktop, timed once on tablet/mobile):
-       1. EGR mark scales 0.55 -> 1, opacity 0 -> 1 (continues the
-          hero's tunnel z-motion into the dark bridge section).
-       2. Ring draws itself via stroke-dashoffset (pathLength-based)
-          while rotating slightly 0 -> 45deg.
-       3. The 4 node dots + labels light up in a clockwise stagger
-          (opacity .25 -> 1, small scale pop).
-       4. Tagline fades up last.
-     Reversible on desktop since the whole thing lives on one
-     scrubbed timeline. ── */
-  function setupBrandRingGeometry(section) {
-    var path = section.querySelector('[data-ring-path]');
-    if (!path) return null;
-
-    var length = 0;
-    try {
-      length = path.getTotalLength();
-    } catch (err) {
-      length = 1445; // fallback ~ circumference of r=230 circle
-    }
-
-    path.style.strokeDasharray = length;
-    return length;
-  }
-
-  function initBrandBridge(mm) {
-    var section = document.querySelector('[data-brand-bridge]');
-    if (!section) return;
-
-    var ringWrap = section.querySelector('[data-brand-ring-wrap]');
-    var mark = section.querySelector('.brand-bridge-mark');
-    var nodes = gsap.utils.toArray('[data-ring-node]', section);
-    var arrows = gsap.utils.toArray('[data-ring-arrow]', section);
-    var labels = gsap.utils.toArray('[data-brand-label]', section);
-    var mobileLabels = gsap.utils.toArray('[data-brand-label-mobile]', section);
-    var tagline = section.querySelector('[data-brand-tagline]');
-    var length = setupBrandRingGeometry(section);
-    var path = section.querySelector('[data-ring-path]');
-
-    if (!mark || !path) return;
-
-    var allDots = nodes.concat(arrows);
-
-    function buildTimeline() {
-      var tl = gsap.timeline({ paused: true });
-
-      tl.fromTo(mark, { scale: 0.55, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.4, ease: 'power2.out' }, 0);
-
-      if (length) {
-        tl.fromTo(path, { strokeDashoffset: length }, { strokeDashoffset: 0, duration: 0.5, ease: 'none' }, 0.05);
-      }
-      if (ringWrap) {
-        tl.fromTo(ringWrap, { rotate: 0 }, { rotate: 45, duration: 0.55, ease: 'none', transformOrigin: 'center center' }, 0.05);
-      }
-
-      if (allDots.length) {
-        tl.fromTo(
-          allDots,
-          { opacity: 0.25, scale: 0.7, transformOrigin: 'center center' },
-          { opacity: 1, scale: 1, duration: 0.28, stagger: 0.08, ease: 'back.out(2)' },
-          0.3
-        );
-      }
-      if (labels.length) {
-        tl.fromTo(
-          labels,
-          { opacity: 0.25, scale: 0.85, transformOrigin: 'center center' },
-          { opacity: 1, scale: 1, duration: 0.28, stagger: 0.08, ease: 'back.out(2)' },
-          0.3
-        );
-      }
-      if (mobileLabels.length) {
-        tl.fromTo(
-          mobileLabels,
-          { opacity: 0.25, y: 8 },
-          { opacity: 1, y: 0, duration: 0.28, stagger: 0.08, ease: 'power2.out' },
-          0.3
-        );
-      }
-
-      if (tagline) {
-        tl.fromTo(tagline, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.35, ease: 'power2.out' }, 0.68);
-      }
-
-      return tl;
-    }
-
-    // Initial state so there's no flash-of-final-state before the
-    // ScrollTrigger/timeline takes over.
-    gsap.set(mark, { scale: 0.55, opacity: 0 });
-    if (length) gsap.set(path, { strokeDashoffset: length });
-    if (allDots.length) gsap.set(allDots, { opacity: 0.25, scale: 0.7 });
-    if (labels.length) gsap.set(labels, { opacity: 0.25, scale: 0.85 });
-    if (mobileLabels.length) gsap.set(mobileLabels, { opacity: 0.25, y: 8 });
-    if (tagline) gsap.set(tagline, { opacity: 0, y: 20 });
-
-    if (mm.conditions.desktop) {
-      var tl = buildTimeline();
-      ScrollTrigger.create({
-        trigger: section,
-        start: 'top top',
-        end: '+=120%',
-        pin: true,
-        pinSpacing: true,
-        anticipatePin: 1,
-        scrub: 0.8,
-        animation: tl,
-      });
-    } else if (mm.conditions.tablet) {
-      var tlTablet = buildTimeline();
-      tlTablet.timeScale(1 / 1.4); // stretch to ~1.4s total duration
-      ScrollTrigger.create({
-        trigger: section,
-        start: 'top 75%',
-        toggleActions: 'play none none none',
-        onEnter: function () {
-          tlTablet.play(0);
-        },
-      });
-    } else if (mm.conditions.mobile) {
-      // Simple fade/rise entrance for the whole section; ring is
-      // pre-drawn (no scrub-driven stroke animation on mobile).
-      if (length) gsap.set(path, { strokeDashoffset: 0 });
-      gsap.set(mark, { scale: 1, opacity: 0 });
-      if (allDots.length) gsap.set(allDots, { opacity: 1, scale: 1 });
-      if (labels.length) gsap.set(labels, { opacity: 1, scale: 1 });
-
-      gsap.set(section, { opacity: 0, y: 32 });
-      gsap.to(section, {
-        opacity: 1,
-        y: 0,
-        duration: 0.7,
-        ease: 'power2.out',
-        scrollTrigger: {
-          trigger: section,
-          start: 'top 88%',
-          once: true,
-        },
-      });
-      gsap.to(mark, {
-        opacity: 1,
-        duration: 0.6,
-        delay: 0.1,
-        ease: 'power2.out',
-        scrollTrigger: {
-          trigger: section,
-          start: 'top 88%',
-          once: true,
-        },
-      });
-      if (mobileLabels.length) {
-        gsap.set(mobileLabels, { opacity: 1, y: 0 });
-      }
-      if (tagline) {
-        gsap.fromTo(
-          tagline,
-          { opacity: 0, y: 16 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.5,
-            delay: 0.25,
-            ease: 'power2.out',
-            scrollTrigger: {
-              trigger: section,
-              start: 'top 88%',
-              once: true,
-            },
-          }
-        );
-      }
-    }
-  }
-
   /* ── [data-tunnel] pinned flythrough sequence (desktop only) ── */
   function initTunnel() {
     var containers = gsap.utils.toArray('[data-tunnel]');
@@ -564,20 +389,7 @@
 
   /* ── Reduced motion: guarantee full visibility, no transforms ── */
   function clearForReducedMotion() {
-    var selectors = [
-      '[data-scene]',
-      '[data-zoom-layer]',
-      '[data-tunnel-item]',
-      '[data-parallax]',
-      '[data-magnetic]',
-      '.brand-bridge-mark',
-      '[data-brand-ring-wrap]',
-      '[data-ring-node]',
-      '[data-ring-arrow]',
-      '[data-brand-label]',
-      '[data-brand-label-mobile]',
-      '[data-brand-tagline]',
-    ];
+    var selectors = ['[data-scene]', '[data-zoom-layer]', '[data-tunnel-item]', '[data-parallax]', '[data-magnetic]'];
     selectors.forEach(function (sel) {
       document.querySelectorAll(sel).forEach(function (el) {
         el.style.opacity = '';
@@ -588,12 +400,6 @@
         el.style.left = '';
       });
     });
-
-    var ringPath = document.querySelector('[data-brand-bridge] [data-ring-path]');
-    if (ringPath) {
-      ringPath.style.strokeDasharray = '';
-      ringPath.style.strokeDashoffset = '';
-    }
   }
 
   /* ── matchMedia tiers ── */
@@ -623,7 +429,6 @@
         initScenes();
         initZoomBg();
         initTunnelExit();
-        initBrandBridge(context);
         initTunnel();
         initParallax();
         initWords();
@@ -631,11 +436,9 @@
       } else if (conditions.tablet) {
         initScenes();
         initZoomBg();
-        initBrandBridge(context);
         // No pinning, no tunnel flythrough, no magnetic on tablet.
       } else if (conditions.mobile) {
         initSimpleScenes();
-        initBrandBridge(context);
         // Simple fade/rise only — no zoom-bg, no tunnel, no parallax.
       }
 
