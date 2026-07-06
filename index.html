@@ -455,9 +455,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="hero-orb hero-orb--navy-md" data-parallax data-speed="0.16" aria-hidden="true"></div>
     <div class="hero-orb hero-orb--teal-sm" data-parallax data-speed="0.34" aria-hidden="true"></div>
     <div class="hero-grid"></div>
-    <div class="hero-img-wrapper" aria-hidden="true">
+    <div class="hero-img-wrapper hero-shot hero-shot-exterior" aria-hidden="true">
       <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1600&q=80&auto=format" alt="" loading="eager" />
+      <div class="hero-shot-exterior-overlay" aria-hidden="true"></div>
     </div>
+    <div class="hero-shot hero-shot-window" aria-hidden="true">
+      <img src="https://images.unsplash.com/photo-1497215728101-856f4ea42174?w=1600&q=80&auto=format" alt="" loading="lazy" fetchpriority="low" />
+    </div>
+    <div class="hero-shot hero-shot-people" aria-hidden="true">
+      <img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?w=1600&q=80&auto=format" alt="" loading="lazy" fetchpriority="low" />
+    </div>
+    <div class="hero-shot-handoff" aria-hidden="true"></div>
   </div>
   <div class="container">
     <div class="hero-content">
@@ -512,8 +520,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </section>
 
 <!-- ═══ STATS ═══ -->
-<section class="stats-strip" data-scene aria-label="Key metrics">
-  <div class="container">
+<section class="stats-strip" data-scene aria-label="Key metrics" style="position:relative;overflow:hidden;">
+  <div class="section-backdrop" aria-hidden="true" style="background-image:linear-gradient(rgba(6,24,40,.9),rgba(10,37,64,.88)),url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=1600&q=70&auto=format');"></div>
+  <div class="container" style="position:relative;z-index:1;">
     <div class="stats-grid">
       <div class="stat-item" data-aos="fade-up">
         <div class="stat-number" data-count="15" data-suffix="+">15+</div>
@@ -590,8 +599,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </section>
 
 <!-- ═══ CLIENTS STRIP ═══ -->
-<section class="clients-section" data-scene aria-label="Past clients">
-  <div class="container">
+<section class="clients-section" data-scene aria-label="Past clients" style="position:relative;overflow:hidden;">
+  <div class="section-backdrop" aria-hidden="true" style="background-image:linear-gradient(rgba(244,247,251,.92),rgba(244,247,251,.92)),url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=1600&q=70&auto=format');"></div>
+  <div class="container" style="position:relative;z-index:1;">
     <p class="clients-label" data-aos="fade-up">Trusted by teams at</p>
     <div class="clients-logos" data-aos="fade-up" data-aos-delay="80">
       <span class="client-logo">Sanofi</span>
@@ -667,8 +677,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </section>
 
 <!-- ═══ WHO WE SERVE ═══ -->
-<section class="section bg-white" id="who-we-serve" data-scene aria-labelledby="serve-heading">
-  <div class="container">
+<section class="section bg-white" id="who-we-serve" data-scene data-zoom-bg aria-labelledby="serve-heading" style="position:relative;overflow:hidden;">
+  <div class="section-backdrop" data-zoom-layer aria-hidden="true" style="background-image:linear-gradient(rgba(244,247,251,.9),rgba(244,247,251,.9)),url('https://images.unsplash.com/photo-1497215728101-856f4ea42174?w=1600&q=80&auto=format');"></div>
+  <div class="container" style="position:relative;z-index:1;">
     <div class="section-header" data-aos="fade-up">
       <span class="section-label">Who We Serve</span>
       <h2 id="serve-heading">Solutions Scaled to Your Business</h2>
@@ -809,8 +820,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </section>
 
 <!-- ═══ PAST CLIENTS / CASE STUDIES ═══ -->
-<section class="section" style="background:var(--bg);" id="clients" data-scene aria-labelledby="clients-heading">
-  <div class="container">
+<section class="section" style="background:var(--bg);position:relative;overflow:hidden;" id="clients" data-scene data-zoom-bg aria-labelledby="clients-heading">
+  <div class="section-backdrop" data-zoom-layer aria-hidden="true" style="background-image:linear-gradient(rgba(244,247,251,.9),rgba(244,247,251,.9)),url('https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=1600&q=70&auto=format');"></div>
+  <div class="container" style="position:relative;z-index:1;">
     <div class="section-header centered" data-aos="fade-up">
       <span class="section-label">Client Impact</span>
       <h2 id="clients-heading">Proven Results Across Industries</h2>
@@ -907,8 +919,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </section>
 
 <!-- ═══ CERTIFICATIONS ═══ -->
-<section class="section bg-white" id="certifications" data-scene aria-labelledby="certs-heading">
-  <div class="container">
+<section class="section bg-white" id="certifications" data-scene aria-labelledby="certs-heading" style="position:relative;overflow:hidden;">
+  <div class="section-backdrop" aria-hidden="true" style="background-image:linear-gradient(rgba(255,255,255,.92),rgba(255,255,255,.92)),url('https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=1600&q=70&auto=format');"></div>
+  <div class="container" style="position:relative;z-index:1;">
     <div class="section-header centered" data-aos="fade-up">
       <span class="section-label">Credentials &amp; Certifications</span>
       <h2 id="certs-heading">Enterprise Credentials. Practitioner Mindset.</h2>
@@ -982,8 +995,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </section>
 
 <!-- ═══ MEET THE TEAM ═══ -->
-<section class="section" style="background:var(--bg);" id="team" data-scene aria-labelledby="team-heading">
-  <div class="container">
+<section class="section" style="background:var(--bg);position:relative;overflow:hidden;" id="team" data-scene aria-labelledby="team-heading">
+  <div class="section-backdrop" aria-hidden="true" style="background-image:linear-gradient(rgba(244,247,251,.92),rgba(244,247,251,.92)),url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=1600&q=70&auto=format');"></div>
+  <div class="container" style="position:relative;z-index:1;">
     <div class="section-header centered" data-aos="fade-up">
       <span class="section-label">Our Team</span>
       <h2 id="team-heading">Meet the Team</h2>

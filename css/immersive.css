@@ -61,13 +61,125 @@
   background: var(--navy-dark, #061828);
 }
 
-/* ── Tunnel stage: dark immersive backdrop for the pinned sequence ── */
+/* ── Hero cinematic zoom-into-the-building sequence ──────────────
+   Three stacked "shots" inside the hero's [data-zoom-layer]:
+     1. hero-shot-exterior  (= .hero-img-wrapper, the resting photo)
+     2. hero-shot-window    (office interior / window view)
+     3. hero-shot-people    (people working, open office)
+   At rest (no JS, or non-desktop tiers) only the exterior shot is
+   visible and looks exactly like the pre-existing static hero. The
+   window/people shots are hidden until initTunnelExit's desktop-tier
+   choreography fades them in. This keeps the resting hero markup's
+   *appearance* identical while giving JS full-bleed layers to
+   crossfade/scale on scroll. */
+.hero-shot {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  will-change: transform, opacity;
+}
+
+.hero-shot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.hero-shot-window,
+.hero-shot-people {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.hero-shot-window img,
+.hero-shot-people img {
+  opacity: 1;
+}
+
+/* Real (JS-tweenable) duplicate of .hero-img-wrapper::after's navy
+   gradient. The ::after pseudo-element stays untouched so the resting
+   hero on tablet/mobile (and desktop before any scroll) looks exactly
+   as it does today; this overlay only fades on desktop as SHOT 1
+   zooms in, letting the photo dominate the frame. */
+.hero-shot-exterior-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, var(--navy, #0A2540) 0%, transparent 100%);
+  pointer-events: none;
+}
+
+@media (max-width: 1023px) {
+  .hero-shot-exterior-overlay {
+    display: none;
+  }
+}
+
+/* Desktop tier only: JS pins the hero and drives the exterior shot
+   full-bleed + the window/people crossfades. On tablet/mobile the
+   window + people shots must stay fully out of the layout — the
+   spec calls for the existing single-image behavior there. */
+@media (max-width: 1023px) {
+  .hero-shot-window,
+  .hero-shot-people {
+    display: none;
+  }
+}
+
+/* Final-15% handoff gradient — rises from the bottom so the pinned
+   hero hands off to the next section intentionally instead of
+   cutting abruptly. Desktop-only (driven by initTunnelExit). */
+.hero-shot-handoff {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 40%, rgba(6, 24, 40, 0.9) 100%);
+  opacity: 0;
+  pointer-events: none;
+  will-change: opacity;
+}
+
+@media (max-width: 1023px) {
+  .hero-shot-handoff {
+    display: none;
+  }
+}
+
+/* ── Section backdrop: no-blank-background helper ────────────────
+   Usage: <section> gets position:relative (added per-section since
+   several already carry inline position:relative/overflow:hidden);
+   first child is <div class="section-backdrop" aria-hidden="true">
+   with a background photo + baked-in overlay gradient set inline per
+   section (keeps this one class reusable across very different
+   overlay strengths). Sits behind content at z-index:0; the section's
+   inner wrapper (.container or similar) needs z-index:1+position:
+   relative to stay above it — added per-section below. Add
+   [data-zoom-bg] to the section + [data-zoom-layer] to this element
+   for the 2-3 sections that should also breathe/zoom on scroll. */
+.section-backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  pointer-events: none;
+}
+
+/* ── Tunnel stage: dark immersive backdrop for the pinned sequence ──
+   A faint (~10% effective) people-working photo sits at the very
+   back of the layer stack — under the existing teal/navy gradients
+   and the ::before grid overlay — so the dark stage isn't flat while
+   staying subordinate to the grid/glow treatment already in place. */
 .tunnel-stage {
   position: relative;
   background:
     radial-gradient(ellipse 60% 50% at 50% 55%, rgba(0, 168, 120, 0.16), transparent 70%),
     radial-gradient(ellipse 90% 80% at 50% 50%, rgba(13, 49, 89, 0.85), transparent 100%),
-    linear-gradient(180deg, var(--navy-dark, #061828) 0%, var(--navy, #0A2540) 50%, var(--navy-dark, #061828) 100%);
+    linear-gradient(180deg, rgba(6, 24, 40, 0.9) 0%, rgba(10, 37, 64, 0.88) 50%, rgba(6, 24, 40, 0.9) 100%),
+    url('https://images.unsplash.com/photo-1556761175-b413da4baf72?w=1600&q=70&auto=format');
+  background-repeat: no-repeat;
+  background-size: cover, cover, cover, cover;
+  background-position: center, center, center, center;
   overflow: hidden;
 }
 
@@ -219,6 +331,24 @@
     transform: none !important;
     filter: none !important;
     will-change: auto;
+  }
+
+  /* Reduced motion: hero must render as a static resting shot — only
+     the original exterior photo, no window/people crossfade shots. */
+  [data-tunnel-exit] {
+    transform: none !important;
+    filter: none !important;
+    opacity: 1 !important;
+  }
+
+  .hero-shot-exterior {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .hero-shot-window,
+  .hero-shot-people {
+    display: none !important;
   }
 
   [data-tunnel] {

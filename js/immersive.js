@@ -11,8 +11,14 @@
                         .zoom-layer fallback) scrubs scale 1 -> 1.18
                         across the section's scroll ("breathing" bg).
    [data-zoom-layer]    The layer inside a [data-zoom-bg] that zooms.
-   [data-tunnel-exit]   Hero pins + scrub-zooms/blurs/fades out so the
-                        page feels like it's tunneling through the hero.
+   [data-tunnel-exit]   Hero pins (desktop only) and runs a 3-shot
+                        cinematic sequence — exterior building zooms
+                        into the glass, crossfades to a window/interior
+                        view, then to people working in an open office
+                        — so scrolling reads as "zooming into the
+                        building." Tablet/mobile: no pin, just a
+                        deeper/lighter scrub zoom on the same exterior
+                        shot (see initHeroTabletZoom / initHeroMobileZoom).
    [data-tunnel]        Container with 3+ [data-tunnel-item] children;
                         pins and scrubs items through z-space like a
                         tunnel flythrough (desktop only). Non-desktop:
@@ -193,28 +199,115 @@
     });
   }
 
-  /* ── [data-tunnel-exit] hero pin + zoom-through ── */
+  /* ── Linear interpolation clamped to the [inMin, inMax] domain ──
+     Used throughout the hero cinematic sequence to derive per-shot
+     opacity/scale from the overall pinned-scroll progress (0-1). */
+  function mapRange(p, inMin, inMax, outMin, outMax) {
+    if (inMax === inMin) return p < inMin ? outMin : outMax;
+    var t = (p - inMin) / (inMax - inMin);
+    t = t < 0 ? 0 : t > 1 ? 1 : t;
+    return outMin + t * (outMax - outMin);
+  }
+
+  /* ── [data-tunnel-exit] hero: 3-shot cinematic zoom-into-the-building ──
+     Desktop only (see matchMedia tiers below). Pins the hero for
+     +=160% of scroll and drives a single onUpdate that choreographs:
+       - hero copy (eyebrow/h1/lead/CTAs) fading + drifting up (0-0.28)
+       - orbs + grid fading out (0-0.35)
+       - SHOT 1 exterior: zooms 1 -> 2.3 into the glass (0-0.45),
+         image opacity .38 -> .75, its navy overlay partially clears,
+         then the whole exterior layer crossfades out by 0.5
+       - SHOT 2 window/interior: crossfades in 0.40-0.72, scale
+         1.28 -> 1.06, fades out by 0.8
+       - SHOT 3 people/open office: crossfades in 0.66-1.0, scale
+         1.18 -> 1.0
+       - bottom handoff gradient rises in the final 15% (0.85-1.0)
+     so the pinned stage hands off intentionally to the next section. */
   function initTunnelExit() {
     var hero = document.querySelector('[data-tunnel-exit]');
     if (!hero) return;
 
-    var layer = hero.querySelector('[data-zoom-layer]');
+    var eyebrow = hero.querySelector('.hero-eyebrow');
+    var h1 = hero.querySelector('h1');
+    var lead = hero.querySelector('.hero-content .lead');
+    var btnGroup = hero.querySelector('.btn-group');
+    var copyEls = [eyebrow, h1, lead, btnGroup].filter(Boolean);
+
+    var orbs = hero.querySelectorAll('.hero-orb');
+    var grid = hero.querySelector('.hero-grid');
+
+    var exteriorLayer = hero.querySelector('.hero-shot-exterior');
+    var exteriorImg = exteriorLayer ? exteriorLayer.querySelector('img') : null;
+    var exteriorOverlay = hero.querySelector('.hero-shot-exterior-overlay');
+    var windowLayer = hero.querySelector('.hero-shot-window');
+    var peopleLayer = hero.querySelector('.hero-shot-people');
+    var handoff = hero.querySelector('.hero-shot-handoff');
+
+    if (exteriorLayer) {
+      gsap.set(exteriorLayer, { transformOrigin: '62% 30%' });
+    }
 
     ScrollTrigger.create({
       trigger: hero,
       start: 'top top',
-      end: '+=60%',
+      end: '+=160%',
       pin: true,
       pinSpacing: true,
       anticipatePin: 1,
       scrub: 0.8,
       onUpdate: function (self) {
         var p = self.progress;
-        gsap.set(hero, {
-          scale: 1 + p * 0.45,
-          opacity: 1 - p,
-          filter: 'blur(' + (p * 6).toFixed(2) + 'px)',
-        });
+
+        // Hero copy: fade + drift up, done by 0.28.
+        if (copyEls.length) {
+          gsap.set(copyEls, {
+            opacity: mapRange(p, 0, 0.28, 1, 0),
+            y: mapRange(p, 0, 0.28, 0, -40),
+          });
+        }
+
+        // Orbs + grid: fade out by 0.35.
+        var ambientOpacity = mapRange(p, 0, 0.35, 1, 0);
+        if (orbs.length) gsap.set(orbs, { opacity: ambientOpacity });
+        if (grid) gsap.set(grid, { opacity: ambientOpacity });
+
+        // SHOT 1 — exterior zooms into the glass, then crossfades
+        // out to make room for SHOT 2.
+        if (exteriorLayer) {
+          gsap.set(exteriorLayer, {
+            scale: mapRange(p, 0, 0.45, 1, 2.3),
+            opacity: mapRange(p, 0.4, 0.5, 1, 0),
+          });
+        }
+        if (exteriorImg) {
+          gsap.set(exteriorImg, { opacity: mapRange(p, 0, 0.45, 0.38, 0.75) });
+        }
+        if (exteriorOverlay) {
+          // "Partially" clears — never fully transparent, so the
+          // navy brand tone still cohere with the resting hero.
+          gsap.set(exteriorOverlay, { opacity: mapRange(p, 0, 0.45, 1, 0.15) });
+        }
+
+        // SHOT 2 — office window/interior crossfade.
+        if (windowLayer) {
+          gsap.set(windowLayer, {
+            opacity: mapRange(p, 0.4, 0.72, 0, 1) * mapRange(p, 0.72, 0.8, 1, 0),
+            scale: mapRange(p, 0.4, 0.72, 1.28, 1.06),
+          });
+        }
+
+        // SHOT 3 — people working, open office crossfade.
+        if (peopleLayer) {
+          gsap.set(peopleLayer, {
+            opacity: mapRange(p, 0.66, 1, 0, 1),
+            scale: mapRange(p, 0.66, 1, 1.18, 1),
+          });
+        }
+
+        // Final handoff: bottom gradient rises in the last 15%.
+        if (handoff) {
+          gsap.set(handoff, { opacity: mapRange(p, 0.85, 1, 0, 0.55) });
+        }
       },
       onLeave: function () {
         gsap.set(hero, { opacity: 0 });
@@ -223,20 +316,53 @@
         gsap.set(hero, { opacity: 1 });
       },
     });
+  }
 
-    if (layer) {
-      gsap.set(layer, { scale: 1, transformOrigin: 'center center' });
-      gsap.to(layer, {
-        scale: 1.2,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: hero,
-          start: 'top top',
-          end: '+=60%',
-          scrub: 0.8,
-        },
-      });
-    }
+  /* ── Hero tablet tier: no pin, just a deeper scrub zoom on the
+     existing exterior shot. Window/people shots are not shown
+     (hidden via CSS max-width:1023px rule) — we don't ship 3 large
+     images to tablets. ── */
+  function initHeroTabletZoom() {
+    var hero = document.querySelector('[data-tunnel-exit]');
+    if (!hero) return;
+
+    var exteriorLayer = hero.querySelector('.hero-shot-exterior');
+    if (!exteriorLayer) return;
+
+    gsap.set(exteriorLayer, { scale: 1, transformOrigin: 'center center' });
+    gsap.to(exteriorLayer, {
+      scale: 1.6,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: hero,
+        start: 'top top',
+        end: 'bottom top',
+        scrub: 0.8,
+      },
+    });
+  }
+
+  /* ── Hero mobile tier: light zoom scrub on the existing full-bleed
+     bg photo — no pin, no window/people shots (kept off phones so we
+     don't ship 3 large images down a cellular connection). ── */
+  function initHeroMobileZoom() {
+    var hero = document.querySelector('[data-tunnel-exit]');
+    if (!hero) return;
+
+    var exteriorLayer = hero.querySelector('.hero-shot-exterior');
+    if (!exteriorLayer) return;
+
+    gsap.set(exteriorLayer, { scale: 1, transformOrigin: 'center center' });
+    gsap.to(exteriorLayer, {
+      scale: 1.25,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: hero,
+        start: 'top top',
+        end: 'bottom top',
+        scrub: 0.8,
+      },
+    });
   }
 
   /* ── [data-tunnel] pinned flythrough sequence (desktop only) ── */
@@ -436,9 +562,11 @@
       } else if (conditions.tablet) {
         initScenes();
         initZoomBg();
+        initHeroTabletZoom();
         // No pinning, no tunnel flythrough, no magnetic on tablet.
       } else if (conditions.mobile) {
         initSimpleScenes();
+        initHeroMobileZoom();
         // Simple fade/rise only — no zoom-bg, no tunnel, no parallax.
       }
 
